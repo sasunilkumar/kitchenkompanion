@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Phase12</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="spinner_options">
+        <item>Red</item>
+        <item>Blue</item>
+    </string-array>
+</resources>
