@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/button"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is the expense page of our app, expected features is a visualization of spending. this should be a pie chart, different each slice should be something like sweets, fats, oils, dairy, grains, etc. It should also include a way to look at other members in the household spending habits. Also have somehting like a budget feature comapring  current spending, and previous month averages. All should have a bottom table including recent purchases. It may be a good feature to add a budget to a specific grocery list which may be useful for meal prep/events "
+        tools:layout_editor_absoluteX="4dp"
+        tools:layout_editor_absoluteY="5dp" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go Home"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="171dp" />
+
+</LinearLayout>

@@ -15,6 +15,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var recipe: Button
     private lateinit var expenses: Button
     private lateinit var mealPrep: Button
+    private lateinit var login: Button
+    private lateinit var profile: Button
+    private lateinit var settings: Button
+    private lateinit var signUp: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,12 +30,14 @@ class MainActivity : AppCompatActivity() {
         recipe = findViewById<Button>(R.id.button4)
         expenses = findViewById<Button>(R.id.button5)
         mealPrep = findViewById<Button>(R.id.button6)
-
+        login = findViewById<Button>(R.id.button7)
+        profile = findViewById<Button>(R.id.button8)
+        settings = findViewById<Button>(R.id.button9)
+        signUp = findViewById<Button>(R.id.button10)
 
         home.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-
         }
         groceries.setOnClickListener {
             val intent = Intent(this, GroceryList::class.java)
@@ -50,6 +56,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)        }
         mealPrep.setOnClickListener {
             val intent = Intent(this, MealPrep::class.java)
+            startActivity(intent)        }
+        login.setOnClickListener {
+            val intent = Intent(this, Login::class.java)
+            startActivity(intent)        }
+        profile.setOnClickListener {
+            val intent = Intent(this, Profile::class.java)
+            startActivity(intent)        }
+        settings.setOnClickListener {
+            val intent = Intent(this, Settings::class.java)
+            startActivity(intent)        }
+        signUp.setOnClickListener {
+            val intent = Intent(this, SignUp::class.java)
             startActivity(intent)        }
     }
 

@@ -1,4 +1,20 @@
 package com.example.phase12
 
-class Profile {
+import android.content.Intent
+import android.os.Bundle
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+
+class Profile : AppCompatActivity() {
+    private lateinit var home: Button
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.profile)
+        home = findViewById<Button>(R.id.button16)
+        home.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+    }
 }

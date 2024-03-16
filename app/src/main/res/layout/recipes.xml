@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/TextView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search for recipes, look at favorites, give pop ups for warnings like not enough of a specific ingredient, another warning is if it conflicts with a member's dietary restrictions "
+        tools:layout_editor_absoluteX="15dp"
+        tools:layout_editor_absoluteY="18dp" />
+
+    <Button
+        android:id="@+id/button17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go Home"
+        tools:layout_editor_absoluteX="157dp"
+        tools:layout_editor_absoluteY="79dp" />
+</LinearLayout>

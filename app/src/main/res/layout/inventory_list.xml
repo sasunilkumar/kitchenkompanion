@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This page will contain all the items that are currently within a household, this page should look somewhat similar to  the grocery list page but with some subtle differences, the main list should include everything in the kitchen, but there should be filtering by things ike user or event, there should also be an indicator for something that will be used in a meal, so it shows that it is currently avaliable, but someone wants to use it in the near future. there should also be expiration dates filtering on types of items as well "
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="4dp" />
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go Home"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="173dp" />
+</LinearLayout>
