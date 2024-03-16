@@ -1,35 +1,56 @@
 package com.example.phase12
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
+import android.content.Intent
+
+
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var tabLayout: TabLayout
-    lateinit var  ViewPager: ViewPager2
-    lateinit var  adapt: ViewPagerAdapt
+    private lateinit var home: Button
+    private lateinit var groceries: Button
+    private lateinit var inventory: Button
+    private lateinit var recipe: Button
+    private lateinit var expenses: Button
+    private lateinit var mealPrep: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        tabLayout = findViewById(R.id.TabLayout)
-        ViewPager = findViewById(R.id.ViewPager)
-        adapt = ViewPagerAdapt(supportFragmentManager, lifecycle)
-        ViewPager.adapter = adapt
+        home = findViewById<Button>(R.id.button)
+        groceries = findViewById<Button>(R.id.button2)
+        inventory = findViewById<Button>(R.id.button3)
+        recipe = findViewById<Button>(R.id.button4)
+        expenses = findViewById<Button>(R.id.button5)
+        mealPrep = findViewById<Button>(R.id.button6)
 
 
+        home.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
 
-        tabLayout.addOnTabSelectedListener(object : OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                ViewPager.setCurrentItem(tab.position)
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab) {}
-            override fun onTabReselected(tab: TabLayout.Tab) {}
-        })
+        }
+        groceries.setOnClickListener {
+            val intent = Intent(this, GroceryList::class.java)
+            startActivity(intent)
+        }
+        inventory.setOnClickListener {
+            val intent = Intent(this, InventoryList::class.java)
+            startActivity(intent)
+        }
+        recipe.setOnClickListener {
+            val intent = Intent(this, Recipes::class.java)
+            startActivity(intent)
+        }
+        expenses.setOnClickListener {
+            val intent = Intent(this, Expenses::class.java)
+            startActivity(intent)        }
+        mealPrep.setOnClickListener {
+            val intent = Intent(this, MealPrep::class.java)
+            startActivity(intent)        }
     }
+
 }
