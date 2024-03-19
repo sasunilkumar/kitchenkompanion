@@ -2,17 +2,12 @@ package com.example.phase12
 
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.view.Menu
 import android.view.MenuInflater
-import com.example.phase12.databinding.ActivityMainBinding
 import android.view.MenuItem
-import android.widget.Toast
-import android.view.View
-import android.widget.PopupMenu
-import androidx.viewbinding.ViewBinding
+
 
 
 open class BaseLayout : AppCompatActivity() {
@@ -28,75 +23,46 @@ open class BaseLayout : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.Home -> {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                println("home")
+                startActivity(Intent(this, MainActivity::class.java))
                 true
             }
             R.id.GroceryList -> {
-                val intent = Intent(this, GroceryList::class.java)
-                startActivity(intent)
-                println("GroceryList")
-
+                startActivity(Intent(this, GroceryList::class.java))
                 true
             }
             R.id.InventoryList -> {
-                val intent = Intent(this, InventoryList::class.java)
-                startActivity(intent)
-                println("InventoryList")
-
+                startActivity(Intent(this, InventoryList::class.java))
                 true
             }
             R.id.Recipes -> {
-                val intent = Intent(this, Recipes::class.java)
-                startActivity(intent)
-                println("Recipes")
-
+                startActivity(Intent(this, Recipes::class.java))
                 true
             }
             R.id.Expenses -> {
-                val intent = Intent(this, Expenses::class.java)
-                startActivity(intent)
-                println("Expenses")
-
+                startActivity(Intent(this, Expenses::class.java))
                 true
             }
             R.id.MealPrep -> {
-                val intent = Intent(this, MealPrep::class.java)
-                startActivity(intent)
-                println("MealPrep")
-
+                startActivity(Intent(this, MealPrep::class.java))
                 true
             }
             R.id.Login -> {
-                val intent = Intent(this, Login::class.java)
-                startActivity(intent)
-                println("Login")
-
+                startActivity(Intent(this, Login::class.java))
                 true
             }
             R.id.Profile -> {
-                val intent = Intent(this, Profile::class.java)
-                startActivity(intent)
-                println("Profile")
-
+                startActivity(Intent(this, Profile::class.java))
                 true
             }
             R.id.Settings -> {
-                val intent = Intent(this, Settings::class.java)
-                startActivity(intent)
-                println("Settings")
-
+                startActivity(Intent(this, Settings::class.java))
                 true
             }
             R.id.SignUp -> {
-                val intent = Intent(this, SignUp::class.java)
-                startActivity(intent)
-                println("SignUp")
-
+                startActivity(Intent(this, SignUp::class.java))
                 true
             }
-            else -> super.onOptionsItemSelected(item)
+            else -> false
         }
     }
 }
