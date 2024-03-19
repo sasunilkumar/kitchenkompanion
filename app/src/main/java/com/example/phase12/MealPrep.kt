@@ -19,5 +19,7 @@ class MealPrep : BaseLayout() {
         setContentView(binding.root)
 
         setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
     }
 }

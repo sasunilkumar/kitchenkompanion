@@ -32,5 +32,6 @@ class MainActivity : BaseLayout() {
         setSupportActionBar((binding as ActivityMainBinding).toolbar)
 
 
+
     }
 }

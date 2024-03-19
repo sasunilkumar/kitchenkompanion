@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:theme="@style/Theme.MaterialComponents.DayNight">
+    android:theme="@style/Theme.MaterialComponents.DayNight"
+    tools:context=".MainActivity">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
