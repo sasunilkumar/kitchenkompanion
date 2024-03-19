@@ -4,18 +4,23 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import com.example.phase12.databinding.ActivityMainBinding
+import androidx.viewbinding.ViewBinding
+import com.example.phase12.databinding.GroceryListBinding
 
-class GroceryList : AppCompatActivity() {
-    private lateinit var home: Button
+
+class GroceryList : BaseLayout() {
+    private lateinit var binding: ViewBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.grocery_list)
-        home = findViewById<Button>(R.id.button12)
-        home.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
 
-        }
+        binding = GroceryListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(findViewById(R.id.toolbar))
+
     }
 }

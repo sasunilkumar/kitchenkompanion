@@ -3,20 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#E0EFDE">
+    <include layout="@layout/activity_main"/>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="50sp" />
 
     <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Simple login page, includes things like sign up"
-        tools:layout_editor_absoluteY="1dp" />
+        android:text="@string/lorem_ipsum" />
 
-    <Button
-        android:id="@+id/button14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go Home"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="22dp" />
 </LinearLayout>

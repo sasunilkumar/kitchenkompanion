@@ -4,72 +4,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:theme="@style/Theme.MaterialComponents.DayNight"
-    tools:context=".MainActivity">
+    android:layout_height="wrap_content"
+    android:theme="@style/Theme.MaterialComponents.DayNight">
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="This is a temporary home screen, it should link to all the major features/independent screens. The actual final buttons on the main menu should contain links to Grocery list, Inventory list, Recipies Expenses, and Meal prep. There should be something similar to a banner on top with the profile and settings on either side of the screen" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/page_title"
+            app:menu="@menu/ham_menu"
+            style="@style/Widget.MaterialComponents.ActionBar.Primary"/>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Home"/> />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Grocery List" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Inventory List" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Recipes" />
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Expenses" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Meal Prep" />
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login" />
-
-    <Button
-        android:id="@+id/button8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Profile" />
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Settings" />
-
-    <Button
-        android:id="@+id/button10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sign Up" />
+    </com.google.android.material.appbar.AppBarLayout>
 </LinearLayout>
+
+

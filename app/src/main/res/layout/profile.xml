@@ -3,21 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#5438DC">
+    <include layout="@layout/activity_main"/>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Profile"
+        android:textSize="50sp" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="profile stuff, change icon, name, allergyies/ dietary restrictions, etc. all the user specific information. "
-        tools:layout_editor_absoluteX="6dp"
-        tools:layout_editor_absoluteY="5dp" />
-
-    <Button
-        android:id="@+id/button16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go Home"
-        tools:layout_editor_absoluteX="159dp"
-        tools:layout_editor_absoluteY="46dp" />
+        android:text="@string/lorem_ipsum" />
 </LinearLayout>

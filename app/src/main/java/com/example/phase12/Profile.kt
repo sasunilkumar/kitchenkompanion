@@ -4,17 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
+import com.example.phase12.databinding.ActivityMainBinding
+import com.example.phase12.databinding.ProfileBinding
 
-class Profile : AppCompatActivity() {
-    private lateinit var home: Button
+class Profile : BaseLayout() {
+    private lateinit var binding: ViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile)
-        home = findViewById<Button>(R.id.button16)
-        home.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
+
+        binding = ProfileBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        setSupportActionBar(findViewById(R.id.toolbar))
     }
 }

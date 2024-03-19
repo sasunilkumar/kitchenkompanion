@@ -3,22 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#A882DD">
+    <include layout="@layout/activity_main"/>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Grocery List"
+        android:textSize="50sp" />
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="This will contain a bunch of gorcery lists, each with its own heading and user/users attatched, there should also be a household/aggergate list maybe. Each item in a list should have a user/users attatched a quanitiy, and a checklist way of removing items. on the bottom of each list there should be a estimated total. Frequently added itmes should be shown to quickly add items, and a way to add more lists "
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="1dp" />
+        android:text="@string/lorem_ipsum" />
 
-    <Button
-        android:id="@+id/button12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Go Home"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="132dp" />
 
 </LinearLayout>
