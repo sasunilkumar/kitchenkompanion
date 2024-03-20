@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:theme="@style/Theme.MaterialComponents.DayNight"
-    tools:context=".MainActivity">
+    tools:context=".Home">
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,3 +24,4 @@
 </LinearLayout>
 
 
+<!--#242445, #FAB682, #FFF, #D36B6B-->

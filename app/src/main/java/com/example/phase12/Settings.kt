@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.viewbinding.ViewBinding
 import com.example.phase12.databinding.SettingsBinding
 
-class Settings : BaseLayout() {
+class Settings : toolbar() {
     private lateinit var binding: ViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

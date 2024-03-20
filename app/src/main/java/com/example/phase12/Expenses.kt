@@ -6,7 +6,7 @@ import com.example.phase12.databinding.ExpensesBinding
 
 
 
-class Expenses : BaseLayout() {
+class Expenses : toolbar() {
     private lateinit var binding: ViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

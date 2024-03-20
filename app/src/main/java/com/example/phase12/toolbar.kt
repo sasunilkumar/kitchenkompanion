@@ -10,7 +10,7 @@ import android.view.MenuItem
 
 
 
-open class BaseLayout : AppCompatActivity() {
+open class toolbar : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -23,7 +23,7 @@ open class BaseLayout : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.Home -> {
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, Home::class.java))
                 true
             }
             R.id.GroceryList -> {

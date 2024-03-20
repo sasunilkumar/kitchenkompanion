@@ -5,7 +5,7 @@ import androidx.viewbinding.ViewBinding
 import com.example.phase12.databinding.GroceryListBinding
 
 
-class GroceryList : BaseLayout() {
+class GroceryList : toolbar() {
     private lateinit var binding: ViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
