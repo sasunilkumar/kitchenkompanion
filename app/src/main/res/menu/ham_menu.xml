@@ -1,0 +1,39 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.myapplication.MainActivity">
+    <item
+        android:id="@+id/Home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/GroceryList"
+        android:title="Grocery List" />
+
+    <item
+        android:id="@+id/InventoryList"
+        android:title="Inventory List"/>
+    <item
+        android:id="@+id/Recipes"
+        android:title="Recipes" />
+    <item
+        android:id="@+id/Expenses"
+        android:title="Expenses" />
+
+    <item
+        android:id="@+id/MealPrep"
+        android:title="Meal Prep" />
+
+    <item
+        android:id="@+id/Login"
+        android:title="Login"/>
+    <item
+        android:id="@+id/Profile"
+        android:title="Profile"/>
+    <item
+        android:id="@+id/Settings"
+        android:title="Settings"/>
+    <item
+        android:id="@+id/SignUp"
+        android:title="Sign up"/>
+</menu>

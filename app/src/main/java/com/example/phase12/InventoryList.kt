@@ -2,16 +2,16 @@ package com.example.phase12
 
 import android.os.Bundle
 import androidx.viewbinding.ViewBinding
-import com.example.phase12.databinding.ProfileBinding
+import com.example.phase12.databinding.InventoryListBinding
 
-class Profile : toolbar() {
+class InventoryList : toolbar() {
     private lateinit var binding: ViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.profile)
+        setContentView(R.layout.inventory_list)
 
-        binding = ProfileBinding.inflate(layoutInflater)
+        binding = InventoryListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setSupportActionBar(findViewById(R.id.toolbar))
