@@ -10,6 +10,8 @@
     <string name="previous">Previous</string>
     <!-- to toggle the open close button of the navigation drawer -->
     <string name="nav_open">Open</string>
+    <string name="Grocery_fab">This will quickly add an item to the primary grocery list</string>
+
     <string name="nav_close">Close</string>
 
     <string name="lorem_ipsum">

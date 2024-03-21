@@ -7,51 +7,14 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.MaterialComponents.DayNight"
     tools:context=".InventoryList">
-    <include layout="@layout/toolbar"/>
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Home"
-        android:textSize="50sp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:showDividers="middle"
-        android:padding="13dp"
-        android:divider="@drawable/divider">
-        <Button
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:id="@+id/user1"
-            android:background="@drawable/user"/>
-        <Button
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:id="@+id/user2"
-            android:background="@drawable/user"/>
 
-        <Button
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:id="@+id/user3"
-            android:background="@drawable/user"/>
-
-        <Button
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:id="@+id/user4"
-            android:background="@drawable/user"/>
-
-
-
-    </LinearLayout>
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,7 +22,59 @@
             android:orientation="vertical"
             android:showDividers="middle"
             android:divider="@drawable/divider">
+            <include layout="@layout/toolbar"/>
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome Home!"
+                android:textSize="50sp" />
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbarAlwaysDrawHorizontalTrack="false">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:showDividers="middle"
+                    android:padding="13dp"
+                    android:divider="@drawable/divider">
+                    <Button
+                        android:layout_width="125dp"
+                        android:layout_height="125dp"
+                        android:id="@+id/user1"
+                        android:background="@drawable/user"/>
+                    <Button
+                        android:layout_width="125dp"
+                        android:layout_height="125dp"
+                        android:id="@+id/user2"
+                        android:background="@drawable/user"/>
+
+                    <Button
+                        android:layout_width="125dp"
+                        android:layout_height="125dp"
+                        android:id="@+id/user3"
+                        android:background="@drawable/user"/>
+
+                    <Button
+                        android:layout_width="125dp"
+                        android:layout_height="125dp"
+                        android:id="@+id/user4"
+                        android:background="@drawable/user"/>
+                    <Button
+                        android:layout_width="125dp"
+                        android:layout_height="125dp"
+                        android:id="@+id/user5"
+                        android:background="@drawable/user"/>
+                    <Button
+                        android:layout_width="125dp"
+                        android:layout_height="125dp"
+                        android:id="@+id/user6"
+                        android:background="@drawable/user"/>
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <LinearLayout
                 android:layout_width="700px"
@@ -93,15 +108,17 @@
 
 
             </LinearLayout>
+
             <Button
+                android:id="@+id/Inventory"
                 android:layout_width="700px"
                 android:layout_height="250px"
                 android:layout_gravity="center_horizontal"
-                android:textSize="24dp"
+                android:background="@drawable/view_container"
                 android:text="Inventory"
-                android:id="@+id/Inventory"
 
-                android:background="@drawable/view_container" />
+                android:textSize="24dp" />
+
             <Button
                 android:layout_width="700px"
                 android:layout_height="250px"
