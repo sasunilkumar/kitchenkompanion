@@ -1,0 +1,146 @@
+[
+    {
+      "name": "Weekly Groceries",
+      "authors": ["John Doe", "Sarah Lee"],
+      "items": [
+        {
+          "name": "Milk",
+          "quantity": 1,
+          "owner": "John Doe",
+          "price": 3,
+          "favorite": true
+        },
+        {
+          "name": "Bread",
+          "quantity": 2,
+          "owner": "The Kids",
+          "price": 2,
+          "favorite": false
+        },
+        {
+          "name": "Eggs",
+          "quantity": 12,
+          "owner": "John Doe & Jane Doe",
+          "price": 4,
+          "favorite": true
+        },
+        {
+          "name": "Apples",
+          "quantity": 4,
+          "owner": "John Doe",
+          "price": 2,
+          "favorite": false
+        },
+        {
+          "name": "Bananas",
+          "quantity": 3,
+          "owner": "Sarah Lee",
+          "price": 1,
+          "favorite": true
+        },
+        {
+          "name": "Lettuce",
+          "quantity": 1,
+          "owner": "John Doe",
+          "price": 2,
+          "favorite": false
+        }
+      ]
+    },
+    {
+      "name": "Weekend BBQ",
+      "authors": ["Jane Doe", "John Doe"],
+      "items": [
+        {
+          "name": "Hamburgers",
+          "quantity": 8,
+          "owner": "John Doe",
+          "price": 10,
+          "favorite": false
+        },
+        {
+          "name": "Hot dogs",
+          "quantity": 6,
+          "owner": "Jane Doe",
+          "price": 5,
+          "favorite": false
+        },
+        {
+          "name": "Buns",
+          "quantity": 12,
+          "owner": "John Doe",
+          "price": 3,
+          "favorite": true
+        },
+        {
+          "name": "Ketchup",
+          "quantity": 1,
+          "owner": "Guest (Alice)",
+          "price": 2,
+          "favorite": true
+        },
+        {
+          "name": "Mustard",
+          "quantity": 1,
+          "owner": "John Doe",
+          "price": 2,
+          "favorite": false
+        },
+        {
+          "name": "Cheese",
+          "quantity": 1,
+          "owner": "Jane Doe",
+          "price": 5,
+          "favorite": true
+        }
+      ]
+    },
+    {
+      "name": "Pantry Staples",
+      "authors": ["John Doe"],
+      "items": [
+        {
+          "name": "Pasta",
+          "quantity": 2,
+          "owner": "John Doe",
+          "price": 3,
+          "favorite": false
+        },
+        {
+          "name": "Rice",
+          "quantity": 1,
+          "owner": "John Doe",
+          "price": 4,
+          "favorite": true
+        },
+        {
+          "name": "Canned beans",
+          "quantity": 4,
+          "owner": "John Doe",
+          "price": 1,
+          "favorite": false
+        },
+        {
+          "name": "Flour",
+          "quantity": 1,
+          "owner": "John Doe",
+          "price": 5,
+          "favorite": false
+        },
+        {
+          "name": "Sugar",
+          "quantity": 1,
+          "owner": "John Doe",
+          "price": 2,
+          "favorite": true
+        },
+        {
+          "name": "Coffee",
+          "quantity": 1,
+          "owner": "John Doe",
+          "price": 8,
+          "favorite": true
+        }
+      ]
+    }
+  ]
