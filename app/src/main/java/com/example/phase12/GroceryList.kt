@@ -2,16 +2,15 @@ package com.example.phase12
 
 import android.os.Bundle
 import android.util.Log
-import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginBottom
 import androidx.core.view.setPadding
 import androidx.viewbinding.ViewBinding
 import com.example.phase12.databinding.GroceryListBinding
@@ -20,7 +19,6 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.FileNotFoundException
-import java.lang.reflect.Array
 
 
 @Serializable
@@ -37,6 +35,7 @@ class GroceryList : toolbar() {
     private lateinit var fab: View
     private var listCount: Int = 0
     private var grocArray: MutableList<View> = mutableListOf()
+    private var buttons: MutableList<Button> = mutableListOf()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -141,10 +140,11 @@ class GroceryList : toolbar() {
         val row = TableRow(this).apply {
             layoutParams = TableLayout.LayoutParams(
                 TableLayout.LayoutParams.MATCH_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT
+                TableLayout.LayoutParams.WRAP_CONTENT,
             )
+            weightSum = 5f
         }
-        val cols = arrayOf("Name", "Quantity", "Owner", "Price")
+        val cols = arrayOf("Name", "Quantity", "Owner", "Price","Bought")
         for (title in cols) {
             val col = TextView(this).apply {
                 layoutParams = TableRow.LayoutParams(
@@ -154,7 +154,7 @@ class GroceryList : toolbar() {
                 )
                 textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                 text = title
-                textSize = 18f
+                textSize = 15f
                 setBackgroundColor(0xFF0000FF.toInt())
                 setPadding(18, 18, 18, 18)
             }
@@ -204,7 +204,7 @@ class GroceryList : toolbar() {
             setPadding(8, 8, 8, 8)
         }
         var price = TextView(this).apply {
-            text = curr.getString("owner")
+            text = curr.getString("price")
             layoutParams = TableRow.LayoutParams(
                 0,
                 TableRow.LayoutParams.WRAP_CONTENT,
@@ -214,19 +214,22 @@ class GroceryList : toolbar() {
             textSize = 13f
             setPadding(8, 8, 8, 8)
         }
+        val buttonID = View.generateViewId()
         var button = Button(this).apply {
             text = "Add"
-            layoutParams = LinearLayout.LayoutParams(
-                50,100
+            layoutParams = TableRow.LayoutParams(
+                0,
+                TableRow.LayoutParams.WRAP_CONTENT,
+                .5f
             )
+            id = buttonID
         }
-
         row.addView(name)
         row.addView(quant)
         row.addView(price)
         row.addView(button)
-
         container.addView(row)
+        button.setOnClickListener { addItem( curr.getString("name"), 1, "me",  curr.getInt("price"), false) }
     }
     private fun populateList(items: JSONArray?, view: TableLayout) {
         if (items != null) {
@@ -285,6 +288,7 @@ class GroceryList : toolbar() {
                     textSize = 13f
                     setPadding(8, 8, 8, 8)
                 }
+                var check = CheckBox(this)
                 if (curr.getBoolean("favorite")){
                     populateFavorites(curr)
                 }
@@ -292,6 +296,8 @@ class GroceryList : toolbar() {
                 row.addView(quant)
                 row.addView(price)
                 row.addView(owner)
+                row.addView(check)
+
                 tableView.addView(row)
 
             }
