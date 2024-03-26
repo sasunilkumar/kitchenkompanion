@@ -41,38 +41,43 @@
                     android:showDividers="middle"
                     android:padding="13dp"
                     android:divider="@drawable/divider">
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
+                        style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:id="@+id/user1"
-                        android:background="@drawable/user"/>
-                    <Button
+                        android:background="@drawable/user_icon"
+                        android:tint="@color/blue_500"/>
+
+                    <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:id="@+id/user2"
-                        android:background="@drawable/user"/>
+                        android:background="@drawable/user_icon"
+                        android:backgroundTint="@color/blue_500"/>
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:id="@+id/user3"
-                        android:background="@drawable/user"/>
+                        android:background="@drawable/user_icon"
+                        android:backgroundTint="@color/blue_500"/>
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:id="@+id/user4"
-                        android:background="@drawable/user"/>
-                    <Button
+                        android:background="@drawable/user_icon"/>
+                    <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:id="@+id/user5"
-                        android:background="@drawable/user"/>
-                    <Button
+                        android:background="@drawable/user_icon"/>
+                    <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:id="@+id/user6"
-                        android:background="@drawable/user"/>
+                        android:background="@drawable/user_icon"/>
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -85,7 +90,7 @@
                 android:showDividers="middle"
 
                 android:divider="@drawable/divider">
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="300px"
                     android:layout_height="250px"
                     android:layout_weight="1"
@@ -96,7 +101,7 @@
                     android:background="@drawable/view_container" />
 
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:layout_width="300px"
                     android:layout_height="250px"
                     android:layout_weight="1"
@@ -109,7 +114,7 @@
 
             </LinearLayout>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/Inventory"
                 android:layout_width="700px"
                 android:layout_height="250px"
@@ -119,7 +124,7 @@
 
                 android:textSize="24dp" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="700px"
                 android:layout_height="250px"
                 android:textSize="24dp"
@@ -129,7 +134,7 @@
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/view_container" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="700px"
                 android:layout_height="250px"
                 android:textSize="24dp"

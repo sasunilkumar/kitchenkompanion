@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="PrimaryColoredButton" parent="Base.Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/blue_500</item>
+        <item name="colorControlHighlight">@color/blue_500</item>
+    </style>
+</resources>
