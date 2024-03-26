@@ -1,34 +1,29 @@
 package com.example.phase12
 
+import android.app.PendingIntent.getActivity
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 import androidx.viewbinding.ViewBinding
 import com.example.phase12.databinding.GroceryListBinding
-import kotlinx.serialization.Serializable
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.FileNotFoundException
 
-
-@Serializable
-data class Item(val name: String, val quantity: Int, val owner: List<String>, val price: Int, val favorite: Boolean )
-
-@Serializable
-data class Lists(val name: Int, val authors: String, val item: List<Item>)
-
-
-annotation class Composable
 
 class GroceryList : toolbar() {
     private lateinit var binding: ViewBinding
@@ -60,6 +55,35 @@ class GroceryList : toolbar() {
 
         fab.setOnClickListener {
             addItem()
+            val builder = AlertDialog.Builder(this)
+
+            val inflater = LayoutInflater.from(this)
+            val view = inflater.inflate(R.layout.add_item, null)
+            var itemName = findViewById<EditText>(R.id.item_name)
+            var itemQuant = findViewById<EditText>(R.id.quantity)
+            var itemprice = findViewById<EditText>(R.id.price)
+            var isFav = findViewById<CheckBox>(R.id.favorite)
+            builder.setView(view)
+
+
+            builder.setMessage("What would you like to add?")
+            builder.setTitle("Add Item")
+            builder.setCancelable(true)
+
+
+            builder.setPositiveButton("Add") {
+                    dialog, _ ->
+
+                    addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(),isFav.isChecked)
+                    dialog.dismiss()
+            }
+
+            builder.setNegativeButton("Cancel") {
+                    dialog, _ -> dialog.dismiss()
+            }
+
+            val alertDialog = builder.create()
+            alertDialog.show()
             true
         }
 
@@ -218,10 +242,8 @@ class GroceryList : toolbar() {
         var button = Button(this).apply {
             text = "Add"
             layoutParams = TableRow.LayoutParams(
-                0,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                .5f
-            )
+                75,
+                50)
             id = buttonID
         }
         row.addView(name)
