@@ -73,7 +73,6 @@
                             android:text="Name"
                             android:textSize="18sp"
                             android:padding="8dp"
-                            android:background="#FF0000FF"
                             android:textAlignment="center"/>
                         <TextView
                             android:layout_width="0dp"
@@ -82,7 +81,6 @@
                             android:text="Quantity"
                             android:textSize="18sp"
                             android:padding="8dp"
-                            android:background="#FF0000FF"
                             android:textAlignment="center"/>
                         <TextView
                             android:layout_width="0dp"
@@ -91,7 +89,6 @@
                             android:text="Price"
                             android:textSize="18sp"
                             android:padding="8dp"
-                            android:background="#FF0000FF"
                             android:textAlignment="center"/>
 
 
@@ -102,15 +99,8 @@
                             android:text="Quick add"
                             android:textSize="18sp"
                             android:padding="8dp"
-                            android:background="#FF0000FF"
                             android:textAlignment="center"/>
-
-                        <!-- Add more columns as needed -->
-
                     </TableRow>
-
-                    <!-- Table Rows -->
-                    <!-- Example Row -->
                     <TableRow
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

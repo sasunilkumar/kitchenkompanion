@@ -73,9 +73,11 @@ class GroceryList : toolbar() {
 
             builder.setPositiveButton("Add") {
                     dialog, _ ->
-
-                    addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(),isFav.isChecked)
-                    dialog.dismiss()
+//                    try {addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(),isFav.isChecked)}
+//                    finally {
+                        addItem()
+                        dialog.dismiss()
+//                    }
             }
 
             builder.setNegativeButton("Cancel") {
@@ -179,7 +181,6 @@ class GroceryList : toolbar() {
                 textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                 text = title
                 textSize = 15f
-                setBackgroundColor(0xFF0000FF.toInt())
                 setPadding(18, 18, 18, 18)
             }
             row.addView(col)
