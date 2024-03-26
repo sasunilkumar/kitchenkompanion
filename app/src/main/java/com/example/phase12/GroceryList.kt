@@ -168,9 +168,10 @@ class GroceryList : toolbar() {
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT,
             )
-            weightSum = 5f
         }
         val cols = arrayOf("Name", "Quantity", "Owner", "Price","Bought")
+        val weights = arrayOf(2, 1, 1, 1,1)
+
         for (title in cols) {
             val col = TextView(this).apply {
                 layoutParams = TableRow.LayoutParams(
@@ -180,7 +181,7 @@ class GroceryList : toolbar() {
                 )
                 textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                 text = title
-                textSize = 15f
+                textSize = 23f
                 setPadding(18, 18, 18, 18)
             }
             row.addView(col)
@@ -204,6 +205,8 @@ class GroceryList : toolbar() {
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT
             )
+            textAlignment = TextView.TEXT_ALIGNMENT_CENTER
+
         }
 
         var name = TextView(this).apply {
@@ -211,10 +214,10 @@ class GroceryList : toolbar() {
             layoutParams = TableRow.LayoutParams(
                 0,
                 TableRow.LayoutParams.WRAP_CONTENT,
-                1f
+                40f
             )
             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-            textSize = 13f
+            textSize = 20f
             setPadding(8, 8, 8, 8)
         }
         var quant = TextView(this).apply {
@@ -222,10 +225,10 @@ class GroceryList : toolbar() {
             layoutParams = TableRow.LayoutParams(
                 0,
                 TableRow.LayoutParams.WRAP_CONTENT,
-                1f
+                20f
             )
             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-            textSize = 13f
+            textSize = 20f
             setPadding(8, 8, 8, 8)
         }
         var price = TextView(this).apply {
@@ -233,10 +236,10 @@ class GroceryList : toolbar() {
             layoutParams = TableRow.LayoutParams(
                 0,
                 TableRow.LayoutParams.WRAP_CONTENT,
-                1f
+                20f
             )
             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-            textSize = 13f
+            textSize = 20f
             setPadding(8, 8, 8, 8)
         }
         val buttonID = View.generateViewId()
@@ -244,7 +247,8 @@ class GroceryList : toolbar() {
             text = "Add"
             layoutParams = TableRow.LayoutParams(
                 75,
-                50)
+                50,
+                8f)
             id = buttonID
         }
         row.addView(name)
@@ -272,10 +276,10 @@ class GroceryList : toolbar() {
                     layoutParams = TableRow.LayoutParams(
                         0,
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        1f
+                        2f
                     )
                     textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-                    textSize = 13f
+                    textSize = 20f
                     setPadding(8, 8, 8, 8)
                 }
                 var quant = TextView(this).apply {
@@ -286,7 +290,7 @@ class GroceryList : toolbar() {
                         1f
                     )
                     textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-                    textSize = 13f
+                    textSize = 20f
                     setPadding(8, 8, 8, 8)
                 }
                 var price = TextView(this).apply {
@@ -297,7 +301,7 @@ class GroceryList : toolbar() {
                         1f
                     )
                     textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-                    textSize = 13f
+                    textSize = 20f
                     setPadding(8, 8, 8, 8)
                 }
                 var owner = TextView(this).apply {
@@ -308,12 +312,21 @@ class GroceryList : toolbar() {
                         1f
                     )
                     textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-                    textSize = 13f
+                    textSize = 20f
                     setPadding(8, 8, 8, 8)
                 }
-                var check = CheckBox(this)
+                var check = CheckBox(this).apply {
+                    layoutParams = TableRow.LayoutParams(
+                        0,
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        1f
+
+                    )
+
+                }
                 if (curr.getBoolean("favorite")){
                     populateFavorites(curr)
+
                 }
                 row.addView(name)
                 row.addView(quant)
