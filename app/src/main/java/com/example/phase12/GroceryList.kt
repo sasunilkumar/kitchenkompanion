@@ -1,42 +1,36 @@
 package com.example.phase12
 
+import android.app.PendingIntent.getActivity
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
-import android.util.TypedValue
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginBottom
 import androidx.core.view.setPadding
 import androidx.viewbinding.ViewBinding
 import com.example.phase12.databinding.GroceryListBinding
-import kotlinx.serialization.Serializable
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.FileNotFoundException
-import java.lang.reflect.Array
 
-
-@Serializable
-data class Item(val name: String, val quantity: Int, val owner: List<String>, val price: Int, val favorite: Boolean )
-
-@Serializable
-data class Lists(val name: Int, val authors: String, val item: List<Item>)
-
-
-annotation class Composable
 
 class GroceryList : toolbar() {
     private lateinit var binding: ViewBinding
     private lateinit var fab: View
     private var listCount: Int = 0
     private var grocArray: MutableList<View> = mutableListOf()
+    private var buttons: MutableList<Button> = mutableListOf()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,6 +55,37 @@ class GroceryList : toolbar() {
 
         fab.setOnClickListener {
             addItem()
+            val builder = AlertDialog.Builder(this)
+
+            val inflater = LayoutInflater.from(this)
+            val view = inflater.inflate(R.layout.add_item, null)
+            var itemName = findViewById<EditText>(R.id.item_name)
+            var itemQuant = findViewById<EditText>(R.id.quantity)
+            var itemprice = findViewById<EditText>(R.id.price)
+            var isFav = findViewById<CheckBox>(R.id.favorite)
+            builder.setView(view)
+
+
+            builder.setMessage("What would you like to add?")
+            builder.setTitle("Add Item")
+            builder.setCancelable(true)
+
+
+            builder.setPositiveButton("Add") {
+                    dialog, _ ->
+//                    try {addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(),isFav.isChecked)}
+//                    finally {
+                        addItem()
+                        dialog.dismiss()
+//                    }
+            }
+
+            builder.setNegativeButton("Cancel") {
+                    dialog, _ -> dialog.dismiss()
+            }
+
+            val alertDialog = builder.create()
+            alertDialog.show()
             true
         }
 
@@ -141,10 +166,12 @@ class GroceryList : toolbar() {
         val row = TableRow(this).apply {
             layoutParams = TableLayout.LayoutParams(
                 TableLayout.LayoutParams.MATCH_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT
+                TableLayout.LayoutParams.WRAP_CONTENT,
             )
         }
-        val cols = arrayOf("Name", "Quantity", "Owner", "Price")
+        val cols = arrayOf("Name", "Quantity", "Owner", "Price","Bought")
+        val weights = arrayOf(2, 1, 1, 1,1)
+
         for (title in cols) {
             val col = TextView(this).apply {
                 layoutParams = TableRow.LayoutParams(
@@ -154,8 +181,7 @@ class GroceryList : toolbar() {
                 )
                 textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                 text = title
-                textSize = 18f
-                setBackgroundColor(0xFF0000FF.toInt())
+                textSize = 23f
                 setPadding(18, 18, 18, 18)
             }
             row.addView(col)
@@ -179,6 +205,8 @@ class GroceryList : toolbar() {
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT
             )
+            textAlignment = TextView.TEXT_ALIGNMENT_CENTER
+
         }
 
         var name = TextView(this).apply {
@@ -186,10 +214,10 @@ class GroceryList : toolbar() {
             layoutParams = TableRow.LayoutParams(
                 0,
                 TableRow.LayoutParams.WRAP_CONTENT,
-                1f
+                40f
             )
             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-            textSize = 13f
+            textSize = 20f
             setPadding(8, 8, 8, 8)
         }
         var quant = TextView(this).apply {
@@ -197,36 +225,38 @@ class GroceryList : toolbar() {
             layoutParams = TableRow.LayoutParams(
                 0,
                 TableRow.LayoutParams.WRAP_CONTENT,
-                1f
+                20f
             )
             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-            textSize = 13f
+            textSize = 20f
             setPadding(8, 8, 8, 8)
         }
         var price = TextView(this).apply {
-            text = curr.getString("owner")
+            text = curr.getString("price")
             layoutParams = TableRow.LayoutParams(
                 0,
                 TableRow.LayoutParams.WRAP_CONTENT,
-                1f
+                20f
             )
             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-            textSize = 13f
+            textSize = 20f
             setPadding(8, 8, 8, 8)
         }
+        val buttonID = View.generateViewId()
         var button = Button(this).apply {
             text = "Add"
-            layoutParams = LinearLayout.LayoutParams(
-                50,100
-            )
+            layoutParams = TableRow.LayoutParams(
+                75,
+                50,
+                8f)
+            id = buttonID
         }
-
         row.addView(name)
         row.addView(quant)
         row.addView(price)
         row.addView(button)
-
         container.addView(row)
+        button.setOnClickListener { addItem( curr.getString("name"), 1, "me",  curr.getInt("price"), false) }
     }
     private fun populateList(items: JSONArray?, view: TableLayout) {
         if (items != null) {
@@ -246,10 +276,10 @@ class GroceryList : toolbar() {
                     layoutParams = TableRow.LayoutParams(
                         0,
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        1f
+                        2f
                     )
                     textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-                    textSize = 13f
+                    textSize = 20f
                     setPadding(8, 8, 8, 8)
                 }
                 var quant = TextView(this).apply {
@@ -260,7 +290,7 @@ class GroceryList : toolbar() {
                         1f
                     )
                     textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-                    textSize = 13f
+                    textSize = 20f
                     setPadding(8, 8, 8, 8)
                 }
                 var price = TextView(this).apply {
@@ -271,7 +301,7 @@ class GroceryList : toolbar() {
                         1f
                     )
                     textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-                    textSize = 13f
+                    textSize = 20f
                     setPadding(8, 8, 8, 8)
                 }
                 var owner = TextView(this).apply {
@@ -282,16 +312,28 @@ class GroceryList : toolbar() {
                         1f
                     )
                     textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-                    textSize = 13f
+                    textSize = 20f
                     setPadding(8, 8, 8, 8)
+                }
+                var check = CheckBox(this).apply {
+                    layoutParams = TableRow.LayoutParams(
+                        0,
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        1f
+
+                    )
+
                 }
                 if (curr.getBoolean("favorite")){
                     populateFavorites(curr)
+
                 }
                 row.addView(name)
                 row.addView(quant)
                 row.addView(price)
                 row.addView(owner)
+                row.addView(check)
+
                 tableView.addView(row)
 
             }
