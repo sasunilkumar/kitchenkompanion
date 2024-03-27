@@ -56,7 +56,7 @@ class InventoryList : AppCompatActivity() {
         val table = TableLayout(this).apply {
             layoutParams = TableLayout.LayoutParams(
                 TableLayout.LayoutParams.MATCH_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT
+                 TableLayout.LayoutParams.WRAP_CONTENT
             )
             gravity = Gravity.CENTER_HORIZONTAL
             setPadding(16)
