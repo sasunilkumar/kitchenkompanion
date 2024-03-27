@@ -195,7 +195,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Water"
+                            android:text="Pie crust"
                             android:textSize="18sp"
                             android:padding="8dp"
                             android:background="#FFFFFF"
@@ -204,7 +204,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="2"
+                            android:text="1"
                             android:textSize="18sp"
                             android:padding="8dp"
                             android:background="#FFFFFF"
@@ -213,7 +213,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="tbsp"
+                            android:text="crust"
                             android:textSize="18sp"
                             android:padding="8dp"
                             android:background="#FFFFFF"
@@ -221,6 +221,26 @@
                         <!-- Add more columns as needed -->
                     </TableRow>
                 </TableLayout>
+
+                <TextView
+                    android:id="@+id/Instructions_Header_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Instructions"
+                    android:textSize="24sp"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:id="@+id/Instructions_Pie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preheat oven to 375 degrees. Grease pie pan. Dice apples
+\n and saute with butter and brown sugar on stove. Place pie crust in pie pan.
+Pour apple mixture into crust. Bake for 30-40 minutes or until golden brown with apples
+tender."
+                    android:textSize="18sp"
+                    android:layout_marginBottom="16dp"
+                />
             </LinearLayout>
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -413,7 +433,26 @@
                         <!-- Add more columns as needed -->
                     </TableRow>
                 </TableLayout>
+                <TextView
+                    android:id="@+id/Instructions_Header_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Instructions"
+                    android:textSize="24sp"
+                    android:layout_marginBottom="16dp" />
 
+                <TextView
+                    android:id="@+id/Instructions_Brownies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Preheat oven to 350 degrees. Line pan with foil
+or parchment. In large mixing bowl, sift and whisk dry ingredients. In medium bowl,
+add wet ingredients and beat until incorporated. Pour wet into dry ingredients and fold
+to combine. Pour batter into lined pan and bake for 35 minutes or until toothpick
+inserted into center is clean or has a few crumbs."
+                    android:textSize="18sp"
+                    android:layout_marginBottom="16dp"
+                    />
             </LinearLayout>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -608,6 +647,25 @@
                     <!-- Add more columns as needed -->
                 </TableRow>
             </TableLayout>
+            <TextView
+                android:id="@+id/Instructions_Header_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Instructions"
+                android:textSize="24sp"
+                android:layout_marginBottom="16dp" />
+
+            <TextView
+                android:id="@+id/Instructions_Cake"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preheat oven to 400 degrees. Melt butter in base of
+cake pan and mix in brown sugar. Arrange pineapple slices in base of pan, add cherry
+to center of pineapple ring. In separate bowl, mix wet ingredients with cake mix. Stir
+to combine, then pour over pineapples. Bake 45 minutes, tenting halfway."
+                android:textSize="18sp"
+                android:layout_marginBottom="16dp"
+                />
         </LinearLayout>
 
         <View
