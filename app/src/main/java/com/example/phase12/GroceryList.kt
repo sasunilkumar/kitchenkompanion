@@ -37,8 +37,6 @@ class GroceryList : toolbar() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.grocery_list)
 
-
-
         binding = GroceryListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         fab = findViewById<View>(R.id.fab_grocery_list)

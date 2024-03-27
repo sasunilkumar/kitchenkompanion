@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Apples",
+    "quantity":3,
+    "unit": "lbs"
+  },
+  {
+    "name": "Brown Sugar",
+    "quantity": 1,
+    "unit": "cup"
+  },
+  {
+    "name": "Butter",
+    "quantity": 4,
+    "unit": "tbsp"
+  },
+  {
+    "name": "Lemon Juice",
+    "quantity": 2,
+    "unit": "tsp"
+  }
+]
