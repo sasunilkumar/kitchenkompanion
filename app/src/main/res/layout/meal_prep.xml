@@ -19,7 +19,32 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lorem_ipsum" />
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Current Date" />
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:text=" Overnight Oats \n
+        1/2 cup rolled oats (old-fashioned oats) \n
+        1/2 cup milk (dairy or plant-based) \n
+        1/4 cup yogurt (Greek yogurt works well) \n
+        Sweetener of choice (such as honey, maple syrup, or agave syrup), to taste \n
+        Optional add-ins: fruits, nuts, seeds, spices (e.g., chia seeds, sliced bananas, berries, almonds, cinnamon)"/>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
