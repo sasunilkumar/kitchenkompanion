@@ -3,6 +3,8 @@ package com.example.phase12
 import android.app.PendingIntent.getActivity
 import android.content.DialogInterface
 import android.os.Bundle
+import android.os.DeadObjectException
+import android.text.Editable
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -26,12 +28,16 @@ import java.io.FileNotFoundException
 
 
 class GroceryList : toolbar() {
+    // Variables
     private lateinit var binding: ViewBinding
     private lateinit var fab: View
     private var listCount: Int = 0
     private var grocArray: MutableList<View> = mutableListOf()
     private var buttons: MutableList<Button> = mutableListOf()
-
+    private lateinit var fav_1: Button
+    private lateinit var fav_2: Button
+    private lateinit var fav_3: Button
+    private lateinit var fav_4: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +45,105 @@ class GroceryList : toolbar() {
 
         binding = GroceryListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+
+        // init vars
         fab = findViewById<View>(R.id.fab_grocery_list)
+        fav_1 = findViewById<Button>(R.id.fav_1)
+        fav_2 = findViewById<Button>(R.id.fav_2)
+        fav_3 = findViewById<Button>(R.id.fav_3)
+        fav_4 = findViewById<Button>(R.id.fav_4)
+
+
+
+        // add item pop-up
+        val builder = AlertDialog.Builder(this)
+        val inflater = LayoutInflater.from(this)
+        val view = inflater.inflate(R.layout.add_item, null)
+        builder.setView(view)
+        builder.setMessage("What would you like to add?")
+        builder.setTitle("Add Item")
+        builder.setCancelable(false)
+        var itemName = view.findViewById<EditText>(R.id.item_name)
+        var itemQuant = view.findViewById<EditText>(R.id.quantity)
+        var itemprice = view.findViewById<EditText>(R.id.price)
+        var isFav = view.findViewById<CheckBox>(R.id.favorite)
+
+
+        builder.setPositiveButton("Add") {
+                dialog, _ ->
+
+
+                    try{ addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(),isFav.isChecked)}
+                    catch (e: NumberFormatException){
+                        Log.d("READ DIALOG ERROR","error when trying to read AlertDialog: NumberFormatException")
+                    }
+                    catch (e: DeadObjectException){
+                        Log.d("READ DIALOG ERROR","error when trying to read AlertDialog: DeadObjectException")
+                    }
+                    catch (e: NullPointerException){
+                        Log.d("READ DIALOG ERROR","error when trying to read AlertDialog: NullPointerException")
+                    }
+                    dialog.dismiss()
+        }
+        builder.setNegativeButton("Cancel") {
+                dialog, _ -> dialog.dismiss()
+        }
+        val alertDialog = builder.create()
+
+
+
+
+
+        // Button Handlers
+        fav_1.setOnClickListener {
+            itemName.setText(fav_1.text)
+            itemQuant.setText("")
+            itemprice.setText("")
+            isFav.isChecked = false
+            alertDialog.show()
+            true
+        }
+
+        // Button Handlers
+        fav_2.setOnClickListener {
+            itemName.setText(fav_2.text)
+            itemQuant.setText("")
+            itemprice.setText("")
+            isFav.isChecked = false
+            alertDialog.show()
+            true
+        }
+        // Button Handlers
+        fav_3.setOnClickListener {
+            itemName.setText(fav_3.text)
+            itemQuant.setText("")
+            itemprice.setText("")
+            isFav.isChecked = false
+            alertDialog.show()
+            true
+        }
+        fav_4.setOnClickListener {
+            itemName.setText(fav_4.text)
+            itemQuant.setText("")
+            itemprice.setText("")
+            isFav.isChecked = false
+            alertDialog.show()
+            true
+        }
+
+        // FAB (lower right button)
+        fab.setOnClickListener {
+            itemName.setText("")
+            itemQuant.setText("")
+            itemprice.setText("")
+            isFav.isChecked = false
+            alertDialog.show()
+            true
+        }
+
+        // Header toolbar
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         val dataList = readJson()
@@ -51,44 +155,17 @@ class GroceryList : toolbar() {
         }
 
 
-        fab.setOnClickListener {
-            addItem()
-            val builder = AlertDialog.Builder(this)
-
-            val inflater = LayoutInflater.from(this)
-            val view = inflater.inflate(R.layout.add_item, null)
-            var itemName = findViewById<EditText>(R.id.item_name)
-            var itemQuant = findViewById<EditText>(R.id.quantity)
-            var itemprice = findViewById<EditText>(R.id.price)
-            var isFav = findViewById<CheckBox>(R.id.favorite)
-            builder.setView(view)
-
-
-            builder.setMessage("What would you like to add?")
-            builder.setTitle("Add Item")
-            builder.setCancelable(true)
-
-
-            builder.setPositiveButton("Add") {
-                    dialog, _ ->
-//                    try {addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(),isFav.isChecked)}
-//                    finally {
-                        addItem()
-                        dialog.dismiss()
-//                    }
-            }
-
-            builder.setNegativeButton("Cancel") {
-                    dialog, _ -> dialog.dismiss()
-            }
-
-            val alertDialog = builder.create()
-            alertDialog.show()
-            true
-        }
-
     }
 
+
+
+
+
+
+
+    // Filling Lists
+
+    // Read data
     private fun readJson(): JSONArray? {
         try {
             return JSONArray(
@@ -100,6 +177,8 @@ class GroceryList : toolbar() {
         }
         return null
     }
+
+    // iterate over each JSON object
     private fun parse(item: JSONArray) {
         for (i in 0 until item.length()) {
             var curItem = item.getJSONObject(i)
@@ -111,11 +190,7 @@ class GroceryList : toolbar() {
     }
 
 
-//    The viewGroup groc_body will act as the layout's main body where all the data is displayed
-//    we will want to put each of the lists into another linear viewGroup. between each views
-//    we will have another view which will act as a spacer. So whenever adding a new list make
-//    sure to also add a spacer. Each list should have the title on top, with a table of items.
-
+    // Creates the List container, table inside, and spacer
     private fun createList(title: String, items: JSONArray): LinearLayout {
         val linLay = findViewById<LinearLayout>(R.id.groc_body)
         val listId = View.generateViewId()
@@ -196,65 +271,9 @@ class GroceryList : toolbar() {
         Log.d("ADDED LIST", grocArray.toString())
         return table
     }
+
+    // Should change the specific button values
     private fun populateFavorites(curr: JSONObject) {
-        var container = findViewById<LinearLayout>(R.id.favorite_tab)
-        var row = TableRow(this).apply {
-            layoutParams = TableLayout.LayoutParams(
-                TableLayout.LayoutParams.MATCH_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT
-            )
-            textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-
-        }
-
-        var name = TextView(this).apply {
-            text = curr.getString("name")
-            layoutParams = TableRow.LayoutParams(
-                0,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                40f
-            )
-            textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-            textSize = 20f
-            setPadding(8, 8, 8, 8)
-        }
-        var quant = TextView(this).apply {
-            text = curr.getString("quantity")
-            layoutParams = TableRow.LayoutParams(
-                0,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                20f
-            )
-            textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-            textSize = 20f
-            setPadding(8, 8, 8, 8)
-        }
-        var price = TextView(this).apply {
-            text = curr.getString("price")
-            layoutParams = TableRow.LayoutParams(
-                0,
-                TableRow.LayoutParams.WRAP_CONTENT,
-                20f
-            )
-            textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-            textSize = 20f
-            setPadding(8, 8, 8, 8)
-        }
-        val buttonID = View.generateViewId()
-        var button = Button(this).apply {
-            text = "Add"
-            layoutParams = TableRow.LayoutParams(
-                75,
-                50,
-                8f)
-            id = buttonID
-        }
-        row.addView(name)
-        row.addView(quant)
-        row.addView(price)
-        row.addView(button)
-        container.addView(row)
-        button.setOnClickListener { addItem( curr.getString("name"), 1, "me",  curr.getInt("price"), false) }
     }
     private fun populateList(items: JSONArray?, view: TableLayout) {
         if (items != null) {
@@ -331,12 +350,13 @@ class GroceryList : toolbar() {
                 row.addView(price)
                 row.addView(owner)
                 row.addView(check)
-
                 tableView.addView(row)
 
             }
         }
     }
+
+    // converts intputs into a JSONArray for populate list function
     private fun addItem(name: String = "test",
                         quantity: Int = 10000,
                         owner: String = "BobDiddleBob",
