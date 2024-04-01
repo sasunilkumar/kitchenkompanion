@@ -22,18 +22,35 @@
             android:orientation="vertical"
             android:showDividers="middle"
             android:divider="@drawable/divider">
-            <include layout="@layout/toolbar"/>
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Welcome Home!"
-                android:textSize="50sp" />
+                android:paddingRight="20dp">
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome Home!"
+                    android:textSize="50sp"
+                    android:padding="30dp"
+                    android:layout_alignParentLeft="true"/>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:gravity="center"
+                    android:text="Profile"
+                    android:background="@drawable/user_icon"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"/>
+
+            </RelativeLayout>
+
+
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scrollbarAlwaysDrawHorizontalTrack="false">
+                android:scrollbarAlwaysDrawHorizontalTrack="false"
+                android:paddingBottom="30dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -113,26 +130,42 @@
 
 
             </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/Inventory"
+            <LinearLayout
                 android:layout_width="700px"
                 android:layout_height="250px"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
                 android:layout_gravity="center_horizontal"
-                android:background="@drawable/view_container"
-                android:text="Inventory"
+                android:showDividers="middle"
 
-                android:textSize="24dp" />
+                android:divider="@drawable/divider">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/Inventory"
+                    android:layout_width="300px"
+                    android:layout_height="250px"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/view_container"
+                    android:text="Inventory"
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="700px"
-                android:layout_height="250px"
-                android:textSize="24dp"
-                android:text="Grocery List"
-                android:id="@+id/Grocery"
+                    android:textSize="24dp" />
 
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/view_container" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="300px"
+                    android:layout_height="250px"
+                    android:layout_weight="1"
+
+                    android:textSize="24dp"
+                    android:text="Grocery List"
+                    android:id="@+id/Grocery"
+
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/view_container" />
+
+
+
+            </LinearLayout>
+
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="700px"
