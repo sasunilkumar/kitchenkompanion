@@ -31,9 +31,7 @@ class GroceryList : toolbar() {
     // Variables
     private lateinit var binding: ViewBinding
     private lateinit var fab: View
-    private var listCount: Int = 0
     private var grocArray: MutableList<View> = mutableListOf()
-    private var buttons: MutableList<Button> = mutableListOf()
     private lateinit var fav_1: Button
     private lateinit var fav_2: Button
     private lateinit var fav_3: Button
@@ -64,7 +62,7 @@ class GroceryList : toolbar() {
         builder.setView(view)
         builder.setMessage("What would you like to add?")
         builder.setTitle("Add Item")
-        builder.setCancelable(false)
+        builder.setCancelable(true)
         var itemName = view.findViewById<EditText>(R.id.item_name)
         var itemQuant = view.findViewById<EditText>(R.id.quantity)
         var itemprice = view.findViewById<EditText>(R.id.price)
@@ -242,22 +240,24 @@ class GroceryList : toolbar() {
                 TableLayout.LayoutParams.WRAP_CONTENT,
             )
         }
-        val cols = arrayOf("Name", "Quantity", "Owner", "Price","Bought")
-        val weights = arrayOf(2, 1, 1, 1,1)
+        val cols = arrayOf("Name", "Owner", "Count", "Price","Bought?")
+        val weights = arrayOf(1.5f, 1.5f, 1f, 1f,1.3f)
+        var i = 0
 
         for (title in cols) {
             val col = TextView(this).apply {
                 layoutParams = TableRow.LayoutParams(
                     0,
                     TableRow.LayoutParams.WRAP_CONTENT,
-                    1f
+                    weights[i]
                 )
-                textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                 text = title
                 textSize = 23f
                 setPadding(18, 18, 18, 18)
+                gravity = Gravity.CENTER_HORIZONTAL
             }
             row.addView(col)
+            i += 1
         }
         table.addView(row)
         populateList(items, table)
@@ -293,9 +293,9 @@ class GroceryList : toolbar() {
                     layoutParams = TableRow.LayoutParams(
                         0,
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        2f
+                        1.5f
                     )
-                    textAlignment = TextView.TEXT_ALIGNMENT_CENTER
+                    gravity = Gravity.CENTER
                     textSize = 20f
                     setPadding(8, 8, 8, 8)
                 }
@@ -306,49 +306,57 @@ class GroceryList : toolbar() {
                         TableRow.LayoutParams.WRAP_CONTENT,
                         1f
                     )
-                    textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-                    textSize = 20f
-                    setPadding(8, 8, 8, 8)
-                }
-                var price = TextView(this).apply {
-                    text = curr.getString("owner")
-                    layoutParams = TableRow.LayoutParams(
-                        0,
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        1f
-                    )
-                    textAlignment = TextView.TEXT_ALIGNMENT_CENTER
+                    gravity = Gravity.CENTER
                     textSize = 20f
                     setPadding(8, 8, 8, 8)
                 }
                 var owner = TextView(this).apply {
+                    text = curr.getString("owner")
+                    layoutParams = TableRow.LayoutParams(
+                        0,
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        1.5f
+                    )
+                    gravity = Gravity.CENTER
+                    textSize = 20f
+                    setPadding(8, 8, 8, 8)
+                }
+                var price = TextView(this).apply {
                     text = curr.getString("price")
                     layoutParams = TableRow.LayoutParams(
                         0,
                         TableRow.LayoutParams.WRAP_CONTENT,
                         1f
                     )
-                    textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                     textSize = 20f
+                    gravity = Gravity.CENTER
                     setPadding(8, 8, 8, 8)
                 }
-                var check = CheckBox(this).apply {
+                var check = LinearLayout(this).apply {
                     layoutParams = TableRow.LayoutParams(
                         0,
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        1f
+                        1.3f,
 
                     )
 
                 }
+                check.gravity = Gravity.CENTER
+                var checkItem = CheckBox(this).apply {
+                    layoutParams = TableRow.LayoutParams(
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT
+                    )
+                }
+                check.addView(checkItem)
                 if (curr.getBoolean("favorite")){
                     populateFavorites(curr)
 
                 }
                 row.addView(name)
+                row.addView(owner)
                 row.addView(quant)
                 row.addView(price)
-                row.addView(owner)
                 row.addView(check)
                 tableView.addView(row)
 
