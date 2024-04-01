@@ -273,7 +273,7 @@ class GroceryList : toolbar() {
             id = countID
             text = "List Total: "+ tableTotal.getValue(table).toString()
             textSize = 24f
-            setPadding(30)
+            setPadding(0,30,0,0)
         }
         container.addView(sum)
         linLay.addView(spacer)
