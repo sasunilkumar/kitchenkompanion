@@ -9,10 +9,12 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Spinner
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
@@ -36,6 +38,9 @@ class GroceryList : toolbar() {
     private lateinit var fav_2: Button
     private lateinit var fav_3: Button
     private lateinit var fav_4: Button
+    private lateinit var spinner: Spinner
+    private lateinit var spinnerItems: ArrayList<String>
+
     private var tableTotal = HashMap<View, Int>()
     private var tableTotalID = HashMap<View, Int>()
 
@@ -57,6 +62,8 @@ class GroceryList : toolbar() {
 
 
 
+
+
         // add item pop-up
         val builder = AlertDialog.Builder(this)
         val inflater = LayoutInflater.from(this)
@@ -69,6 +76,13 @@ class GroceryList : toolbar() {
         var itemQuant = view.findViewById<EditText>(R.id.quantity)
         var itemprice = view.findViewById<EditText>(R.id.price)
         var isFav = view.findViewById<CheckBox>(R.id.favorite)
+
+        spinner = view.findViewById(R.id.add_item_spinner)
+        spinnerItems = arrayListOf<String>()
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerItems)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
 
 
         builder.setPositiveButton("Add") {
@@ -217,7 +231,7 @@ class GroceryList : toolbar() {
         }
         container.setPadding(40)
 
-        val title = TextView(this).apply {
+        val titleText = TextView(this).apply {
             id = titleID
             layoutParams = TableLayout.LayoutParams(
                 TableLayout.LayoutParams.MATCH_PARENT,
@@ -264,19 +278,20 @@ class GroceryList : toolbar() {
         }
         table.addView(row)
         populateList(items, table)
-        container.addView(title)
+        container.addView(titleText)
         container.addView(table)
         linLay.addView(container)
         grocArray.add(table)
         tableTotalID[table] = countID
         var sum = TextView(this).apply {
             id = countID
-            text = "List Total: "+ tableTotal.getValue(table).toString()
+            text = "List Total: $"+ tableTotal.getValue(table).toString()
             textSize = 24f
             setPadding(0,30,0,0)
         }
         container.addView(sum)
         linLay.addView(spacer)
+        spinnerItems.add(title)
 
 
         Log.d("ADDED LIST", grocArray.toString())
@@ -395,7 +410,7 @@ class GroceryList : toolbar() {
         populateList(json, list as TableLayout)
         var sumID = tableTotalID[list] ?: 0
         var text = findViewById<TextView>(sumID)
-        text.setText("List Total: "+ tableTotal.getValue(list).toString())
+        text.setText("List Total: $"+ tableTotal.getValue(list).toString())
 
     }
 }

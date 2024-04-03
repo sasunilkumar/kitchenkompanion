@@ -52,7 +52,7 @@ class InventoryList : AppCompatActivity() {
     }
 
     private fun createList(title: String, items: JSONArray): TableLayout {
-        val linLay: LinearLayout = findViewById(R.id.groc_body)
+        val linLay: LinearLayout = findViewById(R.id.inven_body)
         val table = TableLayout(this).apply {
             layoutParams = TableLayout.LayoutParams(
                 TableLayout.LayoutParams.MATCH_PARENT,
@@ -79,7 +79,7 @@ class InventoryList : AppCompatActivity() {
             val item = items.getJSONObject(i)
             val name = item.getString("name")
             val quantity = item.getInt("quantity")
-            val location = item.getString("location")
+            val location = item.getString("price")
             val nameView = TextView(this).apply {
                 text = name
                 setPadding(8)

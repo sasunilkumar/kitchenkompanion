@@ -68,7 +68,7 @@
                         android:id="@+id/fav_2"
                         android:layout_height="150dp"
                         android:layout_weight="1"
-                        android:text="Spagetti"
+                        android:text="Spaghetti"
                         android:background="@drawable/view_container">
 
 
