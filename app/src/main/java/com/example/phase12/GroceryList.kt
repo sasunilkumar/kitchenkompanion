@@ -30,6 +30,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.setPadding
 import androidx.viewbinding.ViewBinding
 import com.example.phase12.databinding.GroceryListBinding
+import com.example.phase12.ui.theme.AppBar
 import com.google.android.material.bottomappbar.BottomAppBar
 import org.json.JSONArray
 import org.json.JSONObject
@@ -37,7 +38,7 @@ import java.io.BufferedReader
 import java.io.FileNotFoundException
 
 
-class GroceryList : AppCompatActivity() {
+class GroceryList : AppBar() {
     // Variables
     private lateinit var binding: ViewBinding
     private lateinit var fab: View
@@ -51,6 +52,7 @@ class GroceryList : AppCompatActivity() {
     private lateinit var adapter: ArrayAdapter<String>
     private var tableTotal = HashMap<View, Int>()
     private var tableTotalID = HashMap<View, Int>()
+    private lateinit var appBar: BottomAppBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +60,8 @@ class GroceryList : AppCompatActivity() {
 
         binding = GroceryListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupBar()
+
 
 
 
@@ -164,9 +168,7 @@ class GroceryList : AppCompatActivity() {
             true
         }
 
-        // Header toolbar
-//        setSupportActionBar(findViewById(R.id.toolbar))
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val dataList = readJson()
         if (dataList != null) {
             Log.d("READ", dataList[1].toString())
@@ -174,7 +176,47 @@ class GroceryList : AppCompatActivity() {
         } else {
             Log.d("READ Failed", "Failed to read or parse data from JSON file.")
         }
-        }
+//        appBar = findViewById(R.id.bottomAppBar)
+//        appBar.setNavigationOnClickListener {
+//            // Handle navigation icon press
+//        }
+//        appBar.setOnMenuItemClickListener { menuItem ->
+//            when (menuItem.itemId) {
+//                R.id.bot_Recipes -> {
+//                    Log.d("ACTION MENU", "bot_Recipes")
+//                    startActivity(Intent(this, Recipes::class.java))
+//                    true
+//                }
+//                R.id.bot_GroceryList -> {
+//                    Log.d("ACTION MENU", "bot_GroceryList")
+//                    startActivity(Intent(this, GroceryList::class.java))
+//                    true
+//                }
+//                R.id.bot_InventoryList -> {
+//                    Log.d("ACTION MENU", "bot_InventoryList")
+//                    startActivity(Intent(this, InventoryList::class.java))
+//                    true
+//                }
+//                R.id.bot_Profile -> {
+//                    Log.d("ACTION MENU", "bot_Profile")
+//                    startActivity(Intent(this, Profile::class.java))
+//                    true
+//                }
+//                R.id.bot_MealPrep -> {
+//                    Log.d("ACTION MENU", "bot_MealPrep")
+//                    startActivity(Intent(this, MealPrep::class.java))
+//                    true
+//                }
+//                R.id.bot_Home -> {
+//                    Log.d("ACTION MENU", "bot_Home")
+//                    startActivity(Intent(this, Home::class.java))
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
+
+    }
 
 
 

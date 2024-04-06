@@ -9,17 +9,20 @@ import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import com.example.phase12.databinding.InventoryListBinding
+import com.example.phase12.ui.theme.AppBar
 import org.json.JSONArray
 import java.io.BufferedReader
 import java.io.FileNotFoundException
 
-class InventoryList : AppCompatActivity() {
+class InventoryList : AppBar()  {
     private lateinit var binding: InventoryListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = InventoryListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupBar()
 
 //        val toolbar = binding.root.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
 //        setSupportActionBar(toolbar)

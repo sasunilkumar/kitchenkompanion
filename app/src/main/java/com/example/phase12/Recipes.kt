@@ -28,12 +28,13 @@ import android.widget.TableRow
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
+import com.example.phase12.ui.theme.AppBar
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.FileNotFoundException
 
-class Recipes : AppCompatActivity() {
+class Recipes : AppBar()  {
     private lateinit var binding: ViewBinding
     private lateinit var detailsText: LinearLayout
     private lateinit var detailsText2: LinearLayout
@@ -44,12 +45,10 @@ class Recipes : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.recipes)
+        setContentView(R.layout.recipes)
         binding = RecipesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        setSupportActionBar(findViewById(R.id.toolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setupBar()
 
         detailsText = findViewById(R.id.recipe_1_layout)
         detailsText2 = findViewById(R.id.recipe_2_layout)
