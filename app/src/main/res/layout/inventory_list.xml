@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:theme="@style/Theme.MaterialComponents.DayNight"
+    android:background="@color/light_cream"
     tools:context=".InventoryList">
-    <include layout="@layout/toolbar"/>
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
@@ -19,19 +19,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:id="@+id/inven_body"
-        >
+        android:id="@+id/inven_body">
 
     </LinearLayout>
 
    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+       <com.google.android.material.bottomappbar.BottomAppBar
+           android:id="@+id/bottomAppBar"
+           style="@style/Widget.Material3.BottomAppBar"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_gravity="bottom"
+           android:backgroundTint="@color/medium_cream"
+           app:menu="@menu/bot_app_bar" />
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_grocery_list"
+            android:id="@+id/fab_inventory_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
+            android:backgroundTint="@color/light_cream"
             android:layout_margin="16dp"
             android:contentDescription="@string/Grocery_fab"
             app:srcCompat="@drawable/ic_plus_24"/>

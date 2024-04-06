@@ -1,10 +1,11 @@
 package com.example.phase12
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.example.phase12.databinding.ProfileBinding
 
-class Profile : toolbar() {
+class Profile : AppCompatActivity() {
     private lateinit var binding: ViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +15,7 @@ class Profile : toolbar() {
         binding = ProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(findViewById(R.id.toolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        setSupportActionBar(findViewById(R.id.toolbar))
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }

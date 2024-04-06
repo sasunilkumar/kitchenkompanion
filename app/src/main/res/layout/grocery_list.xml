@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     android:theme="@style/Theme.MaterialComponents.DayNight"
     android:fontFamily="@font/hammersmith_one"
+    android:background="@color/light_cream"
     tools:context=".GroceryList">
 
     <ScrollView
@@ -22,13 +23,14 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <include layout="@layout/toolbar" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Grocery List"
+                android:fontFamily="@font/hammersmith_one"
+                android:paddingTop="30dp"
                 android:textSize="50sp" />
 
             <View
@@ -42,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/view_container"
                 android:divider="@drawable/divider"
+                android:backgroundTint="#FDFFB6"
                 android:orientation="vertical"
                 android:padding="30dp"
                 android:showDividers="middle">
@@ -50,30 +53,36 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/hammersmith_one"
                     android:divider="@drawable/divider"
                     android:orientation="horizontal"
                     android:showDividers="middle">
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="0dp"
                         android:id="@+id/fav_1"
                         android:layout_height="150dp"
                         android:layout_weight="1"
                         android:text="Butter"
-                        android:background="@drawable/view_container">
+                        android:fontFamily="@font/hammersmith_one"
+                        android:background="@drawable/view_container"
+                        android:backgroundTint="@color/dark_cream">
 
-                    </Button>
+                    </androidx.appcompat.widget.AppCompatButton>
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="0dp"
                         android:id="@+id/fav_2"
                         android:layout_height="150dp"
                         android:layout_weight="1"
                         android:text="Spaghetti"
-                        android:background="@drawable/view_container">
+                        android:fontFamily="@font/hammersmith_one"
+                        android:background="@drawable/view_container"
+                        android:backgroundTint="@color/dark_cream">
 
 
-                    </Button>
+
+                    </androidx.appcompat.widget.AppCompatButton>
                 </LinearLayout>
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -82,29 +91,34 @@
                     android:layout_weight="1"
                     android:divider="@drawable/divider"
                     android:orientation="horizontal"
+                    android:fontFamily="@font/hammersmith_one"
                     android:showDividers="middle">
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="0dp"
                         android:id="@+id/fav_3"
                         android:layout_height="150dp"
                         android:layout_weight="1"
                         android:text="Fresh Avocado"
-                        android:background="@drawable/view_container">
+                        android:fontFamily="@font/hammersmith_one"
+                        android:background="@drawable/view_container"
+                        android:backgroundTint="@color/dark_cream">
 
 
-                    </Button>
 
-                    <Button
+                    </androidx.appcompat.widget.AppCompatButton>
+
+                    <androidx.appcompat.widget.AppCompatButton
                         android:layout_width="0dp"
                         android:id="@+id/fav_4"
                         android:layout_height="150dp"
                         android:layout_weight="1"
                         android:text="Ice Cream"
-                        android:background="@drawable/view_container">
+                        android:fontFamily="@font/hammersmith_one"
+                        android:background="@drawable/view_container"
+                        android:backgroundTint="@color/dark_cream">
 
-
-                    </Button>
+                    </androidx.appcompat.widget.AppCompatButton>
 
                 </LinearLayout>
 
@@ -124,12 +138,23 @@
         app:layout_anchor="@+id/scrollView2"
         app:layout_anchorGravity="center">
 
+
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            style="@style/Widget.Material3.BottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/medium_cream"
+            app:menu="@menu/bot_app_bar" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_grocery_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
+            android:backgroundTint="@color/light_cream"
             android:contentDescription="@string/Grocery_fab"
             app:srcCompat="@drawable/ic_plus_24" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

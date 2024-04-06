@@ -21,9 +21,9 @@ class InventoryList : AppCompatActivity() {
         binding = InventoryListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val toolbar = binding.root.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        val toolbar = binding.root.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+//        setSupportActionBar(toolbar)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val dataList = readJson()
         if (dataList != null) {

@@ -1,0 +1,42 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.myapplication.MainActivity">
+    <item
+        android:id="@+id/bot_Home"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/bot_GroceryList"
+        android:title="Grocery List"
+        android:icon="@drawable/grocery_vec_icon"
+        android:contentDescription="Grocery List"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/bot_InventoryList"
+        android:title="Inventory List"
+        android:icon="@drawable/kitchen_vec_icon"
+        android:contentDescription="Grocery List"
+
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/bot_Recipes"
+        android:title="Recipes"
+        android:icon="@drawable/recipes_vec_icon"
+        android:contentDescription="Grocery List"
+
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/bot_MealPrep"
+        android:title="Meal Prep"
+        android:icon="@drawable/calendar_vec_icon"
+        android:contentDescription="Grocery List"
+
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/bot_Profile"
+        android:title="Profile"/>
+
+</menu>

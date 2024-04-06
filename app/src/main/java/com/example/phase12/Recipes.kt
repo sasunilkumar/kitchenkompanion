@@ -33,7 +33,7 @@ import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.FileNotFoundException
 
-class Recipes : toolbar() {
+class Recipes : AppCompatActivity() {
     private lateinit var binding: ViewBinding
     private lateinit var detailsText: LinearLayout
     private lateinit var detailsText2: LinearLayout
@@ -48,7 +48,7 @@ class Recipes : toolbar() {
         binding = RecipesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(findViewById(R.id.toolbar))
+//        setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         detailsText = findViewById(R.id.recipe_1_layout)

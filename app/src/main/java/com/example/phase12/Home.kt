@@ -4,11 +4,11 @@ package com.example.phase12
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.example.phase12.databinding.HomeBinding
 import androidx.viewbinding.ViewBinding
-import com.example.phase12.databinding.LoginBinding
 
-class Home : toolbar() {
+class Home : AppCompatActivity() {
     private lateinit var binding: ViewBinding
 
     private lateinit var expenses: Button
@@ -24,7 +24,6 @@ class Home : toolbar() {
         binding = HomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(findViewById(R.id.toolbar))
         //expenses = findViewById<Button>(R.id.Expenses)
         recipes = findViewById<Button>(R.id.Recipes)
         inventory = findViewById<Button>(R.id.Inventory)
