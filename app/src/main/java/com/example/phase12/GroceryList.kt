@@ -2,13 +2,18 @@ package com.example.phase12
 
 import android.app.PendingIntent.getActivity
 import android.content.DialogInterface
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.DeadObjectException
 import android.text.Editable
+import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
@@ -19,30 +24,35 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.setPadding
 import androidx.viewbinding.ViewBinding
 import com.example.phase12.databinding.GroceryListBinding
+import com.example.phase12.ui.theme.AppBar
+import com.google.android.material.bottomappbar.BottomAppBar
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.FileNotFoundException
 
 
-class GroceryList : toolbar() {
+class GroceryList : AppBar() {
     // Variables
     private lateinit var binding: ViewBinding
     private lateinit var fab: View
     private var grocArray: MutableList<View> = mutableListOf()
-    private lateinit var fav_1: Button
-    private lateinit var fav_2: Button
-    private lateinit var fav_3: Button
-    private lateinit var fav_4: Button
+    private lateinit var fav1: Button
+    private lateinit var fav2: Button
+    private lateinit var fav3: Button
+    private lateinit var fav4: Button
     private lateinit var spinner: Spinner
     private lateinit var spinnerItems: ArrayList<String>
-
+    private lateinit var adapter: ArrayAdapter<String>
     private var tableTotal = HashMap<View, Int>()
     private var tableTotalID = HashMap<View, Int>()
+    private lateinit var appBar: BottomAppBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,17 +60,17 @@ class GroceryList : toolbar() {
 
         binding = GroceryListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupBar()
+
 
 
 
         // init vars
         fab = findViewById<View>(R.id.fab_grocery_list)
-        fav_1 = findViewById<Button>(R.id.fav_1)
-        fav_2 = findViewById<Button>(R.id.fav_2)
-        fav_3 = findViewById<Button>(R.id.fav_3)
-        fav_4 = findViewById<Button>(R.id.fav_4)
-
-
+        fav1 = findViewById<Button>(R.id.fav_1)
+        fav2 = findViewById<Button>(R.id.fav_2)
+        fav3 = findViewById<Button>(R.id.fav_3)
+        fav4 = findViewById<Button>(R.id.fav_4)
 
 
 
@@ -77,19 +87,23 @@ class GroceryList : toolbar() {
         var itemprice = view.findViewById<EditText>(R.id.price)
         var isFav = view.findViewById<CheckBox>(R.id.favorite)
 
+
+        // Spinner
         spinner = view.findViewById(R.id.add_item_spinner)
         spinnerItems = arrayListOf<String>()
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerItems)
+        adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerItems)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
 
 
+
+
+        //  Wont take numerical values greater than 11 digits in either column, We will
+        //  see overflow if the digits exceed 7
         builder.setPositiveButton("Add") {
                 dialog, _ ->
-
-
-                    try{ addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(),isFav.isChecked)}
+                    try{ addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(),isFav.isChecked, grocArray[spinner.selectedItemPosition])}
                     catch (e: NumberFormatException){
                         Log.d("READ DIALOG ERROR","error when trying to read AlertDialog: NumberFormatException")
                     }
@@ -107,12 +121,9 @@ class GroceryList : toolbar() {
         val alertDialog = builder.create()
 
 
-
-
-
         // Button Handlers
-        fav_1.setOnClickListener {
-            itemName.setText(fav_1.text)
+        fav1.setOnClickListener {
+            itemName.setText(fav1.text)
             itemQuant.setText("")
             itemprice.setText("")
             isFav.isChecked = false
@@ -121,8 +132,8 @@ class GroceryList : toolbar() {
         }
 
         // Button Handlers
-        fav_2.setOnClickListener {
-            itemName.setText(fav_2.text)
+        fav2.setOnClickListener {
+            itemName.setText(fav2.text)
             itemQuant.setText("")
             itemprice.setText("")
             isFav.isChecked = false
@@ -130,16 +141,16 @@ class GroceryList : toolbar() {
             true
         }
         // Button Handlers
-        fav_3.setOnClickListener {
-            itemName.setText(fav_3.text)
+        fav3.setOnClickListener {
+            itemName.setText(fav3.text)
             itemQuant.setText("")
             itemprice.setText("")
             isFav.isChecked = false
             alertDialog.show()
             true
         }
-        fav_4.setOnClickListener {
-            itemName.setText(fav_4.text)
+        fav4.setOnClickListener {
+            itemName.setText(fav4.text)
             itemQuant.setText("")
             itemprice.setText("")
             isFav.isChecked = false
@@ -157,9 +168,7 @@ class GroceryList : toolbar() {
             true
         }
 
-        // Header toolbar
-        setSupportActionBar(findViewById(R.id.toolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val dataList = readJson()
         if (dataList != null) {
             Log.d("READ", dataList[1].toString())
@@ -167,13 +176,47 @@ class GroceryList : toolbar() {
         } else {
             Log.d("READ Failed", "Failed to read or parse data from JSON file.")
         }
-
+//        appBar = findViewById(R.id.bottomAppBar)
+//        appBar.setNavigationOnClickListener {
+//            // Handle navigation icon press
+//        }
+//        appBar.setOnMenuItemClickListener { menuItem ->
+//            when (menuItem.itemId) {
+//                R.id.bot_Recipes -> {
+//                    Log.d("ACTION MENU", "bot_Recipes")
+//                    startActivity(Intent(this, Recipes::class.java))
+//                    true
+//                }
+//                R.id.bot_GroceryList -> {
+//                    Log.d("ACTION MENU", "bot_GroceryList")
+//                    startActivity(Intent(this, GroceryList::class.java))
+//                    true
+//                }
+//                R.id.bot_InventoryList -> {
+//                    Log.d("ACTION MENU", "bot_InventoryList")
+//                    startActivity(Intent(this, InventoryList::class.java))
+//                    true
+//                }
+//                R.id.bot_Profile -> {
+//                    Log.d("ACTION MENU", "bot_Profile")
+//                    startActivity(Intent(this, Profile::class.java))
+//                    true
+//                }
+//                R.id.bot_MealPrep -> {
+//                    Log.d("ACTION MENU", "bot_MealPrep")
+//                    startActivity(Intent(this, MealPrep::class.java))
+//                    true
+//                }
+//                R.id.bot_Home -> {
+//                    Log.d("ACTION MENU", "bot_Home")
+//                    startActivity(Intent(this, Home::class.java))
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
 
     }
-
-
-
-
 
 
 
@@ -225,10 +268,17 @@ class GroceryList : toolbar() {
                 LinearLayout.LayoutParams.WRAP_CONTENT   // height in pixels
             )
             gravity = Gravity.CENTER_HORIZONTAL
-            background = ContextCompat.getDrawable(this@GroceryList, R.drawable.view_container)
+//            background = ContextCompat.getDrawable(this@GroceryList, R.drawable.view_container)
             orientation = LinearLayout.VERTICAL
 
         }
+        var draw: Drawable? = ContextCompat.getDrawable(this, R.drawable.view_container)
+        if (draw != null) {
+            draw = DrawableCompat.wrap(draw)
+            DrawableCompat.setTint(draw, Color.parseColor("#FDFFB6"))
+        }
+        container.background = draw
+
         container.setPadding(40)
 
         val titleText = TextView(this).apply {
@@ -292,6 +342,7 @@ class GroceryList : toolbar() {
         container.addView(sum)
         linLay.addView(spacer)
         spinnerItems.add(title)
+        adapter.notifyDataSetChanged()
 
 
         Log.d("ADDED LIST", grocArray.toString())
