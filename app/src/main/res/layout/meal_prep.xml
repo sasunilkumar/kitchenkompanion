@@ -33,7 +33,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/textView"
         android:layout_marginTop="30dp" />
-
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="700px"
+        android:layout_height = "wrap_content"
+        android:background="@drawable/view_container"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
+        android:padding="30dp">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -45,6 +53,7 @@
         1/4 cup yogurt (Greek yogurt works well) \n
         Sweetener of choice (such as honey, maple syrup, or agave syrup), to taste \n
         Optional add-ins: fruits, nuts, seeds, spices (e.g., chia seeds, sliced bananas, berries, almonds, cinnamon)"/>
+    </LinearLayout>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

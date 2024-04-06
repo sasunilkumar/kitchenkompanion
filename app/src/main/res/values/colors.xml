@@ -3,6 +3,16 @@
     <color name="purple_200">#A882DD</color>
     <color name="blue_500">#A2D2FF</color>
     <color name="purple_700">#BDE0FE</color>
+
+    <!-- Pastel Palette -->
+    <color name="pastel_pink">#FFC6FF</color>
+    <color name="pastel_purple">#BDB2FF</color>
+    <color name="pastel_blue">#9BF6FF</color>
+    <color name="pastel_green">#CAFFBF</color>
+    <color name="pastel_yellow">#FDFFB6</color>
+    <color name="pastel_orange">#FFD6A5</color>
+    <color name="pastel_red">#FFADAD</color>
+
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>

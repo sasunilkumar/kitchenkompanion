@@ -25,13 +25,13 @@ class Home : toolbar() {
         setContentView(binding.root)
 
         setSupportActionBar(findViewById(R.id.toolbar))
-        expenses = findViewById<Button>(R.id.Expenses)
+        //expenses = findViewById<Button>(R.id.Expenses)
         recipes = findViewById<Button>(R.id.Recipes)
         inventory = findViewById<Button>(R.id.Inventory)
         grocery = findViewById<Button>(R.id.Grocery)
         mealPrep = findViewById<Button>(R.id.MealPrep)
 
-        expenses.setOnClickListener { startActivity(Intent(this, Expenses::class.java)) }
+        //expenses.setOnClickListener { startActivity(Intent(this, Expenses::class.java)) }
         recipes.setOnClickListener {startActivity( Intent(this, Recipes::class.java) )}
         inventory.setOnClickListener {startActivity( Intent(this, InventoryList::class.java)) }
         grocery.setOnClickListener { startActivity(Intent(this, GroceryList::class.java)) }

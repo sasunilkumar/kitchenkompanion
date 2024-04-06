@@ -50,4 +50,11 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="apple_pie_instructions">
+        Preheat oven to 375 degrees. Grease pie pan. Dice apples and saute with butter and brown
+        sugar on stove. Place pie crust in pie pan. Pour apple mixture into crust.
+        Bake for 30-40 minutes or until golden brown with apples tender.
+    </string>
+    <string name="welcome_home">Welcome Home!</string>
+    <string name="inventory">Inventory</string>
 </resources>

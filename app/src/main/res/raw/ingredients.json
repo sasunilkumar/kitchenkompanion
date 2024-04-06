@@ -1,22 +1,22 @@
 [
-  {
-    "name": "Apples",
-    "quantity":3,
-    "unit": "lbs"
-  },
-  {
-    "name": "Brown Sugar",
-    "quantity": 1,
-    "unit": "cup"
-  },
-  {
-    "name": "Butter",
-    "quantity": 4,
-    "unit": "tbsp"
-  },
-  {
-    "name": "Lemon Juice",
-    "quantity": 2,
-    "unit": "tsp"
-  }
+  [
+    "Apples",
+    3,
+    "lbs"
+  ],
+  [
+    "Brown Sugar",
+    1,
+    "cup"
+  ],
+  [
+    "Butter",
+    4,
+    "tbsp"
+  ],
+  [
+    "Lemon Juice",
+    2,
+    "tsp"
+  ]
 ]
