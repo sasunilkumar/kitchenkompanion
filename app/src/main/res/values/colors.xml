@@ -13,6 +13,12 @@
     <color name="pastel_orange">#FFD6A5</color>
     <color name="pastel_red">#FFADAD</color>
 
+    <!-- Cream Palette -->
+    <color name="light_cream">#FCEAD3</color>
+<!--    <color name="medium_cream">#F5CC87</color>-->
+    <color name="medium_cream">#F6C78A</color>
+    <color name="dark_cream">#EDAB69</color>
+
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
