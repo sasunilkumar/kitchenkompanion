@@ -15,12 +15,16 @@
         android:text="Inventory List"
         android:textSize="50sp" />
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/lorem_ipsum" />
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:orientation="vertical"
+        android:id="@+id/inven_body"
+        >
+
+    </LinearLayout>
+
+   <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <com.google.android.material.floatingactionbutton.FloatingActionButton
