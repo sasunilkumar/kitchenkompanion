@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.RadioButton
 import android.widget.Spinner
@@ -19,6 +20,7 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.setPadding
@@ -37,10 +39,10 @@ class GroceryList : AppBar() {
     private lateinit var binding: ViewBinding
     private lateinit var fab: View
     private var grocArray: MutableList<View> = mutableListOf()
-    private lateinit var fav1: Button
-    private lateinit var fav2: Button
-    private lateinit var fav3: Button
-    private lateinit var fav4: Button
+    private lateinit var fav1: ConstraintLayout
+    private lateinit var fav2: ConstraintLayout
+    private lateinit var fav3: ConstraintLayout
+    private lateinit var fav4: ConstraintLayout
     private lateinit var spinner: Spinner
     private lateinit var spinnerItems: ArrayList<String>
     private lateinit var adapter: ArrayAdapter<String>
@@ -61,10 +63,18 @@ class GroceryList : AppBar() {
 
         // init vars
         fab = findViewById<View>(R.id.fab_grocery_list)
-        fav1 = findViewById<Button>(R.id.fav_1)
-        fav2 = findViewById<Button>(R.id.fav_2)
-        fav3 = findViewById<Button>(R.id.fav_3)
-        fav4 = findViewById<Button>(R.id.fav_4)
+        fav1 = findViewById<ConstraintLayout>(R.id.fav_1)
+        fav2 = findViewById<ConstraintLayout>(R.id.fav_2)
+        fav3 = findViewById<ConstraintLayout>(R.id.fav_3)
+        fav4 = findViewById<ConstraintLayout>(R.id.fav_4)
+        var item1 = findViewById<TextView>(R.id.fav_item_1)
+        var item2 = findViewById<TextView>(R.id.fav_item_2)
+        var item3 = findViewById<TextView>(R.id.fav_item_3)
+        var item4 = findViewById<TextView>(R.id.fav_item_4)
+        var editItem1 = findViewById<ImageButton>(R.id.overflowButton)
+        var editItem2 = findViewById<ImageButton>(R.id.overflowButton2)
+        var editItem3 = findViewById<ImageButton>(R.id.overflowButton3)
+        var editItem4 = findViewById<ImageButton>(R.id.overflowButton4)
 
 
 
@@ -119,13 +129,7 @@ class GroceryList : AppBar() {
         builder.setPositiveButton("Add") { dialog, _ ->
             if (itemVisibility.isChecked) {
                 try {
-                    addItem(
-                        itemName.text.toString(),
-                        itemQuant.text.toString().toInt(),
-                        "me",
-                        itemprice.text.toString().toInt(),
-                        false,
-                        grocArray[spinner.selectedItemPosition]
+                    addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(), false, grocArray[spinner.selectedItemPosition]
                     )
                 } catch (e: NumberFormatException) {
                     Log.d(
@@ -176,45 +180,79 @@ class GroceryList : AppBar() {
 
         // Button Handlers
         fav1.setOnClickListener {
-            itemName.setText(fav1.text)
+            listBody.visibility = View.GONE
+            itemBody.visibility = View.GONE
+            itemVisibility.isChecked = false
+            listVisibility.isChecked = false
+            itemName.setText(item1.text)
             itemQuant.setText("")
             itemprice.setText("")
+            userName.setText("")
+            tableName.setText("")
             alertDialog.show()
             true
         }
 
         // Button Handlers
         fav2.setOnClickListener {
-            itemName.setText(fav2.text)
+            listBody.visibility = View.GONE
+            itemBody.visibility = View.GONE
+            itemVisibility.isChecked = false
+            listVisibility.isChecked = false
+            itemName.setText(item2.text)
             itemQuant.setText("")
             itemprice.setText("")
+            userName.setText("")
+            tableName.setText("")
             alertDialog.show()
             true
         }
         // Button Handlers
         fav3.setOnClickListener {
-            itemName.setText(fav3.text)
+            listBody.visibility = View.GONE
+            itemBody.visibility = View.GONE
+            itemVisibility.isChecked = false
+            listVisibility.isChecked = false
+            itemName.setText(item3.text)
             itemQuant.setText("")
             itemprice.setText("")
+            userName.setText("")
+            tableName.setText("")
             alertDialog.show()
             true
         }
         fav4.setOnClickListener {
-            itemName.setText(fav4.text)
+            listBody.visibility = View.GONE
+            itemBody.visibility = View.GONE
+            itemVisibility.isChecked = false
+            listVisibility.isChecked = false
+            itemName.setText(item4.text)
             itemQuant.setText("")
             itemprice.setText("")
+            userName.setText("")
+            tableName.setText("")
             alertDialog.show()
             true
         }
 
         // FAB (lower right button)
         fab.setOnClickListener {
+            listBody.visibility = View.GONE
+            itemBody.visibility = View.GONE
+            itemVisibility.isChecked = false
+            listVisibility.isChecked = false
             itemName.setText("")
             itemQuant.setText("")
             itemprice.setText("")
+            userName.setText("")
+            tableName.setText("")
             alertDialog.show()
             true
         }
+        editItem1.setOnClickListener{item1.text = "test"}
+        editItem2.setOnClickListener{item2.text = "test"}
+        editItem3.setOnClickListener{item3.text = "test"}
+        editItem4.setOnClickListener{item4.text = "test"}
 
 
         val dataList = readJson()
