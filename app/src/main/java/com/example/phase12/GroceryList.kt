@@ -1,6 +1,7 @@
 package com.example.phase12
 
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.DeadObjectException
@@ -22,6 +23,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.setPadding
 import androidx.viewbinding.ViewBinding
@@ -75,6 +77,30 @@ class GroceryList : AppBar() {
         var editItem2 = findViewById<ImageButton>(R.id.overflowButton2)
         var editItem3 = findViewById<ImageButton>(R.id.overflowButton3)
         var editItem4 = findViewById<ImageButton>(R.id.overflowButton4)
+
+
+        val favBuilder = AlertDialog.Builder(this)
+        val favView = EditText(this).apply {
+            layoutParams = TableLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                gravity = Gravity.CENTER_VERTICAL
+            }
+            hint = "New favorite item"
+            id = View.generateViewId()
+        }
+        favBuilder.setView(favView)
+        favBuilder.setTitle("What would you like to add?")
+        favBuilder.setCancelable(true)
+
+        favBuilder.setPositiveButton("Add") { dialog, _ ->
+            dialog.dismiss()
+        }
+        favBuilder.setNegativeButton("Cancel") {
+                dialog, _ -> dialog.dismiss()
+        }
+        val favDialog = favBuilder.create()
 
 
 
@@ -180,10 +206,11 @@ class GroceryList : AppBar() {
 
         // Button Handlers
         fav1.setOnClickListener {
+
             listBody.visibility = View.GONE
-            itemBody.visibility = View.GONE
-            itemVisibility.isChecked = false
-            listVisibility.isChecked = false
+            itemBody.visibility = View.VISIBLE
+            itemVisibility.visibility = View.GONE
+            listVisibility.visibility = View.GONE
             itemName.setText(item1.text)
             itemQuant.setText("")
             itemprice.setText("")
@@ -196,9 +223,9 @@ class GroceryList : AppBar() {
         // Button Handlers
         fav2.setOnClickListener {
             listBody.visibility = View.GONE
-            itemBody.visibility = View.GONE
-            itemVisibility.isChecked = false
-            listVisibility.isChecked = false
+            itemBody.visibility = View.VISIBLE
+            itemVisibility.visibility = View.GONE
+            listVisibility.visibility = View.GONE
             itemName.setText(item2.text)
             itemQuant.setText("")
             itemprice.setText("")
@@ -210,9 +237,9 @@ class GroceryList : AppBar() {
         // Button Handlers
         fav3.setOnClickListener {
             listBody.visibility = View.GONE
-            itemBody.visibility = View.GONE
-            itemVisibility.isChecked = false
-            listVisibility.isChecked = false
+            itemBody.visibility = View.VISIBLE
+            itemVisibility.visibility = View.GONE
+            listVisibility.visibility = View.GONE
             itemName.setText(item3.text)
             itemQuant.setText("")
             itemprice.setText("")
@@ -223,9 +250,9 @@ class GroceryList : AppBar() {
         }
         fav4.setOnClickListener {
             listBody.visibility = View.GONE
-            itemBody.visibility = View.GONE
-            itemVisibility.isChecked = false
-            listVisibility.isChecked = false
+            itemBody.visibility = View.VISIBLE
+            itemVisibility.visibility = View.GONE
+            listVisibility.visibility = View.GONE
             itemName.setText(item4.text)
             itemQuant.setText("")
             itemprice.setText("")
@@ -239,6 +266,8 @@ class GroceryList : AppBar() {
         fab.setOnClickListener {
             listBody.visibility = View.GONE
             itemBody.visibility = View.GONE
+            itemVisibility.visibility = View.VISIBLE
+            listVisibility.visibility = View.VISIBLE
             itemVisibility.isChecked = false
             listVisibility.isChecked = false
             itemName.setText("")
@@ -249,10 +278,38 @@ class GroceryList : AppBar() {
             alertDialog.show()
             true
         }
-        editItem1.setOnClickListener{item1.text = "test"}
-        editItem2.setOnClickListener{item2.text = "test"}
-        editItem3.setOnClickListener{item3.text = "test"}
-        editItem4.setOnClickListener{item4.text = "test"}
+        editItem1.setOnClickListener {
+            favView.setText("")
+            favDialog.show()
+            favDialog.setOnDismissListener {
+                // Update item1 text once the dialog is dismissed
+                item1.text = favView.text.toString()
+            }
+        }
+        editItem2.setOnClickListener{
+            favView.setText("")
+            favDialog.show()
+            favDialog.setOnDismissListener {
+                // Update item1 text once the dialog is dismissed
+                item2.text = favView.text.toString()
+            }
+        }
+        editItem3.setOnClickListener{
+            favView.setText("")
+            favDialog.show()
+            favDialog.setOnDismissListener {
+                // Update item1 text once the dialog is dismissed
+                item3.text = favView.text.toString()
+            }
+        }
+        editItem4.setOnClickListener{
+            favView.setText("")
+            favDialog.show()
+            favDialog.setOnDismissListener {
+                // Update item1 text once the dialog is dismissed
+                item4.text = favView.text.toString()
+            }
+        }
 
 
         val dataList = readJson()
@@ -309,13 +366,12 @@ class GroceryList : AppBar() {
                 0, 35)
         }
         val container = LinearLayout(this).apply {
-            id = listId  // Set the ID here
+            id = listId
             layoutParams = LinearLayout.LayoutParams(
-                700,  // width in pixels
-                LinearLayout.LayoutParams.WRAP_CONTENT   // height in pixels
+                700,
+                LinearLayout.LayoutParams.WRAP_CONTENT
             )
             gravity = Gravity.CENTER_HORIZONTAL
-//            background = ContextCompat.getDrawable(this@GroceryList, R.drawable.view_container)
             orientation = LinearLayout.VERTICAL
 
         }
@@ -338,6 +394,7 @@ class GroceryList : AppBar() {
             textSize = 24f
             gravity = TextView.TEXT_ALIGNMENT_VIEW_START
             textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
+            typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
         }
 
 
@@ -347,6 +404,7 @@ class GroceryList : AppBar() {
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT
             )
+
         }
         val row = TableRow(this).apply {
             layoutParams = TableLayout.LayoutParams(
@@ -369,6 +427,8 @@ class GroceryList : AppBar() {
                 textSize = 23f
                 setPadding(18, 18, 18, 18)
                 gravity = Gravity.CENTER_HORIZONTAL
+                typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+
             }
             row.addView(col)
             i += 1
@@ -385,6 +445,7 @@ class GroceryList : AppBar() {
             text = "List Total: $"+ tableTotal.getValue(table).toString()
             textSize = 24f
             setPadding(0,30,0,0)
+            typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
         }
         container.addView(sum)
         linLay.addView(spacer)
@@ -430,6 +491,8 @@ class GroceryList : AppBar() {
                     gravity = Gravity.CENTER
                     textSize = 20f
                     setPadding(8, 8, 8, 8)
+                    typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+
                 }
                 var quant = TextView(this).apply {
                     text = curr.getString("quantity")
@@ -441,6 +504,8 @@ class GroceryList : AppBar() {
                     gravity = Gravity.CENTER
                     textSize = 20f
                     setPadding(8, 8, 8, 8)
+                    typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+
                 }
                 var owner = TextView(this).apply {
                     text = curr.getString("owner")
@@ -452,6 +517,8 @@ class GroceryList : AppBar() {
                     gravity = Gravity.CENTER
                     textSize = 20f
                     setPadding(8, 8, 8, 8)
+                    typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+
                 }
                 var price = TextView(this).apply {
                     text = curr.getString("price")
@@ -463,6 +530,8 @@ class GroceryList : AppBar() {
                     textSize = 20f
                     gravity = Gravity.CENTER
                     setPadding(8, 8, 8, 8)
+                    typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+
                 }
                 if (curTotal != null) {
                     curTotal += curr.getString("price").toInt()
@@ -482,6 +551,8 @@ class GroceryList : AppBar() {
                         TableRow.LayoutParams.WRAP_CONTENT,
                         TableRow.LayoutParams.WRAP_CONTENT
                     )
+                    typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+
                 }
                 check.addView(checkItem)
                 row.addView(name)
