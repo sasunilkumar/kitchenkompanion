@@ -1,56 +1,127 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <EditText
-        android:id="@+id/item_name"
-        android:inputType="text"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+    <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="name" />
-    <EditText
-        android:id="@+id/quantity"
-        android:inputType="number"
+        android:gravity="left"
+        android:orientation="horizontal">
+        <RadioButton android:id="@+id/radio_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Item"/>
+        <RadioButton android:id="@+id/radio_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add List"/>
+    </RadioGroup>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="sans-serif"
-        android:hint="quantity"/>
-    <EditText
-        android:id="@+id/price"
-        android:inputType="number"
+        android:orientation="vertical"
+        android:id="@+id/add_item_group"
+        android:visibility="gone">
+        <TextView
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Item"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What item would you like to add?"
+            android:textSize="16dp"></TextView>
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+            <EditText
+                android:id="@+id/item_name"
+                android:inputType="text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight=".75"
+                android:hint="name" />
+            <EditText
+                android:id="@+id/user_name"
+                android:inputType="text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight=".75"
+                android:hint="user" />
+            <EditText
+                android:id="@+id/quantity"
+                android:inputType="number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="sans-serif"
+                android:layout_weight=".5"
+                android:hint="quantity"/>
+            <EditText
+                android:id="@+id/price"
+                android:inputType="number"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="sans-serif"
+                android:layout_weight=".5"
+                android:hint="price"/>
+            <Spinner
+                android:id="@+id/add_item_spinner"
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="sans-serif"
-        android:hint="price"/>
-
-
-    <CheckBox
-        android:id="@+id/favorite"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Favorite?" >
-
-    </CheckBox>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose a List"/>
-    <Spinner
-        android:id="@+id/add_item_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-
+        android:orientation="vertical"
+        android:id="@+id/add_list_group"
+        android:visibility="gone">
+        <TextView
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add List"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What would you like to name your list?"
+            android:textSize="16dp"
+            />
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="25dp">
+            <EditText
+                android:id="@+id/list_name"
+                android:inputType="text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:hint="Table Name" />
+        </LinearLayout>
+    </LinearLayout>
 </LinearLayout>

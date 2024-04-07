@@ -1,30 +1,24 @@
 package com.example.phase12
 
-import android.app.PendingIntent.getActivity
-import android.content.DialogInterface
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.DeadObjectException
-import android.text.Editable
-import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.RadioButton
 import android.widget.Spinner
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.setPadding
@@ -79,13 +73,34 @@ class GroceryList : AppBar() {
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.add_item, null)
         builder.setView(view)
-        builder.setMessage("What would you like to add?")
-        builder.setTitle("Add Item")
+        builder.setTitle("What would you like to add?")
         builder.setCancelable(true)
         var itemName = view.findViewById<EditText>(R.id.item_name)
+        var userName = view.findViewById<EditText>(R.id.user_name)
         var itemQuant = view.findViewById<EditText>(R.id.quantity)
         var itemprice = view.findViewById<EditText>(R.id.price)
-        var isFav = view.findViewById<CheckBox>(R.id.favorite)
+
+        var tableName = view.findViewById<EditText>(R.id.list_name)
+
+        var itemVisibility =  view.findViewById<RadioButton>(R.id.radio_item)
+        var itemBody = view.findViewById<LinearLayout>(R.id.add_item_group)
+        var listVisibility =  view.findViewById<RadioButton>(R.id.radio_list)
+        var listBody = view.findViewById<LinearLayout>(R.id.add_list_group)
+
+
+        itemVisibility.setOnClickListener {
+            itemBody.visibility = View.VISIBLE
+            listBody.visibility = View.GONE
+
+        }
+
+        listVisibility.setOnClickListener {
+            listBody.visibility = View.VISIBLE
+            itemBody.visibility = View.GONE
+
+        }
+
+
 
 
         // Spinner
@@ -101,19 +116,57 @@ class GroceryList : AppBar() {
 
         //  Wont take numerical values greater than 11 digits in either column, We will
         //  see overflow if the digits exceed 7
-        builder.setPositiveButton("Add") {
-                dialog, _ ->
-                    try{ addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(),isFav.isChecked, grocArray[spinner.selectedItemPosition])}
-                    catch (e: NumberFormatException){
-                        Log.d("READ DIALOG ERROR","error when trying to read AlertDialog: NumberFormatException")
-                    }
-                    catch (e: DeadObjectException){
-                        Log.d("READ DIALOG ERROR","error when trying to read AlertDialog: DeadObjectException")
-                    }
-                    catch (e: NullPointerException){
-                        Log.d("READ DIALOG ERROR","error when trying to read AlertDialog: NullPointerException")
-                    }
-                    dialog.dismiss()
+        builder.setPositiveButton("Add") { dialog, _ ->
+            if (itemVisibility.isChecked) {
+                try {
+                    addItem(
+                        itemName.text.toString(),
+                        itemQuant.text.toString().toInt(),
+                        "me",
+                        itemprice.text.toString().toInt(),
+                        false,
+                        grocArray[spinner.selectedItemPosition]
+                    )
+                } catch (e: NumberFormatException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: NumberFormatException"
+                    )
+                } catch (e: DeadObjectException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: DeadObjectException"
+                    )
+                } catch (e: NullPointerException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: NullPointerException"
+                    )
+                }
+                dialog.dismiss()
+            }
+            if (listVisibility.isChecked) {
+                try {
+                    createList(tableName.text.toString(), JSONArray())
+                } catch (e: NumberFormatException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: NumberFormatException"
+                    )
+                } catch (e: DeadObjectException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: DeadObjectException"
+                    )
+                } catch (e: NullPointerException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: NullPointerException"
+                    )
+                }
+                dialog.dismiss()
+
+            }
         }
         builder.setNegativeButton("Cancel") {
                 dialog, _ -> dialog.dismiss()
@@ -126,7 +179,6 @@ class GroceryList : AppBar() {
             itemName.setText(fav1.text)
             itemQuant.setText("")
             itemprice.setText("")
-            isFav.isChecked = false
             alertDialog.show()
             true
         }
@@ -136,7 +188,6 @@ class GroceryList : AppBar() {
             itemName.setText(fav2.text)
             itemQuant.setText("")
             itemprice.setText("")
-            isFav.isChecked = false
             alertDialog.show()
             true
         }
@@ -145,7 +196,6 @@ class GroceryList : AppBar() {
             itemName.setText(fav3.text)
             itemQuant.setText("")
             itemprice.setText("")
-            isFav.isChecked = false
             alertDialog.show()
             true
         }
@@ -153,7 +203,6 @@ class GroceryList : AppBar() {
             itemName.setText(fav4.text)
             itemQuant.setText("")
             itemprice.setText("")
-            isFav.isChecked = false
             alertDialog.show()
             true
         }
@@ -163,7 +212,6 @@ class GroceryList : AppBar() {
             itemName.setText("")
             itemQuant.setText("")
             itemprice.setText("")
-            isFav.isChecked = false
             alertDialog.show()
             true
         }
@@ -176,45 +224,6 @@ class GroceryList : AppBar() {
         } else {
             Log.d("READ Failed", "Failed to read or parse data from JSON file.")
         }
-//        appBar = findViewById(R.id.bottomAppBar)
-//        appBar.setNavigationOnClickListener {
-//            // Handle navigation icon press
-//        }
-//        appBar.setOnMenuItemClickListener { menuItem ->
-//            when (menuItem.itemId) {
-//                R.id.bot_Recipes -> {
-//                    Log.d("ACTION MENU", "bot_Recipes")
-//                    startActivity(Intent(this, Recipes::class.java))
-//                    true
-//                }
-//                R.id.bot_GroceryList -> {
-//                    Log.d("ACTION MENU", "bot_GroceryList")
-//                    startActivity(Intent(this, GroceryList::class.java))
-//                    true
-//                }
-//                R.id.bot_InventoryList -> {
-//                    Log.d("ACTION MENU", "bot_InventoryList")
-//                    startActivity(Intent(this, InventoryList::class.java))
-//                    true
-//                }
-//                R.id.bot_Profile -> {
-//                    Log.d("ACTION MENU", "bot_Profile")
-//                    startActivity(Intent(this, Profile::class.java))
-//                    true
-//                }
-//                R.id.bot_MealPrep -> {
-//                    Log.d("ACTION MENU", "bot_MealPrep")
-//                    startActivity(Intent(this, MealPrep::class.java))
-//                    true
-//                }
-//                R.id.bot_Home -> {
-//                    Log.d("ACTION MENU", "bot_Home")
-//                    startActivity(Intent(this, Home::class.java))
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
 
     }
 
