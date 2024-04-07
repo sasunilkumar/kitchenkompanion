@@ -21,6 +21,7 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -283,7 +284,7 @@ class GroceryList : AppBar() {
             favDialog.show()
             favDialog.setOnDismissListener {
                 // Update item1 text once the dialog is dismissed
-                item1.text = favView.text.toString()
+                if (favView.text.toString().isNotEmpty()){item1.text = favView.text.toString()}
             }
         }
         editItem2.setOnClickListener{
@@ -291,7 +292,7 @@ class GroceryList : AppBar() {
             favDialog.show()
             favDialog.setOnDismissListener {
                 // Update item1 text once the dialog is dismissed
-                item2.text = favView.text.toString()
+                if (favView.text.toString().isNotEmpty()){item2.text = favView.text.toString()}
             }
         }
         editItem3.setOnClickListener{
@@ -299,7 +300,7 @@ class GroceryList : AppBar() {
             favDialog.show()
             favDialog.setOnDismissListener {
                 // Update item1 text once the dialog is dismissed
-                item3.text = favView.text.toString()
+                if (favView.text.toString().isNotEmpty()){item3.text = favView.text.toString()}
             }
         }
         editItem4.setOnClickListener{
@@ -307,7 +308,7 @@ class GroceryList : AppBar() {
             favDialog.show()
             favDialog.setOnDismissListener {
                 // Update item1 text once the dialog is dismissed
-                item4.text = favView.text.toString()
+                if (favView.text.toString().isNotEmpty()){item4.text = favView.text.toString()}
             }
         }
 
@@ -360,6 +361,7 @@ class GroceryList : AppBar() {
         val titleID = View.generateViewId()
         val countID = View.generateViewId()
 
+
         val spacer = View(this).apply {
             id = spacerID
             layoutParams = LinearLayout.LayoutParams(
@@ -373,6 +375,7 @@ class GroceryList : AppBar() {
             )
             gravity = Gravity.CENTER_HORIZONTAL
             orientation = LinearLayout.VERTICAL
+            isClickable = true
 
         }
         var draw: Drawable? = ContextCompat.getDrawable(this, R.drawable.view_container)
@@ -404,6 +407,7 @@ class GroceryList : AppBar() {
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT
             )
+            visibility = View.GONE
 
         }
         val row = TableRow(this).apply {
@@ -454,6 +458,17 @@ class GroceryList : AppBar() {
 
 
         Log.d("ADDED LIST", grocArray.toString())
+
+        container.setOnClickListener{
+            if (table.visibility == View.GONE){
+                table.visibility = View.VISIBLE
+
+                Log.d("CARD", "Make table visible")
+            }else {
+                table.visibility = View.GONE
+                Log.d("CARD", "Make table invisible")
+            }
+        }
         return table
     }
 
