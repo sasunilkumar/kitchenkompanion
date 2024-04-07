@@ -59,8 +59,6 @@
 <!--            android:theme="@style/Theme.Phase12"-->
 <!--            android:parentActivityName=".Home"/>-->
 
-
-
         <activity
             android:name=".Home"
             android:exported="true"
