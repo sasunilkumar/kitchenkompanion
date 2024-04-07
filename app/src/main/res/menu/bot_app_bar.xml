@@ -2,41 +2,92 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.myapplication.MainActivity">
+
     <item
-        android:id="@+id/bot_Home"
-        android:title="Home"/>
+        android:title="space2"
+        android:icon="@drawable/spacer"
+        app:showAsAction="always"
+        />
 
     <item
         android:id="@+id/bot_GroceryList"
         android:title="Grocery List"
         android:icon="@drawable/grocery_vec_icon"
         android:contentDescription="Grocery List"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="always"/>
+
+    <item
+        android:title="space3"
+        android:icon="@drawable/spacer"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:title="space4"
+        android:icon="@drawable/spacer"
+        app:showAsAction="always"
+        />
 
     <item
         android:id="@+id/bot_InventoryList"
         android:title="Inventory List"
         android:icon="@drawable/kitchen_vec_icon"
-        android:contentDescription="Grocery List"
+        android:contentDescription="Inventory"
+        app:showAsAction="always"/>
 
-        app:showAsAction="ifRoom"/>
+    <item
+        android:title="space5"
+        android:icon="@drawable/spacer"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:title="space6"
+        android:icon="@drawable/spacer"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:id="@+id/bot_Home"
+        android:icon="@drawable/home_icon"
+        android:title="Home"
+        app:showAsAction="always"/>
+
+    <item
+        android:title="space7"
+        android:icon="@drawable/spacer"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:title="space8"
+        android:icon="@drawable/spacer"
+        app:showAsAction="always"
+        />
+
     <item
         android:id="@+id/bot_Recipes"
         android:title="Recipes"
         android:icon="@drawable/recipes_vec_icon"
-        android:contentDescription="Grocery List"
+        android:contentDescription="Recipe"
+        app:showAsAction="always"/>
 
-        app:showAsAction="ifRoom"/>
+    <item
+        android:title="space9"
+        android:icon="@drawable/spacer"
+        app:showAsAction="always"
+        />
+
+    <item
+        android:title="space10"
+        android:icon="@drawable/spacer"
+        app:showAsAction="always"
+        />
 
     <item
         android:id="@+id/bot_MealPrep"
         android:title="Meal Prep"
         android:icon="@drawable/calendar_vec_icon"
-        android:contentDescription="Grocery List"
-
-        app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/bot_Profile"
-        android:title="Profile"/>
-
+        android:contentDescription="Meal Prep"
+        app:showAsAction="always"/>
 </menu>

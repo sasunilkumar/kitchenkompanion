@@ -89,7 +89,7 @@
 
             <LinearLayout
                 android:layout_width="700px"
-                android:layout_height="330px"
+                android:layout_height="420px"
                 android:layout_gravity="center_horizontal"
                 android:divider="@drawable/divider"
                 android:gravity="center_vertical"
@@ -100,31 +100,32 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/Inventory"
                     android:layout_width="300px"
-                    android:layout_height="325px"
+                    android:layout_height="410px"
                     android:layout_weight="1"
                     android:background="@drawable/view_container"
                     android:backgroundTint="@color/pastel_red"
+
                     android:text="@string/inventory"
                     android:fontFamily="@font/hammersmith_one"
                     android:textAllCaps="false"
-                    android:textSize="32sp" />
+                    android:textSize="45sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/Recipes"
                     android:layout_width="300px"
-                    android:layout_height="325px"
+                    android:layout_height="410px"
                     android:layout_weight="1"
                     android:background="@drawable/view_container"
                     android:fontFamily="@font/hammersmith_one"
                     android:backgroundTint="@color/pastel_orange"
                     android:textAllCaps="false"
                     android:text="Recipes"
-                    android:textSize="32sp" />
+                    android:textSize="45sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="700px"
-                android:layout_height="330px"
+                android:layout_height="420px"
                 android:layout_gravity="center_horizontal"
                 android:divider="@drawable/divider"
                 android:gravity="center_vertical"
@@ -135,30 +136,40 @@
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/Grocery"
                     android:layout_width="300px"
-                    android:layout_height="325px"
+                    android:layout_height="410px"
                     android:layout_weight="1"
                     android:background="@drawable/view_container"
                     android:fontFamily="@font/hammersmith_one"
                     android:textAllCaps="false"
                     android:backgroundTint="@color/pastel_yellow"
                     android:text="Grocery List"
-                    android:textSize="32sp" />
+                    android:textSize="45sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/MealPrep"
                     android:layout_width="300px"
-                    android:layout_height="325px"
+                    android:layout_height="410px"
                     android:layout_weight="1"
                     android:background="@drawable/view_container"
                     android:fontFamily="@font/hammersmith_one"
                     android:backgroundTint="@color/pastel_green"
                     android:textAllCaps="false"
                     android:text="Meal Prep"
-                    android:textSize="32sp" />
+                    android:textSize="45sp" />
             </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
-
-
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.bottomappbar.BottomAppBar
+            android:id="@+id/bottomAppBar"
+            style="@style/Widget.Material3.BottomAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:backgroundTint="@color/medium_cream"
+            app:menu="@menu/bot_app_bar" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>

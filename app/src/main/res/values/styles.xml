@@ -4,4 +4,10 @@
         <item name="colorButtonNormal">@color/blue_500</item>
         <item name="colorControlHighlight">@color/blue_500</item>
     </style>
+
+    <style name="IconStyle" parent="Widget.MaterialComponents.Button">
+        <item name="android:minWidth">32dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+    </style>
 </resources>
