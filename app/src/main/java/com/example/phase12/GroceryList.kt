@@ -446,7 +446,7 @@ class GroceryList : AppBar() {
         tableTotalID[table] = countID
         var sum = TextView(this).apply {
             id = countID
-            text = "List Total: $"+ tableTotal.getValue(table).toString()
+            text = "Total List Cost: $"+ tableTotal.getValue(table).toString()
             textSize = 24f
             setPadding(0,30,0,0)
             typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
