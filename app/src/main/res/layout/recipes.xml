@@ -110,7 +110,19 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_toLeftOf="@id/recipe_1_iconImageView_1"
+                            android:paddingLeft="15dp"
                             android:src="@mipmap/gluten_free_round" />
+
+                        <androidx.appcompat.widget.AppCompatRatingBar
+                            android:id="@+id/ratingBar1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@id/recipe_1_iconImageView_2"
+                            android:numStars="3"
+                            android:progressTint="@color/white"
+                            style="@style/RatingTheme"
+                            />
                     </RelativeLayout>
 
                     <LinearLayout
@@ -256,7 +268,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:paddingRight="50dp"
+                            android:paddingRight="40dp"
                             android:src="@mipmap/kosher_round" />
 
                         <ImageView
@@ -266,16 +278,27 @@
                             android:layout_centerVertical="true"
                             android:layout_toLeftOf="@id/recipe_2_iconImageView_1"
                             android:paddingRight="10dp"
+                            android:paddingLeft="15dp"
                             android:src="@mipmap/low_sodium_round" />
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/recipe_2_rating"
-                            android:layout_width="20dp"
+                        <androidx.appcompat.widget.AppCompatRatingBar
+                            android:id="@+id/ratingBar2"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
-                            android:layout_toLeftOf="@id/recipe_2_iconImageView_1"
-                            android:hint="Medium"
-                            android:paddingRight="10dp" />
+                            android:layout_toLeftOf="@id/recipe_2_iconImageView_2"
+                            android:numStars="3"
+                            android:progressTint="@color/white"
+                            style="@style/RatingTheme"
+                            />
+<!--                            <Spinner-->
+<!--                                android:id="@+id/ratingSpinner"-->
+<!--                                android:layout_width="30dp"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:entries="@array/ratings"-->
+<!--                                android:layout_centerVertical="true"-->
+<!--                                android:layout_toLeftOf="@id/recipe_2_iconImageView_2"-->
+<!--                                android:paddingRight="10dp" />-->
                     </RelativeLayout>
 
                     <LinearLayout
@@ -407,7 +430,7 @@
             android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
             android:backgroundTint="@color/light_cream"
-            android:contentDescription="@string/Grocery_fab"
+            android:contentDescription="@string/Recipe_fab"
             app:srcCompat="@drawable/ic_plus_24" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

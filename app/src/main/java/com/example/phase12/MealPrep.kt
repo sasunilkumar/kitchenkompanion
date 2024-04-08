@@ -34,7 +34,6 @@ class MealPrep : AppBar() {
         //Calender View Implementation from GeeksforGeeks
 
         dateTV = findViewById(R.id.textView)
-        calendarView = findViewById(R.id.calendarView)
 
 
         calendarView
