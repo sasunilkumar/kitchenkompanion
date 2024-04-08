@@ -20,6 +20,7 @@ import android.widget.LinearLayout
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.ui.text.font.FontWeight
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.setPadding
@@ -195,7 +196,7 @@ class InventoryList : AppBar() {
                 TableLayout.LayoutParams.WRAP_CONTENT
             )
             text = title
-            textSize = 27f
+            textSize = 30f
             gravity = TextView.TEXT_ALIGNMENT_VIEW_START
             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
             typeface = resources.getFont(R.font.hammersmith_one)
@@ -216,7 +217,7 @@ class InventoryList : AppBar() {
             )
         }
         val cols = arrayOf("Name", "Owner", "Count +/-")
-        val weights = arrayOf(1.3f, 1f, 1f)
+        val weights = arrayOf(1.5f, 1.3f, 1f)
         var i = 0
 
         for (title in cols) {
@@ -227,7 +228,7 @@ class InventoryList : AppBar() {
                     weights[i]
                 )
                 text = title
-                textSize = 25f
+                textSize = 27f
                 setPadding(18, 18, 18, 18)
                 gravity = Gravity.CENTER_HORIZONTAL
                 typeface = resources.getFont(R.font.hammersmith_one)
@@ -281,7 +282,7 @@ class InventoryList : AppBar() {
                         1.5f
                     )
                     gravity = Gravity.CENTER
-                    textSize = 20f
+                    textSize = 24f
                     typeface = resources.getFont(R.font.hammersmith_one)
                     setTextColor(ContextCompat.getColor(context, R.color.black))
                     setPadding(8, 8, 8, 8)
@@ -294,7 +295,7 @@ class InventoryList : AppBar() {
                         1f
                     )
                     gravity = Gravity.CENTER
-                    textSize = 20f
+                    textSize = 24f
                     typeface = resources.getFont(R.font.hammersmith_one)
                     setTextColor(ContextCompat.getColor(context, R.color.black))
                     setPadding(8, 8, 8, 8)
@@ -310,7 +311,7 @@ class InventoryList : AppBar() {
                     )
                     gravity = Gravity.CENTER
                     textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-                    textSize = 20f
+                    textSize = 24f
                     typeface = resources.getFont(R.font.hammersmith_one)
                     setTextColor(ContextCompat.getColor(context, R.color.black))
                     setPadding(8, 8, 8, 8)
