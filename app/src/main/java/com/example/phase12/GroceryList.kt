@@ -378,7 +378,7 @@ class GroceryList : AppBar() {
         var draw: Drawable? = ContextCompat.getDrawable(this, R.drawable.view_container)
         if (draw != null) {
             draw = DrawableCompat.wrap(draw)
-            DrawableCompat.setTint(draw, Color.parseColor("#92F0FF"))
+            DrawableCompat.setTint(draw, Color.parseColor("#BAEDF9"))
         }
         container.background = draw
 
@@ -391,10 +391,11 @@ class GroceryList : AppBar() {
                 TableLayout.LayoutParams.WRAP_CONTENT
             )
             text = title
-            textSize = 24f
+            textSize = 30f
             gravity = TextView.TEXT_ALIGNMENT_VIEW_START
-            textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
+            textAlignment = TextView.TEXT_ALIGNMENT_CENTER
             typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+            setTextColor(ContextCompat.getColor(context, R.color.black))
         }
 
 
@@ -429,7 +430,7 @@ class GroceryList : AppBar() {
                 setPadding(18, 18, 18, 18)
                 gravity = Gravity.CENTER_HORIZONTAL
                 typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
-
+                setTextColor(ContextCompat.getColor(context, R.color.black))
             }
             row.addView(col)
             i += 1
@@ -444,9 +445,10 @@ class GroceryList : AppBar() {
         var sum = TextView(this).apply {
             id = countID
             text = "List Total: $"+ tableTotal.getValue(table).toString()
-            textSize = 24f
+            textSize = 25f
             setPadding(0,30,0,0)
             typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+            setTextColor(ContextCompat.getColor(context, R.color.black))
         }
         container.addView(sum)
         linLay.addView(spacer)
@@ -501,9 +503,10 @@ class GroceryList : AppBar() {
                         1.5f
                     )
                     gravity = Gravity.CENTER
-                    textSize = 20f
+                    textSize = 22f
                     setPadding(8, 8, 8, 8)
                     typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+                    setTextColor(ContextCompat.getColor(context, R.color.black))
 
                 }
                 var quant = TextView(this).apply {
@@ -514,10 +517,10 @@ class GroceryList : AppBar() {
                         1f
                     )
                     gravity = Gravity.CENTER
-                    textSize = 20f
+                    textSize = 22f
                     setPadding(8, 8, 8, 8)
                     typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
-
+                    setTextColor(ContextCompat.getColor(context, R.color.black))
                 }
                 var owner = TextView(this).apply {
                     text = curr.getString("owner")
@@ -527,10 +530,10 @@ class GroceryList : AppBar() {
                         1.5f
                     )
                     gravity = Gravity.CENTER
-                    textSize = 20f
+                    textSize = 22f
                     setPadding(8, 8, 8, 8)
                     typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
-
+                    setTextColor(ContextCompat.getColor(context, R.color.black))
                 }
                 var price = TextView(this).apply {
                     text = curr.getString("price")
@@ -539,11 +542,11 @@ class GroceryList : AppBar() {
                         TableRow.LayoutParams.WRAP_CONTENT,
                         1f
                     )
-                    textSize = 20f
+                    textSize = 22f
                     gravity = Gravity.CENTER
                     setPadding(8, 8, 8, 8)
                     typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
-
+                    setTextColor(ContextCompat.getColor(context, R.color.black))
                 }
                 if (curTotal != null) {
                     curTotal += curr.getString("price").toInt()
@@ -564,6 +567,7 @@ class GroceryList : AppBar() {
                         TableRow.LayoutParams.WRAP_CONTENT
                     )
                     typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+                    setTextColor(ContextCompat.getColor(context, R.color.black))
 
                 }
                 check.addView(checkItem)
