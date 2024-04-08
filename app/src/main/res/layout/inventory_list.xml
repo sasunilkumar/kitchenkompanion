@@ -9,7 +9,7 @@
     android:theme="@style/Theme.MaterialComponents.DayNight"
     android:fontFamily="@font/hammersmith_one"
     android:background="@color/light_cream"
-    tools:context=".GroceryList">
+    tools:context=".InventoryList">
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -17,12 +17,11 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/groc_body"
+            android:id="@+id/invent_body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:orientation="vertical">
-
 
             <TextView
                 android:id="@+id/textView2"
@@ -66,12 +65,12 @@
             app:menu="@menu/bot_app_bar" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_grocery_list"
+            android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
             android:layout_margin="16dp"
-            android:backgroundTint="@color/pastel_red"
+            android:backgroundTint="@color/light_cream"
             android:contentDescription="@string/Grocery_fab"
             app:srcCompat="@drawable/ic_plus_24" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

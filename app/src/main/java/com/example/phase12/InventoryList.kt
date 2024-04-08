@@ -38,9 +38,7 @@ class InventoryList : AppBar() {
     private lateinit var spinner: Spinner
     private lateinit var spinnerItems: ArrayList<String>
     private lateinit var adapter: ArrayAdapter<String>
-    private var tableTotal = HashMap<View, Int>()
-    private var tableTotalID = HashMap<View, Int>()
-    private lateinit var fab: View
+    private lateinit var addB: View
 
 
     private lateinit var binding: InventoryListBinding
@@ -67,9 +65,8 @@ class InventoryList : AppBar() {
         builder.setCancelable(true)
         var itemName = view.findViewById<EditText>(R.id.item_name)
         var itemQuant = view.findViewById<EditText>(R.id.quantity)
-        var itemprice = view.findViewById<EditText>(R.id.price)
 
-        fab = findViewById<View>(R.id.fab_grocery_list)
+        addB= findViewById<View>(R.id.add_button)
 
         // ALEX Spinner
         spinner = view.findViewById(R.id.add_item_spinner)
@@ -88,7 +85,6 @@ class InventoryList : AppBar() {
                     itemName.text.toString(),
                     itemQuant.text.toString().toInt(),
                     "me",
-                    itemprice.text.toString().toInt(),
                     grocArray[spinner.selectedItemPosition]
                 )
             } catch (e: NumberFormatException) {
@@ -114,10 +110,9 @@ class InventoryList : AppBar() {
         }
         val alertDialog = builder.create()
 
-        fab.setOnClickListener {
+        addB.setOnClickListener {
             itemName.setText("")
             itemQuant.setText("")
-            itemprice.setText("")
             alertDialog.show()
             true
         }
@@ -138,7 +133,7 @@ class InventoryList : AppBar() {
         try {
             return JSONArray(
                 // JSON reading stolen from this https://www.youtube.com/watch?v=B9jrhLyRwBs
-                applicationContext.resources.openRawResource(R.raw.example).bufferedReader()
+                applicationContext.resources.openRawResource(R.raw.inventory_ex).bufferedReader()
                     .use<BufferedReader, String> { it.readText() })
         } catch (e: FileNotFoundException) {
             Log.d("Error", "File not found")
@@ -160,7 +155,7 @@ class InventoryList : AppBar() {
 
     // Creates the List container, table inside, and spacer
     private fun createList(title: String, items: JSONArray): LinearLayout {
-        val linLay = findViewById<LinearLayout>(R.id.groc_body)
+        val linLay = findViewById<LinearLayout>(R.id.invent_body)
         val listId = View.generateViewId()
         val spacerID = View.generateViewId()
         val tableID = View.generateViewId()
@@ -218,8 +213,8 @@ class InventoryList : AppBar() {
                 TableLayout.LayoutParams.WRAP_CONTENT,
             )
         }
-        val cols = arrayOf("Name", "Owner", "Count", "Price","Bought?")
-        val weights = arrayOf(1.5f, 1.5f, 1f, 1f,1.3f)
+        val cols = arrayOf("Name", "Owner", "Count")
+        val weights = arrayOf(1.5f, 1.5f, 1f)
         var i = 0
 
         for (title in cols) {
@@ -243,10 +238,8 @@ class InventoryList : AppBar() {
         container.addView(table)
         linLay.addView(container)
         grocArray.add(table)
-        tableTotalID[table] = countID
         var sum = TextView(this).apply {
             id = countID
-            text = "List Total: $"+ tableTotal.getValue(table).toString()
             textSize = 24f
             setPadding(0,30,0,0)
         }
@@ -264,14 +257,6 @@ class InventoryList : AppBar() {
     private fun populateFavorites(curr: JSONObject) {
     }
     private fun populateList(items: JSONArray?, view: TableLayout) {
-        try {
-            val count = tableTotal.getValue(view)
-        } catch (e: NoSuchElementException) {
-            Log.d("KEY NOT FOUND", "The current table did not have a count mapping")
-            tableTotal[view] = 0
-        }
-
-        var curTotal = tableTotal[view] ?: 0
         if (items != null) {
             var tableView = view
             for (i in 0 until items.length()){
@@ -317,20 +302,7 @@ class InventoryList : AppBar() {
                     textSize = 20f
                     setPadding(8, 8, 8, 8)
                 }
-                var price = TextView(this).apply {
-                    text = curr.getString("price")
-                    layoutParams = TableRow.LayoutParams(
-                        0,
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        1f
-                    )
-                    textSize = 20f
-                    gravity = Gravity.CENTER
-                    setPadding(8, 8, 8, 8)
-                }
-                if (curTotal != null) {
-                    curTotal += curr.getString("price").toInt()
-                }
+
                 var check = LinearLayout(this).apply {
                     layoutParams = TableRow.LayoutParams(
                         0,
@@ -340,23 +312,12 @@ class InventoryList : AppBar() {
                         )
 
                 }
-                check.gravity = Gravity.CENTER
-                var checkItem = CheckBox(this).apply {
-                    layoutParams = TableRow.LayoutParams(
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        TableRow.LayoutParams.WRAP_CONTENT
-                    )
-                }
-                check.addView(checkItem)
                 row.addView(name)
                 row.addView(owner)
                 row.addView(quant)
-                row.addView(price)
-                row.addView(check)
                 tableView.addView(row)
 
             }
-            tableTotal[view] = curTotal
         }
     }
 
@@ -364,20 +325,16 @@ class InventoryList : AppBar() {
     private fun addItem(name: String = "test",
                         quantity: Int = 10000,
                         owner: String = "BobDiddleBob",
-                        price: Int = 10000,
                         list: View = grocArray[0]){
-        val string = "[{\"name\":  \"$name\", \"quantity\": $quantity, \"owner\": $owner, \"price\": $price}]"
+        val string = "[{\"name\":  \"$name\", \"quantity\": $quantity, \"owner\": $owner}]"
         val json = JSONArray(string)
         populateList(json, list as TableLayout)
-        var sumID = tableTotalID[list] ?: 0
-        var text = findViewById<TextView>(sumID)
-        text.setText("List Total: $"+ tableTotal.getValue(list).toString())
-
     }
 
 
 }
 
+// Doesn't work
 //    private fun readJson(): JSONArray? {
 //        try {
 //            return JSONArray(

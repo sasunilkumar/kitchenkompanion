@@ -1,0 +1,74 @@
+[
+    {
+      "name": "Refrigerator",
+      "authors": ["John Doe", "Sarah Lee"],
+      "items": [
+        {
+          "name": "Milk",
+          "quantity": 1,
+          "owner": "John Doe"
+        },
+        {
+          "name": "Eggs",
+          "quantity": 12,
+          "owner": "Jane"
+        },
+        {
+          "name": "Butter",
+          "quantity": 1,
+          "owner": "John Doe & Jane Doe"
+        },
+        {
+          "name": "Ham",
+          "quantity": 2,
+          "owner": "John Doe"
+        },
+        {
+          "name": "Chedder Cheese",
+          "quantity": 2,
+          "owner": "Sarah Lee"
+        },
+        {
+          "name": "Lettuce",
+          "quantity": 1,
+          "owner": "John Doe"
+        }
+      ]
+    },
+    {
+      "name": "Pantry",
+      "authors": ["John Doe"],
+      "items": [
+        {
+          "name": "Pasta",
+          "quantity": 2,
+          "owner": "John Doe"
+        },
+        {
+          "name": "Rice",
+          "quantity": 1,
+          "owner": "John Doe"
+        },
+        {
+          "name": "Canned beans",
+          "quantity": 4,
+          "owner": "John Doe"
+        },
+        {
+          "name": "Flour",
+          "quantity": 1,
+          "owner": "John Doe"
+        },
+        {
+          "name": "Sugar",
+          "quantity": 1,
+          "owner": "John Doe"
+        },
+        {
+          "name": "Coffee",
+          "quantity": 1,
+          "owner": "John Doe"
+        }
+      ]
+    }
+  ]
