@@ -11,55 +11,42 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TableLayout
 import android.widget.TableRow
-import androidx.compose.ui.text.TextStyle
 import android.widget.TextView
 import android.widget.LinearLayout
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.ui.text.font.FontWeight
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.setPadding
-import androidx.viewbinding.ViewBinding
 import com.example.phase12.databinding.InventoryListBinding
 import com.example.phase12.ui.theme.AppBar
-import com.google.android.material.bottomappbar.BottomAppBar
 import org.json.JSONArray
-import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.FileNotFoundException
 
 class InventoryList : AppBar() {
 
-    //ALEX VAR
+    //BASE VAR
     private var grocArray: MutableList<View> = mutableListOf()
     private lateinit var spinner: Spinner
     private lateinit var spinnerItems: ArrayList<String>
     private lateinit var adapter: ArrayAdapter<String>
     private lateinit var addB: View
-
-
     private lateinit var binding: InventoryListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.inventory_list)
+
         binding = InventoryListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setupBar()
 
-//        val toolbar = binding.root.findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
-//        setSupportActionBar(toolbar)
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
-        //ALEX ADD BUTTON VARs
+        //PLUS ADD BUTTON VARs
         val builder = AlertDialog.Builder(this)
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.add_inventory, null)
@@ -69,10 +56,9 @@ class InventoryList : AppBar() {
         builder.setCancelable(true)
         var itemName = view.findViewById<EditText>(R.id.item_name)
         var itemQuant = view.findViewById<EditText>(R.id.quantity)
-
         addB= findViewById<View>(R.id.add_button)
 
-        // ALEX Spinner
+        // Spinner
         spinner = view.findViewById(R.id.add_item_spinner)
         spinnerItems = arrayListOf<String>()
         adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, spinnerItems)
@@ -80,7 +66,7 @@ class InventoryList : AppBar() {
         spinner.adapter = adapter
 
 
-        //ALEX ADD CANCEL PART OF POPUP
+        // ADD CANCEL PART OF PLUS POPUP BUTTON AND DATA VALIDATION
         //  Wont take numerical values greater than 11 digits in either column, We will
         //  see overflow if the digits exceed 7
         builder.setPositiveButton("Add") { dialog, _ ->
@@ -114,6 +100,7 @@ class InventoryList : AppBar() {
         }
         val alertDialog = builder.create()
 
+        //PLUS BUTTON LISTENER
         addB.setOnClickListener {
             itemName.setText("")
             itemQuant.setText("")
@@ -131,8 +118,7 @@ class InventoryList : AppBar() {
     }
 
 
-
-    // Read data
+    //READING IN JSON FILE
     private fun readJson(): JSONArray? {
         try {
             return JSONArray(
@@ -145,12 +131,12 @@ class InventoryList : AppBar() {
         return null
     }
 
+
     // iterate over each JSON object
     private fun parse(item: JSONArray) {
         for (i in 0 until item.length()) {
             var curItem = item.getJSONObject(i)
             var name = curItem.getString("name")
-            var author = curItem.getJSONArray("authors")
             var curList = curItem.getJSONArray("items")
             var table = createList(name, curList)
         }
@@ -164,7 +150,6 @@ class InventoryList : AppBar() {
         val spacerID = View.generateViewId()
         val tableID = View.generateViewId()
         val titleID = View.generateViewId()
-        val countID = View.generateViewId()
 
         val spacer = View(this).apply {
             id = spacerID
@@ -178,7 +163,6 @@ class InventoryList : AppBar() {
                 LinearLayout.LayoutParams.WRAP_CONTENT   // height in pixels
             )
             gravity = Gravity.CENTER_HORIZONTAL
-//            background = ContextCompat.getDrawable(this@GroceryList, R.drawable.view_container)
             orientation = LinearLayout.VERTICAL
 
         }
@@ -188,9 +172,10 @@ class InventoryList : AppBar() {
             DrawableCompat.setTint(draw, Color.parseColor("#FFADAD"))
         }
         container.background = draw
-
         container.setPadding(40)
 
+
+        //REFRIGERATOR AND PANTRY
         val titleText = TextView(this).apply {
             id = titleID
             layoutParams = TableLayout.LayoutParams(
@@ -206,7 +191,6 @@ class InventoryList : AppBar() {
             setTypeface(Typeface.DEFAULT_BOLD)
             setTextColor(ContextCompat.getColor(context, R.color.black))
         }
-
         val table = TableLayout(this).apply {
             id = tableID
             layoutParams = TableLayout.LayoutParams(
@@ -220,10 +204,11 @@ class InventoryList : AppBar() {
                 TableLayout.LayoutParams.WRAP_CONTENT,
             )
         }
+
+        //TITLES OF COLS AKA NAMES OWNERS COUNT
         val cols = arrayOf("Name", "Owner", "Count +/-")
         val weights = arrayOf(1.5f, 1f, 1.5f)
         var i = 0
-
         for (title in cols) {
             val col = TextView(this).apply {
                 layoutParams = TableRow.LayoutParams(
@@ -242,30 +227,23 @@ class InventoryList : AppBar() {
             row.addView(col)
             i += 1
         }
+
+        //PUTTING EVERYTHING TOGETHER TO CREATE THE TWO CARDS
         table.addView(row)
         populateList(items, table)
         container.addView(titleText)
         container.addView(table)
         linLay.addView(container)
         grocArray.add(table)
-        var sum = TextView(this).apply {
-            id = countID
-            textSize = 24f
-            setPadding(0,30,0,0)
-        }
-        container.addView(sum)
         linLay.addView(spacer)
         spinnerItems.add(title)
         adapter.notifyDataSetChanged()
-
-
         Log.d("ADDED LIST", grocArray.toString())
         return table
     }
 
-    // Should change the specific button values
-    private fun populateFavorites(curr: JSONObject) {
-    }
+
+    //GETTING FROM JSON THE SMALLER LIST VALS
     private fun populateList(items: JSONArray?, view: TableLayout) {
         if (items != null) {
             var tableView = view
@@ -305,8 +283,11 @@ class InventoryList : AppBar() {
                     setTextColor(ContextCompat.getColor(context, R.color.black))
                     setPadding(8, 8, 8, 8)
                 }
+
+                //MAKING COUNT +/-
                 quant.setText(curr.getString("quantity"))
                 quant.inputType = InputType.TYPE_CLASS_NUMBER
+
                 var owner = TextView(this).apply {
                     text = curr.getString("owner")
                     layoutParams = TableRow.LayoutParams(
@@ -326,7 +307,6 @@ class InventoryList : AppBar() {
                 row.addView(owner)
                 row.addView(quant)
                 tableView.addView(row)
-
             }
         }
     }
