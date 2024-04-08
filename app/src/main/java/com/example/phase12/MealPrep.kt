@@ -7,7 +7,6 @@ import androidx.viewbinding.ViewBinding
 import android.widget.CalendarView
 import android.widget.CalendarView.OnDateChangeListener
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.example.phase12.databinding.MealPrepBinding
 import com.example.phase12.ui.theme.AppBar
 import org.json.JSONArray
@@ -16,12 +15,11 @@ import java.io.BufferedReader
 import java.io.FileNotFoundException
 
 
-class MealPrep : AppBar()  {
+class MealPrep : AppBar() {
     private lateinit var binding: ViewBinding
     lateinit var dateTV: TextView
     private var recipeArray: MutableList<View> = mutableListOf()
     lateinit var calendarView: CalendarView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,9 +28,7 @@ class MealPrep : AppBar()  {
         binding = MealPrepBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupBar()
-
-//        setSupportActionBar(findViewById(R.id.toolbar))
+        //setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //Calender View Implementation from GeeksforGeeks

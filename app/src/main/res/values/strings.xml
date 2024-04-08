@@ -11,6 +11,12 @@
     <!-- to toggle the open close button of the navigation drawer -->
     <string name="nav_open">Open</string>
     <string name="Grocery_fab">This will quickly add an item to the primary grocery list</string>
+    <string name="selected_item">Selected item:</string>
+    <string-array name="Meals">
+        <item>Breakfest</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+    </string-array>
 
     <string name="nav_close">Close</string>
 
