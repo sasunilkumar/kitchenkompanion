@@ -54,7 +54,7 @@
         app:layout_anchor="@+id/scrollView2"
         app:layout_anchorGravity="center">
 
-
+<!--toolbar-->
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
             style="@style/Widget.Material3.BottomAppBar"
