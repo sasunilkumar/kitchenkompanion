@@ -53,35 +53,35 @@
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:background="@drawable/user_icon"
-                        android:tint="@color/blue_500" />
+                        android:backgroundTint="@color/white" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/user2"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:background="@drawable/user_icon"
-                        android:backgroundTint="@color/blue_500" />
+                        android:backgroundTint="@color/white" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/user3"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:background="@drawable/user_icon"
-                        android:backgroundTint="@color/blue_500" />
+                        android:backgroundTint="@color/white" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/user4"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:background="@drawable/user_icon"
-                        android:backgroundTint="@color/blue_500" />
+                        android:backgroundTint="@color/white" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/user5"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
                         android:background="@drawable/user_icon"
-                        android:backgroundTint="@color/blue_500" />
+                        android:backgroundTint="@color/white" />
 
                 </LinearLayout>
             </HorizontalScrollView>
@@ -124,7 +124,7 @@
                     android:text="Recipes"
                     android:textSize="45sp"
                     android:textColor="#000000"
-                    app:backgroundTint="@color/pastel_orange"
+                    app:backgroundTint="@color/pastel_purple"
                     app:icon="@drawable/recipes_vec_icon"
                     app:iconTint="#000000"
                     app:iconPadding="20dp"
@@ -150,7 +150,7 @@
                     android:fontFamily="@font/hammersmith_one"
                     android:textAllCaps="false"
                     android:textColor="#000000"
-                    app:backgroundTint="@color/pastel_yellow"
+                    app:backgroundTint="@color/pastel_blue"
                     app:icon="@drawable/grocery_vec_icon"
                     app:iconTint="#000000"
                     app:iconGravity="textTop"

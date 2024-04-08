@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/view_container"
                 android:divider="@drawable/divider"
-                android:backgroundTint="#FDFFB6"
+                android:backgroundTint="#92F0FF"
                 android:orientation="vertical"
                 android:padding="30dp"
                 android:showDividers="middle">

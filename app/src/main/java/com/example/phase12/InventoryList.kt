@@ -194,11 +194,11 @@ class InventoryList : AppBar() {
                 TableLayout.LayoutParams.WRAP_CONTENT
             )
             text = title
-            textSize = 24f
+            textSize = 27f
             gravity = TextView.TEXT_ALIGNMENT_VIEW_START
             textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
+            typeface = resources.getFont(R.font.hammersmith_one)
         }
-
 
         val table = TableLayout(this).apply {
             id = tableID
@@ -225,9 +225,10 @@ class InventoryList : AppBar() {
                     weights[i]
                 )
                 text = title
-                textSize = 23f
+                textSize = 25f
                 setPadding(18, 18, 18, 18)
                 gravity = Gravity.CENTER_HORIZONTAL
+                typeface = resources.getFont(R.font.hammersmith_one)
             }
             row.addView(col)
             i += 1
@@ -278,6 +279,7 @@ class InventoryList : AppBar() {
                     )
                     gravity = Gravity.CENTER
                     textSize = 20f
+                    typeface = resources.getFont(R.font.hammersmith_one)
                     setPadding(8, 8, 8, 8)
                 }
                 var quant = TextView(this).apply {
@@ -289,6 +291,7 @@ class InventoryList : AppBar() {
                     )
                     gravity = Gravity.CENTER
                     textSize = 20f
+                    typeface = resources.getFont(R.font.hammersmith_one)
                     setPadding(8, 8, 8, 8)
                 }
                 var owner = TextView(this).apply {
@@ -300,6 +303,7 @@ class InventoryList : AppBar() {
                     )
                     gravity = Gravity.CENTER
                     textSize = 20f
+                    typeface = resources.getFont(R.font.hammersmith_one)
                     setPadding(8, 8, 8, 8)
                 }
 
@@ -310,7 +314,6 @@ class InventoryList : AppBar() {
                         1.3f,
 
                         )
-
                 }
                 row.addView(name)
                 row.addView(owner)

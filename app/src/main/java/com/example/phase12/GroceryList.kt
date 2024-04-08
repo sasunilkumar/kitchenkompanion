@@ -61,9 +61,6 @@ class GroceryList : AppBar() {
         setContentView(binding.root)
         setupBar()
 
-
-
-
         // init vars
         fab = findViewById<View>(R.id.fab_grocery_list)
         fav1 = findViewById<ConstraintLayout>(R.id.fav_1)
@@ -381,7 +378,7 @@ class GroceryList : AppBar() {
         var draw: Drawable? = ContextCompat.getDrawable(this, R.drawable.view_container)
         if (draw != null) {
             draw = DrawableCompat.wrap(draw)
-            DrawableCompat.setTint(draw, Color.parseColor("#FDFFB6"))
+            DrawableCompat.setTint(draw, Color.parseColor("#92F0FF"))
         }
         container.background = draw
 
