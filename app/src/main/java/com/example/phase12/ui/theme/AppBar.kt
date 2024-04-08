@@ -33,8 +33,20 @@ open class AppBar: AppCompatActivity() {
                     true
                 }
 
+                R.id.bot_Recipe_Spacer -> {
+                    Log.d("ACTION MENU", "bot_Recipe_Spacer")
+                    startActivity(Intent(this, Recipes::class.java))
+                    true
+                }
+
                 R.id.bot_GroceryList -> {
                     Log.d("ACTION MENU", "bot_GroceryList")
+                    startActivity(Intent(this, GroceryList::class.java))
+                    true
+                }
+
+                R.id.bot_Groc_Spacer -> {
+                    Log.d("ACTION MENU", "bot_Groc_Spacer")
                     startActivity(Intent(this, GroceryList::class.java))
                     true
                 }
@@ -42,6 +54,18 @@ open class AppBar: AppCompatActivity() {
                 R.id.bot_InventoryList -> {
                     Log.d("ACTION MENU", "bot_InventoryList")
                     startActivity(Intent(this, InventoryList::class.java))
+                    true
+                }
+
+                R.id.bot_Inventory_Spacer -> {
+                    Log.d("ACTION MENU", "bot_Inventory_Spacer")
+                    startActivity(Intent(this, InventoryList::class.java))
+                    true
+                }
+
+                R.id.bot_Meal_Spacer -> {
+                    Log.d("ACTION MENU", "bot_Meal_Prep_Spacer")
+                    startActivity(Intent(this, MealPrep::class.java))
                     true
                 }
 
@@ -53,6 +77,12 @@ open class AppBar: AppCompatActivity() {
 
                 R.id.bot_Home -> {
                     Log.d("ACTION MENU", "bot_Home")
+                    startActivity(Intent(this, Home::class.java))
+                    true
+                }
+
+                R.id.bot_Home_Spacer -> {
+                    Log.d("ACTION MENU", "bot_Home_Spacer")
                     startActivity(Intent(this, Home::class.java))
                     true
                 }
