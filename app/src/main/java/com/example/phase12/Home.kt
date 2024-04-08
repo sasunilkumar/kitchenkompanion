@@ -26,19 +26,17 @@ class Home : AppBar() {
         setContentView(R.layout.home)
 
         setupBar()
-//        bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
-//        setSupportActionBar(bottomAppBar)
+        bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
+        setSupportActionBar(bottomAppBar)
 
         binding = HomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //expenses = findViewById<Button>(R.id.Expenses)
         recipes = findViewById<Button>(R.id.Recipes)
         inventory = findViewById<Button>(R.id.Inventory)
         grocery = findViewById<Button>(R.id.Grocery)
         mealPrep = findViewById<Button>(R.id.MealPrep)
 
-        //expenses.setOnClickListener { startActivity(Intent(this, Expenses::class.java)) }
         recipes.setOnClickListener {startActivity( Intent(this, Recipes::class.java) )}
         inventory.setOnClickListener {startActivity( Intent(this, InventoryList::class.java)) }
         grocery.setOnClickListener { startActivity(Intent(this, GroceryList::class.java)) }

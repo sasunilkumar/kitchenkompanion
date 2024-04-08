@@ -11,9 +11,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/scrollViewHome"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:id="@+id/scrollViewHome">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -180,6 +180,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         app:layout_anchor="@id/scrollViewHome">
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"

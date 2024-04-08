@@ -4,6 +4,7 @@
     tools:context="com.example.myapplication.MainActivity">
 
     <item
+        android:id="@+id/bot_Groc_Spacer"
         android:title="space2"
         android:icon="@drawable/spacer"
         app:showAsAction="always"
@@ -17,12 +18,14 @@
         app:showAsAction="always"/>
 
     <item
+        android:id="@id/bot_Groc_Spacer"
         android:title="space3"
         android:icon="@drawable/spacer"
         app:showAsAction="always"
         />
 
     <item
+        android:id="@+id/bot_Inventory_Spacer"
         android:title="space4"
         android:icon="@drawable/spacer"
         app:showAsAction="always"
@@ -36,12 +39,14 @@
         app:showAsAction="always"/>
 
     <item
+        android:id="@id/bot_Inventory_Spacer"
         android:title="space5"
         android:icon="@drawable/spacer"
         app:showAsAction="always"
         />
 
     <item
+        android:id="@+id/bot_Home_Spacer"
         android:title="space6"
         android:icon="@drawable/spacer"
         app:showAsAction="always"
@@ -54,12 +59,14 @@
         app:showAsAction="always"/>
 
     <item
+        android:id="@id/bot_Home_Spacer"
         android:title="space7"
         android:icon="@drawable/spacer"
         app:showAsAction="always"
         />
 
     <item
+        android:id="@+id/bot_Recipe_Spacer"
         android:title="space8"
         android:icon="@drawable/spacer"
         app:showAsAction="always"
@@ -73,12 +80,14 @@
         app:showAsAction="always"/>
 
     <item
+        android:id="@id/bot_Recipe_Spacer"
         android:title="space9"
         android:icon="@drawable/spacer"
         app:showAsAction="always"
         />
 
     <item
+        android:id="@+id/bot_Meal_Spacer"
         android:title="space10"
         android:icon="@drawable/spacer"
         app:showAsAction="always"
