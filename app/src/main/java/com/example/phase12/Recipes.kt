@@ -19,13 +19,17 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RelativeLayout
+import android.widget.Spinner
 import android.widget.TableLayout
 import android.widget.TableRow
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 import com.example.phase12.ui.theme.AppBar
@@ -42,6 +46,7 @@ class Recipes : AppBar()  {
     private lateinit var recipe2: CardView
     private lateinit var arrowDown: ImageView
     private lateinit var arrowUp: ImageView
+//    private lateinit var ratingSpinner: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +54,12 @@ class Recipes : AppBar()  {
         binding = RecipesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupBar()
+
+//        ratingSpinner = findViewById(R.id.ratingSpinner)
+//        val ratingLevels = arrayOf("Easy", "Medium", "Hard")
+//        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, ratingLevels)
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+//        ratingSpinner.adapter = adapter
 
         detailsText = findViewById(R.id.recipe_1_layout)
         detailsText2 = findViewById(R.id.recipe_2_layout)
