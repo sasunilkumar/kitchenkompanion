@@ -1,6 +1,7 @@
 package com.example.phase12
 
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.DeadObjectException
@@ -15,6 +16,7 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TableLayout
 import android.widget.TableRow
+import androidx.compose.ui.text.TextStyle
 import android.widget.TextView
 import android.widget.LinearLayout
 import android.widget.Spinner
@@ -196,10 +198,12 @@ class InventoryList : AppBar() {
                 TableLayout.LayoutParams.WRAP_CONTENT
             )
             text = title
-            textSize = 30f
+            textSize = 33f
             gravity = TextView.TEXT_ALIGNMENT_VIEW_START
             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
             typeface = resources.getFont(R.font.hammersmith_one)
+
+            setTypeface(Typeface.DEFAULT_BOLD)
             setTextColor(ContextCompat.getColor(context, R.color.black))
         }
 
@@ -217,7 +221,7 @@ class InventoryList : AppBar() {
             )
         }
         val cols = arrayOf("Name", "Owner", "Count +/-")
-        val weights = arrayOf(1.5f, 1.3f, 1f)
+        val weights = arrayOf(1.5f, 1f, 1.5f)
         var i = 0
 
         for (title in cols) {
@@ -228,7 +232,8 @@ class InventoryList : AppBar() {
                     weights[i]
                 )
                 text = title
-                textSize = 27f
+                textSize = 29f
+                setTypeface(Typeface.DEFAULT_BOLD)
                 setPadding(18, 18, 18, 18)
                 gravity = Gravity.CENTER_HORIZONTAL
                 typeface = resources.getFont(R.font.hammersmith_one)
@@ -279,7 +284,7 @@ class InventoryList : AppBar() {
                     layoutParams = TableRow.LayoutParams(
                         0,
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        1.5f
+                        1.4f
                     )
                     gravity = Gravity.CENTER
                     textSize = 24f
@@ -292,7 +297,7 @@ class InventoryList : AppBar() {
                     layoutParams = TableRow.LayoutParams(
                         0,
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        1f
+                        1.4f
                     )
                     gravity = Gravity.CENTER
                     textSize = 24f
@@ -307,7 +312,7 @@ class InventoryList : AppBar() {
                     layoutParams = TableRow.LayoutParams(
                         0,
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        1.5f
+                        1.4f
                     )
                     gravity = Gravity.CENTER
                     textAlignment = TextView.TEXT_ALIGNMENT_CENTER
@@ -317,14 +322,6 @@ class InventoryList : AppBar() {
                     setPadding(8, 8, 8, 8)
                 }
 
-                var check = LinearLayout(this).apply {
-                    layoutParams = TableRow.LayoutParams(
-                        0,
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        1.3f,
-
-                        )
-                }
                 row.addView(name)
                 row.addView(owner)
                 row.addView(quant)

@@ -29,9 +29,9 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="40dp"
                 android:text="Inventory"
+                android:textColor= "@color/black"
                 android:fontFamily="@font/hammersmith_one"
                 android:paddingTop="30dp"
-                android:textColor="@color/black"
                 android:textSize="50sp" />
 
             <View
