@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.DeadObjectException
+import android.text.InputType
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -213,8 +214,8 @@ class InventoryList : AppBar() {
                 TableLayout.LayoutParams.WRAP_CONTENT,
             )
         }
-        val cols = arrayOf("Name", "Owner", "Count")
-        val weights = arrayOf(1f, 1f, 1f)
+        val cols = arrayOf("Name", "Owner", "Count +/-")
+        val weights = arrayOf(1.3f, 1f, 1f)
         var i = 0
 
         for (title in cols) {
@@ -282,8 +283,8 @@ class InventoryList : AppBar() {
                     typeface = resources.getFont(R.font.hammersmith_one)
                     setPadding(8, 8, 8, 8)
                 }
-                var quant = TextView(this).apply {
-                    text = curr.getString("quantity")
+                var quant = EditText(this).apply {
+                    hint = curr.getString("quantity")
                     layoutParams = TableRow.LayoutParams(
                         0,
                         TableRow.LayoutParams.WRAP_CONTENT,
@@ -294,6 +295,8 @@ class InventoryList : AppBar() {
                     typeface = resources.getFont(R.font.hammersmith_one)
                     setPadding(8, 8, 8, 8)
                 }
+                quant.setText(curr.getString("quantity"))
+                quant.inputType = InputType.TYPE_CLASS_NUMBER
                 var owner = TextView(this).apply {
                     text = curr.getString("owner")
                     layoutParams = TableRow.LayoutParams(

@@ -6,7 +6,7 @@
         {
           "name": "Milk",
           "quantity": 1,
-          "owner": "John Doe"
+          "owner": "John"
         },
         {
           "name": "Eggs",
@@ -16,43 +16,43 @@
         {
           "name": "Butter",
           "quantity": 1,
-          "owner": "John Doe & Jane Doe"
+          "owner": "John & Jane"
         },
         {
           "name": "Ham",
           "quantity": 2,
-          "owner": "John Doe"
+          "owner": "Alex"
         },
         {
           "name": "Chedder Cheese",
           "quantity": 2,
-          "owner": "Sarah Lee"
+          "owner": "Sneha Lee"
         },
         {
           "name": "Lettuce",
           "quantity": 1,
-          "owner": "John Doe"
+          "owner": "John"
         }
       ]
     },
     {
       "name": "Pantry",
-      "authors": ["John Doe"],
+      "authors": ["Alex Doe"],
       "items": [
         {
           "name": "Pasta",
           "quantity": 2,
-          "owner": "John Doe"
+          "owner": "Alex"
         },
         {
           "name": "Rice",
           "quantity": 1,
-          "owner": "John Doe"
+          "owner": "Sneha Doe"
         },
         {
           "name": "Canned beans",
           "quantity": 4,
-          "owner": "John Doe"
+          "owner": "Claire & Sneha"
         },
         {
           "name": "Flour",
@@ -62,12 +62,12 @@
         {
           "name": "Sugar",
           "quantity": 1,
-          "owner": "John Doe"
+          "owner": "Alex & Sneha"
         },
         {
           "name": "Coffee",
           "quantity": 1,
-          "owner": "John Doe"
+          "owner": "Alex Doe"
         }
       ]
     }
