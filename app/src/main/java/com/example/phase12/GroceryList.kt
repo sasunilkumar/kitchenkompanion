@@ -1,31 +1,30 @@
 package com.example.phase12
 
-import android.app.PendingIntent.getActivity
-import android.content.DialogInterface
-import android.content.Intent
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.DeadObjectException
-import android.text.Editable
-import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.RadioButton
 import android.widget.Spinner
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.setPadding
 import androidx.viewbinding.ViewBinding
@@ -43,10 +42,10 @@ class GroceryList : AppBar() {
     private lateinit var binding: ViewBinding
     private lateinit var fab: View
     private var grocArray: MutableList<View> = mutableListOf()
-    private lateinit var fav1: Button
-    private lateinit var fav2: Button
-    private lateinit var fav3: Button
-    private lateinit var fav4: Button
+    private lateinit var fav1: ConstraintLayout
+    private lateinit var fav2: ConstraintLayout
+    private lateinit var fav3: ConstraintLayout
+    private lateinit var fav4: ConstraintLayout
     private lateinit var spinner: Spinner
     private lateinit var spinnerItems: ArrayList<String>
     private lateinit var adapter: ArrayAdapter<String>
@@ -67,10 +66,42 @@ class GroceryList : AppBar() {
 
         // init vars
         fab = findViewById<View>(R.id.fab_grocery_list)
-        fav1 = findViewById<Button>(R.id.fav_1)
-        fav2 = findViewById<Button>(R.id.fav_2)
-        fav3 = findViewById<Button>(R.id.fav_3)
-        fav4 = findViewById<Button>(R.id.fav_4)
+        fav1 = findViewById<ConstraintLayout>(R.id.fav_1)
+        fav2 = findViewById<ConstraintLayout>(R.id.fav_2)
+        fav3 = findViewById<ConstraintLayout>(R.id.fav_3)
+        fav4 = findViewById<ConstraintLayout>(R.id.fav_4)
+        var item1 = findViewById<TextView>(R.id.fav_item_1)
+        var item2 = findViewById<TextView>(R.id.fav_item_2)
+        var item3 = findViewById<TextView>(R.id.fav_item_3)
+        var item4 = findViewById<TextView>(R.id.fav_item_4)
+        var editItem1 = findViewById<ImageButton>(R.id.overflowButton)
+        var editItem2 = findViewById<ImageButton>(R.id.overflowButton2)
+        var editItem3 = findViewById<ImageButton>(R.id.overflowButton3)
+        var editItem4 = findViewById<ImageButton>(R.id.overflowButton4)
+
+
+        val favBuilder = AlertDialog.Builder(this)
+        val favView = EditText(this).apply {
+            layoutParams = TableLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                gravity = Gravity.CENTER_VERTICAL
+            }
+            hint = "New favorite item"
+            id = View.generateViewId()
+        }
+        favBuilder.setView(favView)
+        favBuilder.setTitle("What would you like to add?")
+        favBuilder.setCancelable(true)
+
+        favBuilder.setPositiveButton("Add") { dialog, _ ->
+            dialog.dismiss()
+        }
+        favBuilder.setNegativeButton("Cancel") {
+                dialog, _ -> dialog.dismiss()
+        }
+        val favDialog = favBuilder.create()
 
 
 
@@ -79,13 +110,34 @@ class GroceryList : AppBar() {
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.add_item, null)
         builder.setView(view)
-        builder.setMessage("What would you like to add?")
-        builder.setTitle("Add Item")
+        builder.setTitle("What would you like to add?")
         builder.setCancelable(true)
         var itemName = view.findViewById<EditText>(R.id.item_name)
+        var userName = view.findViewById<EditText>(R.id.user_name)
         var itemQuant = view.findViewById<EditText>(R.id.quantity)
         var itemprice = view.findViewById<EditText>(R.id.price)
-        var isFav = view.findViewById<CheckBox>(R.id.favorite)
+
+        var tableName = view.findViewById<EditText>(R.id.list_name)
+
+        var itemVisibility =  view.findViewById<RadioButton>(R.id.radio_item)
+        var itemBody = view.findViewById<LinearLayout>(R.id.add_item_group)
+        var listVisibility =  view.findViewById<RadioButton>(R.id.radio_list)
+        var listBody = view.findViewById<LinearLayout>(R.id.add_list_group)
+
+
+        itemVisibility.setOnClickListener {
+            itemBody.visibility = View.VISIBLE
+            listBody.visibility = View.GONE
+
+        }
+
+        listVisibility.setOnClickListener {
+            listBody.visibility = View.VISIBLE
+            itemBody.visibility = View.GONE
+
+        }
+
+
 
 
         // Spinner
@@ -101,19 +153,51 @@ class GroceryList : AppBar() {
 
         //  Wont take numerical values greater than 11 digits in either column, We will
         //  see overflow if the digits exceed 7
-        builder.setPositiveButton("Add") {
-                dialog, _ ->
-                    try{ addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(),isFav.isChecked, grocArray[spinner.selectedItemPosition])}
-                    catch (e: NumberFormatException){
-                        Log.d("READ DIALOG ERROR","error when trying to read AlertDialog: NumberFormatException")
-                    }
-                    catch (e: DeadObjectException){
-                        Log.d("READ DIALOG ERROR","error when trying to read AlertDialog: DeadObjectException")
-                    }
-                    catch (e: NullPointerException){
-                        Log.d("READ DIALOG ERROR","error when trying to read AlertDialog: NullPointerException")
-                    }
-                    dialog.dismiss()
+        builder.setPositiveButton("Add") { dialog, _ ->
+            if (itemVisibility.isChecked) {
+                try {
+                    addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(), false, grocArray[spinner.selectedItemPosition]
+                    )
+                } catch (e: NumberFormatException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: NumberFormatException"
+                    )
+                } catch (e: DeadObjectException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: DeadObjectException"
+                    )
+                } catch (e: NullPointerException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: NullPointerException"
+                    )
+                }
+                dialog.dismiss()
+            }
+            if (listVisibility.isChecked) {
+                try {
+                    createList(tableName.text.toString(), JSONArray())
+                } catch (e: NumberFormatException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: NumberFormatException"
+                    )
+                } catch (e: DeadObjectException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: DeadObjectException"
+                    )
+                } catch (e: NullPointerException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: NullPointerException"
+                    )
+                }
+                dialog.dismiss()
+
+            }
         }
         builder.setNegativeButton("Cancel") {
                 dialog, _ -> dialog.dismiss()
@@ -123,49 +207,109 @@ class GroceryList : AppBar() {
 
         // Button Handlers
         fav1.setOnClickListener {
-            itemName.setText(fav1.text)
+
+            listBody.visibility = View.GONE
+            itemBody.visibility = View.VISIBLE
+            itemVisibility.visibility = View.GONE
+            listVisibility.visibility = View.GONE
+            itemName.setText(item1.text)
             itemQuant.setText("")
             itemprice.setText("")
-            isFav.isChecked = false
+            userName.setText("")
+            tableName.setText("")
             alertDialog.show()
             true
         }
 
         // Button Handlers
         fav2.setOnClickListener {
-            itemName.setText(fav2.text)
+            listBody.visibility = View.GONE
+            itemBody.visibility = View.VISIBLE
+            itemVisibility.visibility = View.GONE
+            listVisibility.visibility = View.GONE
+            itemName.setText(item2.text)
             itemQuant.setText("")
             itemprice.setText("")
-            isFav.isChecked = false
+            userName.setText("")
+            tableName.setText("")
             alertDialog.show()
             true
         }
         // Button Handlers
         fav3.setOnClickListener {
-            itemName.setText(fav3.text)
+            listBody.visibility = View.GONE
+            itemBody.visibility = View.VISIBLE
+            itemVisibility.visibility = View.GONE
+            listVisibility.visibility = View.GONE
+            itemName.setText(item3.text)
             itemQuant.setText("")
             itemprice.setText("")
-            isFav.isChecked = false
+            userName.setText("")
+            tableName.setText("")
             alertDialog.show()
             true
         }
         fav4.setOnClickListener {
-            itemName.setText(fav4.text)
+            listBody.visibility = View.GONE
+            itemBody.visibility = View.VISIBLE
+            itemVisibility.visibility = View.GONE
+            listVisibility.visibility = View.GONE
+            itemName.setText(item4.text)
             itemQuant.setText("")
             itemprice.setText("")
-            isFav.isChecked = false
+            userName.setText("")
+            tableName.setText("")
             alertDialog.show()
             true
         }
 
         // FAB (lower right button)
         fab.setOnClickListener {
+            listBody.visibility = View.GONE
+            itemBody.visibility = View.GONE
+            itemVisibility.visibility = View.VISIBLE
+            listVisibility.visibility = View.VISIBLE
+            itemVisibility.isChecked = false
+            listVisibility.isChecked = false
             itemName.setText("")
             itemQuant.setText("")
             itemprice.setText("")
-            isFav.isChecked = false
+            userName.setText("")
+            tableName.setText("")
             alertDialog.show()
             true
+        }
+        editItem1.setOnClickListener {
+            favView.setText("")
+            favDialog.show()
+            favDialog.setOnDismissListener {
+                // Update item1 text once the dialog is dismissed
+                if (favView.text.toString().isNotEmpty()){item1.text = favView.text.toString()}
+            }
+        }
+        editItem2.setOnClickListener{
+            favView.setText("")
+            favDialog.show()
+            favDialog.setOnDismissListener {
+                // Update item1 text once the dialog is dismissed
+                if (favView.text.toString().isNotEmpty()){item2.text = favView.text.toString()}
+            }
+        }
+        editItem3.setOnClickListener{
+            favView.setText("")
+            favDialog.show()
+            favDialog.setOnDismissListener {
+                // Update item1 text once the dialog is dismissed
+                if (favView.text.toString().isNotEmpty()){item3.text = favView.text.toString()}
+            }
+        }
+        editItem4.setOnClickListener{
+            favView.setText("")
+            favDialog.show()
+            favDialog.setOnDismissListener {
+                // Update item1 text once the dialog is dismissed
+                if (favView.text.toString().isNotEmpty()){item4.text = favView.text.toString()}
+            }
         }
 
 
@@ -176,45 +320,6 @@ class GroceryList : AppBar() {
         } else {
             Log.d("READ Failed", "Failed to read or parse data from JSON file.")
         }
-//        appBar = findViewById(R.id.bottomAppBar)
-//        appBar.setNavigationOnClickListener {
-//            // Handle navigation icon press
-//        }
-//        appBar.setOnMenuItemClickListener { menuItem ->
-//            when (menuItem.itemId) {
-//                R.id.bot_Recipes -> {
-//                    Log.d("ACTION MENU", "bot_Recipes")
-//                    startActivity(Intent(this, Recipes::class.java))
-//                    true
-//                }
-//                R.id.bot_GroceryList -> {
-//                    Log.d("ACTION MENU", "bot_GroceryList")
-//                    startActivity(Intent(this, GroceryList::class.java))
-//                    true
-//                }
-//                R.id.bot_InventoryList -> {
-//                    Log.d("ACTION MENU", "bot_InventoryList")
-//                    startActivity(Intent(this, InventoryList::class.java))
-//                    true
-//                }
-//                R.id.bot_Profile -> {
-//                    Log.d("ACTION MENU", "bot_Profile")
-//                    startActivity(Intent(this, Profile::class.java))
-//                    true
-//                }
-//                R.id.bot_MealPrep -> {
-//                    Log.d("ACTION MENU", "bot_MealPrep")
-//                    startActivity(Intent(this, MealPrep::class.java))
-//                    true
-//                }
-//                R.id.bot_Home -> {
-//                    Log.d("ACTION MENU", "bot_Home")
-//                    startActivity(Intent(this, Home::class.java))
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
 
     }
 
@@ -256,20 +361,21 @@ class GroceryList : AppBar() {
         val titleID = View.generateViewId()
         val countID = View.generateViewId()
 
+
         val spacer = View(this).apply {
             id = spacerID
             layoutParams = LinearLayout.LayoutParams(
                 0, 35)
         }
         val container = LinearLayout(this).apply {
-            id = listId  // Set the ID here
+            id = listId
             layoutParams = LinearLayout.LayoutParams(
-                700,  // width in pixels
-                LinearLayout.LayoutParams.WRAP_CONTENT   // height in pixels
+                700,
+                LinearLayout.LayoutParams.WRAP_CONTENT
             )
             gravity = Gravity.CENTER_HORIZONTAL
-//            background = ContextCompat.getDrawable(this@GroceryList, R.drawable.view_container)
             orientation = LinearLayout.VERTICAL
+            isClickable = true
 
         }
         var draw: Drawable? = ContextCompat.getDrawable(this, R.drawable.view_container)
@@ -291,6 +397,7 @@ class GroceryList : AppBar() {
             textSize = 24f
             gravity = TextView.TEXT_ALIGNMENT_VIEW_START
             textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
+            typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
         }
 
 
@@ -300,6 +407,8 @@ class GroceryList : AppBar() {
                 TableLayout.LayoutParams.MATCH_PARENT,
                 TableLayout.LayoutParams.WRAP_CONTENT
             )
+            visibility = View.GONE
+
         }
         val row = TableRow(this).apply {
             layoutParams = TableLayout.LayoutParams(
@@ -322,6 +431,8 @@ class GroceryList : AppBar() {
                 textSize = 23f
                 setPadding(18, 18, 18, 18)
                 gravity = Gravity.CENTER_HORIZONTAL
+                typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+
             }
             row.addView(col)
             i += 1
@@ -338,6 +449,7 @@ class GroceryList : AppBar() {
             text = "List Total: $"+ tableTotal.getValue(table).toString()
             textSize = 24f
             setPadding(0,30,0,0)
+            typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
         }
         container.addView(sum)
         linLay.addView(spacer)
@@ -346,6 +458,17 @@ class GroceryList : AppBar() {
 
 
         Log.d("ADDED LIST", grocArray.toString())
+
+        container.setOnClickListener{
+            if (table.visibility == View.GONE){
+                table.visibility = View.VISIBLE
+
+                Log.d("CARD", "Make table visible")
+            }else {
+                table.visibility = View.GONE
+                Log.d("CARD", "Make table invisible")
+            }
+        }
         return table
     }
 
@@ -383,6 +506,8 @@ class GroceryList : AppBar() {
                     gravity = Gravity.CENTER
                     textSize = 20f
                     setPadding(8, 8, 8, 8)
+                    typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+
                 }
                 var quant = TextView(this).apply {
                     text = curr.getString("quantity")
@@ -394,6 +519,8 @@ class GroceryList : AppBar() {
                     gravity = Gravity.CENTER
                     textSize = 20f
                     setPadding(8, 8, 8, 8)
+                    typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+
                 }
                 var owner = TextView(this).apply {
                     text = curr.getString("owner")
@@ -405,6 +532,8 @@ class GroceryList : AppBar() {
                     gravity = Gravity.CENTER
                     textSize = 20f
                     setPadding(8, 8, 8, 8)
+                    typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+
                 }
                 var price = TextView(this).apply {
                     text = curr.getString("price")
@@ -416,6 +545,8 @@ class GroceryList : AppBar() {
                     textSize = 20f
                     gravity = Gravity.CENTER
                     setPadding(8, 8, 8, 8)
+                    typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+
                 }
                 if (curTotal != null) {
                     curTotal += curr.getString("price").toInt()
@@ -435,6 +566,8 @@ class GroceryList : AppBar() {
                         TableRow.LayoutParams.WRAP_CONTENT,
                         TableRow.LayoutParams.WRAP_CONTENT
                     )
+                    typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
+
                 }
                 check.addView(checkItem)
                 row.addView(name)

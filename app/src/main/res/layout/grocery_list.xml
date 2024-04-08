@@ -14,7 +14,8 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="60dp">
 
         <LinearLayout
             android:id="@+id/groc_body"
@@ -59,31 +60,82 @@
                     android:orientation="horizontal"
                     android:showDividers="middle">
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:layout_width="0dp"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/fav_1"
-                        android:layout_height="150dp"
-                        android:layout_weight="1"
-                        android:text="Butter"
-                        android:fontFamily="@font/hammersmith_one"
-                        android:background="@drawable/view_container"
-                        android:backgroundTint="@color/dark_cream">
-
-                    </androidx.appcompat.widget.AppCompatButton>
-
-                    <androidx.appcompat.widget.AppCompatButton
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        xmlns:tools="http://schemas.android.com/tools"
                         android:layout_width="0dp"
-                        android:id="@+id/fav_2"
                         android:layout_height="150dp"
                         android:layout_weight="1"
-                        android:text="Spaghetti"
-                        android:fontFamily="@font/hammersmith_one"
+                        android:clickable="true"
+                        android:backgroundTint="@color/dark_cream"
                         android:background="@drawable/view_container"
-                        android:backgroundTint="@color/dark_cream">
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp">
 
+                        <TextView
+                            android:id="@+id/fav_item_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ice Cream"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:paddingBottom="30dp"
+                            android:paddingLeft="30dp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/hammersmith_one"
+                            android:textSize="25dp"/>
 
+                        <ImageButton
+                            android:id="@+id/overflowButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:src="@drawable/overflow_menu"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:backgroundTint="@color/dark_cream"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </androidx.appcompat.widget.AppCompatButton>
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fav_2"
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:backgroundTint="@color/dark_cream"
+                        android:background="@drawable/view_container"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp">
+
+                        <TextView
+                            android:id="@+id/fav_item_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Salad"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:paddingBottom="30dp"
+                            android:paddingLeft="30dp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/hammersmith_one"
+                            android:textSize="25dp"/>
+
+                        <ImageButton
+                            android:id="@+id/overflowButton2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:src="@drawable/overflow_menu"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:backgroundTint="@color/dark_cream"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </LinearLayout>
 
                 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -95,31 +147,82 @@
                     android:fontFamily="@font/hammersmith_one"
                     android:showDividers="middle">
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:layout_width="0dp"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/fav_3"
-                        android:layout_height="150dp"
-                        android:layout_weight="1"
-                        android:text="Fresh Avocado"
-                        android:fontFamily="@font/hammersmith_one"
-                        android:background="@drawable/view_container"
-                        android:backgroundTint="@color/dark_cream">
-
-
-
-                    </androidx.appcompat.widget.AppCompatButton>
-
-                    <androidx.appcompat.widget.AppCompatButton
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        xmlns:tools="http://schemas.android.com/tools"
                         android:layout_width="0dp"
-                        android:id="@+id/fav_4"
                         android:layout_height="150dp"
                         android:layout_weight="1"
-                        android:text="Ice Cream"
-                        android:fontFamily="@font/hammersmith_one"
+                        android:clickable="true"
+                        android:backgroundTint="@color/dark_cream"
                         android:background="@drawable/view_container"
-                        android:backgroundTint="@color/dark_cream">
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp">
 
-                    </androidx.appcompat.widget.AppCompatButton>
+                        <TextView
+                            android:id="@+id/fav_item_3"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Potato Salad"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:paddingBottom="30dp"
+                            android:paddingLeft="30dp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/hammersmith_one"
+                            android:textSize="25dp"/>
+
+                        <ImageButton
+                            android:id="@+id/overflowButton3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:src="@drawable/overflow_menu"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:backgroundTint="@color/dark_cream"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/fav_4"
+                        xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:layout_width="0dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:backgroundTint="@color/dark_cream"
+                        android:background="@drawable/view_container"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp">
+
+                        <TextView
+                            android:id="@+id/fav_item_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Watermelon"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            android:paddingBottom="30dp"
+                            android:paddingLeft="30dp"
+                            android:fontFamily="@font/hammersmith_one"
+                            android:textStyle="bold"
+                            android:textSize="25dp"/>
+
+                        <ImageButton
+                            android:id="@+id/overflowButton4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:src="@drawable/overflow_menu"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:backgroundTint="@color/dark_cream"/>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
 
