@@ -199,6 +199,7 @@ class InventoryList : AppBar() {
             gravity = TextView.TEXT_ALIGNMENT_VIEW_START
             textAlignment = TextView.TEXT_ALIGNMENT_CENTER
             typeface = resources.getFont(R.font.hammersmith_one)
+            setTextColor(ContextCompat.getColor(context, R.color.black))
         }
 
         val table = TableLayout(this).apply {
@@ -230,6 +231,7 @@ class InventoryList : AppBar() {
                 setPadding(18, 18, 18, 18)
                 gravity = Gravity.CENTER_HORIZONTAL
                 typeface = resources.getFont(R.font.hammersmith_one)
+                setTextColor(ContextCompat.getColor(context, R.color.black))
             }
             row.addView(col)
             i += 1
@@ -281,6 +283,7 @@ class InventoryList : AppBar() {
                     gravity = Gravity.CENTER
                     textSize = 20f
                     typeface = resources.getFont(R.font.hammersmith_one)
+                    setTextColor(ContextCompat.getColor(context, R.color.black))
                     setPadding(8, 8, 8, 8)
                 }
                 var quant = EditText(this).apply {
@@ -293,6 +296,7 @@ class InventoryList : AppBar() {
                     gravity = Gravity.CENTER
                     textSize = 20f
                     typeface = resources.getFont(R.font.hammersmith_one)
+                    setTextColor(ContextCompat.getColor(context, R.color.black))
                     setPadding(8, 8, 8, 8)
                 }
                 quant.setText(curr.getString("quantity"))
@@ -308,6 +312,7 @@ class InventoryList : AppBar() {
                     textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                     textSize = 20f
                     typeface = resources.getFont(R.font.hammersmith_one)
+                    setTextColor(ContextCompat.getColor(context, R.color.black))
                     setPadding(8, 8, 8, 8)
                 }
 
