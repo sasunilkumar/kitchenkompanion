@@ -7,11 +7,13 @@
     android:orientation="vertical"
     android:background="@color/light_cream"
     android:theme="@style/Theme.MaterialComponents.DayNight"
-    tools:context=".InventoryList">
+    tools:context=".Home">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:id="@+id/scrollViewHome"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -86,7 +88,7 @@
 
             <LinearLayout
                 android:layout_width="700px"
-                android:layout_height="420px"
+                android:layout_height="390px"
                 android:layout_gravity="center_horizontal"
                 android:divider="@drawable/divider"
                 android:gravity="center_vertical"
@@ -97,7 +99,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/Inventory"
                     android:layout_width="300px"
-                    android:layout_height="410px"
+                    android:layout_height="370px"
                     android:layout_weight="1"
                     android:background="@drawable/view_container"
                     app:backgroundTint="@color/pastel_red"
@@ -114,7 +116,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/Recipes"
                     android:layout_width="300px"
-                    android:layout_height="410px"
+                    android:layout_height="370px"
                     android:layout_weight="1"
                     android:background="@drawable/view_container"
                     android:fontFamily="@font/hammersmith_one"
@@ -131,7 +133,7 @@
 
             <LinearLayout
                 android:layout_width="700px"
-                android:layout_height="420px"
+                android:layout_height="390px"
                 android:layout_gravity="center_horizontal"
                 android:divider="@drawable/divider"
                 android:gravity="center_vertical"
@@ -142,7 +144,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/Grocery"
                     android:layout_width="300px"
-                    android:layout_height="410px"
+                    android:layout_height="370px"
                     android:layout_weight="1"
                     android:background="@drawable/view_container"
                     android:fontFamily="@font/hammersmith_one"
@@ -159,7 +161,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/MealPrep"
                     android:layout_width="300px"
-                    android:layout_height="410px"
+                    android:layout_height="370px"
                     android:layout_weight="1"
                     android:background="@drawable/view_container"
                     android:fontFamily="@font/hammersmith_one"
@@ -174,11 +176,11 @@
                     android:textSize="45sp" />
             </LinearLayout>
         </LinearLayout>
-
     </ScrollView>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_anchor="@id/scrollViewHome">
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
             style="@style/Widget.Material3.BottomAppBar"
@@ -186,6 +188,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:backgroundTint="@color/medium_cream"
-            app:menu="@menu/bot_app_bar"/>
+            app:menu="@menu/bot_app_bar" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>

@@ -6,10 +6,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.phase12.databinding.HomeBinding
 import androidx.viewbinding.ViewBinding
-import com.google.android.material.bottomappbar.BottomAppBar
 import com.example.phase12.ui.theme.AppBar
+import com.google.android.material.bottomappbar.BottomAppBar
 
 class Home : AppBar() {
     private lateinit var binding: ViewBinding
@@ -25,6 +26,8 @@ class Home : AppBar() {
         setContentView(R.layout.home)
 
         setupBar()
+//        bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
+//        setSupportActionBar(bottomAppBar)
 
         binding = HomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -40,8 +43,6 @@ class Home : AppBar() {
         inventory.setOnClickListener {startActivity( Intent(this, InventoryList::class.java)) }
         grocery.setOnClickListener { startActivity(Intent(this, GroceryList::class.java)) }
         mealPrep.setOnClickListener {startActivity(Intent(this, MealPrep::class.java)) }
-
-        val appBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
     }
 
 }
