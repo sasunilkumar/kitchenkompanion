@@ -37,7 +37,23 @@
             <View
                 android:id="@+id/list_spacer"
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="10dp"
+                android:visibility="invisible"
+                app:layout_constraintTop_toBottomOf="@id/textView2"/>
+
+            <com.google.android.material.search.SearchBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:backgroundTint="@color/white"
+                app:queryHint="Search for a recipe">
+            </com.google.android.material.search.SearchBar>
+
+            <View
+                android:id="@id/list_spacer"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
                 android:visibility="invisible" />
 
             <androidx.cardview.widget.CardView
@@ -102,7 +118,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:paddingLeft="10dp"
-                            android:paddingRight="50dp"
+                            android:paddingRight="45dp"
                             android:src="@mipmap/halal_round" />
 
                         <ImageView
@@ -138,9 +154,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:text="Ingredients"
+                            android:elevation="5dp"
+                            android:textStyle="bold"
                             android:textColor="@color/black"
                             android:textSize="24sp" />
-
                         <RelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -148,7 +165,8 @@
 
                             <RelativeLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hammersmith_one">
 
                                 <CheckBox
                                     android:layout_width="match_parent"
@@ -205,6 +223,23 @@
                                     android:background="@drawable/ic_plus_24" />
                             </RelativeLayout>
                         </RelativeLayout>
+                        <TextView
+                            android:id="@+id/instructions"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Instructions"
+                            android:elevation="5dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="24sp" />
+
+                        <CheckBox
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:text="Preheat the oven to 350 degrees"
+                            android:textColor="@color/black"
+                            android:textSize="22sp" />
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -268,7 +303,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            android:paddingRight="40dp"
+                            android:paddingRight="45dp"
                             android:src="@mipmap/kosher_round" />
 
                         <ImageView
@@ -314,7 +349,9 @@
                             android:layout_height="match_parent"
                             android:text="Ingredients"
                             android:textColor="@color/black"
-                            android:textSize="24sp" />
+                            android:elevation="5dp"
+                            android:textStyle="bold"
+                            android:textSize="25sp" />
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
