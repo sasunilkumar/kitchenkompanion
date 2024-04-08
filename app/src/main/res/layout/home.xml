@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/hammersmith_one"
                 android:textColor="#000000"
-                android:paddingStart="30dp"
+                android:paddingStart="50dp"
                 android:text="Kitchen Kompanion"
                 android:textSize="55sp"
                 tools:ignore="RtlSymmetry" />
@@ -71,19 +71,16 @@
                         android:id="@+id/user4"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
-                        android:background="@drawable/user_icon" />
+                        android:background="@drawable/user_icon"
+                        android:backgroundTint="@color/blue_500" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/user5"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
-                        android:background="@drawable/user_icon" />
+                        android:background="@drawable/user_icon"
+                        android:backgroundTint="@color/blue_500" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/user6"
-                        android:layout_width="125dp"
-                        android:layout_height="125dp"
-                        android:background="@drawable/user_icon" />
                 </LinearLayout>
             </HorizontalScrollView>
 
@@ -97,30 +94,39 @@
 
                 android:showDividers="middle">
 
-                <androidx.appcompat.widget.AppCompatButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/Inventory"
                     android:layout_width="300px"
                     android:layout_height="410px"
                     android:layout_weight="1"
                     android:background="@drawable/view_container"
-                    android:backgroundTint="@color/pastel_red"
-
+                    app:backgroundTint="@color/pastel_red"
                     android:text="@string/inventory"
                     android:fontFamily="@font/hammersmith_one"
                     android:textAllCaps="false"
-                    android:textSize="45sp" />
+                    android:textSize="45sp"
+                    android:textColor="#000000"
+                    app:icon="@drawable/outline_kitchen_24"
+                    app:iconTint="#000000"
+                    app:iconPadding="20dp"
+                    app:iconGravity="textTop"/>
 
-                <androidx.appcompat.widget.AppCompatButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/Recipes"
                     android:layout_width="300px"
                     android:layout_height="410px"
                     android:layout_weight="1"
                     android:background="@drawable/view_container"
                     android:fontFamily="@font/hammersmith_one"
-                    android:backgroundTint="@color/pastel_orange"
                     android:textAllCaps="false"
                     android:text="Recipes"
-                    android:textSize="45sp" />
+                    android:textSize="45sp"
+                    android:textColor="#000000"
+                    app:backgroundTint="@color/pastel_orange"
+                    app:icon="@drawable/recipes_vec_icon"
+                    app:iconTint="#000000"
+                    app:iconPadding="20dp"
+                    app:iconGravity="textTop"/>
             </LinearLayout>
 
             <LinearLayout
@@ -133,7 +139,7 @@
 
                 android:showDividers="middle">
 
-                <androidx.appcompat.widget.AppCompatButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/Grocery"
                     android:layout_width="300px"
                     android:layout_height="410px"
@@ -141,20 +147,30 @@
                     android:background="@drawable/view_container"
                     android:fontFamily="@font/hammersmith_one"
                     android:textAllCaps="false"
-                    android:backgroundTint="@color/pastel_yellow"
-                    android:text="Grocery List"
+                    android:textColor="#000000"
+                    app:backgroundTint="@color/pastel_yellow"
+                    app:icon="@drawable/grocery_vec_icon"
+                    app:iconTint="#000000"
+                    app:iconGravity="textTop"
+                    app:iconPadding="20dp"
+                    android:text="Groceries"
                     android:textSize="45sp" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/MealPrep"
                     android:layout_width="300px"
                     android:layout_height="410px"
                     android:layout_weight="1"
                     android:background="@drawable/view_container"
                     android:fontFamily="@font/hammersmith_one"
-                    android:backgroundTint="@color/pastel_green"
                     android:textAllCaps="false"
                     android:text="Meal Prep"
+                    android:textColor="#000000"
+                    app:backgroundTint="@color/pastel_green"
+                    app:icon="@drawable/calendar_vec_icon"
+                    app:iconPadding="20dp"
+                    app:iconTint="#000000"
+                    app:iconGravity="textTop"
                     android:textSize="45sp" />
             </LinearLayout>
         </LinearLayout>
@@ -170,6 +186,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:backgroundTint="@color/medium_cream"
-            app:menu="@menu/bot_app_bar" />
+            app:menu="@menu/bot_app_bar"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </LinearLayout>

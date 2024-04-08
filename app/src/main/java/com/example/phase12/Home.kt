@@ -9,8 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.phase12.databinding.HomeBinding
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.example.phase12.ui.theme.AppBar
 
-class Home : AppCompatActivity() {
+class Home : AppBar() {
     private lateinit var binding: ViewBinding
 
     private lateinit var recipes: Button
@@ -22,6 +23,8 @@ class Home : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
+
+        setupBar()
 
         binding = HomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
