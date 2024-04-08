@@ -197,7 +197,7 @@ class InventoryList : AppBar() {
             text = title
             textSize = 27f
             gravity = TextView.TEXT_ALIGNMENT_VIEW_START
-            textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
+            textAlignment = TextView.TEXT_ALIGNMENT_CENTER
             typeface = resources.getFont(R.font.hammersmith_one)
         }
 
@@ -305,6 +305,7 @@ class InventoryList : AppBar() {
                         1.5f
                     )
                     gravity = Gravity.CENTER
+                    textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                     textSize = 20f
                     typeface = resources.getFont(R.font.hammersmith_one)
                     setPadding(8, 8, 8, 8)
