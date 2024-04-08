@@ -214,7 +214,7 @@ class InventoryList : AppBar() {
             )
         }
         val cols = arrayOf("Name", "Owner", "Count")
-        val weights = arrayOf(1.5f, 1.5f, 1f)
+        val weights = arrayOf(1f, 1f, 1f)
         var i = 0
 
         for (title in cols) {
