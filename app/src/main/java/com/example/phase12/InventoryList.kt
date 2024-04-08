@@ -34,17 +34,13 @@ import java.io.FileNotFoundException
 class InventoryList : AppBar() {
 
     //ALEX VAR
-    private lateinit var fab: View
     private var grocArray: MutableList<View> = mutableListOf()
-    private lateinit var fav1: Button
-    private lateinit var fav2: Button
-    private lateinit var fav3: Button
-    private lateinit var fav4: Button
     private lateinit var spinner: Spinner
     private lateinit var spinnerItems: ArrayList<String>
     private lateinit var adapter: ArrayAdapter<String>
     private var tableTotal = HashMap<View, Int>()
     private var tableTotalID = HashMap<View, Int>()
+    private lateinit var fab: View
 
 
     private lateinit var binding: InventoryListBinding
@@ -72,8 +68,8 @@ class InventoryList : AppBar() {
         var itemName = view.findViewById<EditText>(R.id.item_name)
         var itemQuant = view.findViewById<EditText>(R.id.quantity)
         var itemprice = view.findViewById<EditText>(R.id.price)
-        var isFav = view.findViewById<CheckBox>(R.id.favorite)
 
+        fab = findViewById<View>(R.id.fab_grocery_list)
 
         // ALEX Spinner
         spinner = view.findViewById(R.id.add_item_spinner)
@@ -93,7 +89,6 @@ class InventoryList : AppBar() {
                     itemQuant.text.toString().toInt(),
                     "me",
                     itemprice.text.toString().toInt(),
-                    isFav.isChecked,
                     grocArray[spinner.selectedItemPosition]
                 )
             } catch (e: NumberFormatException) {
@@ -119,7 +114,13 @@ class InventoryList : AppBar() {
         }
         val alertDialog = builder.create()
 
-
+        fab.setOnClickListener {
+            itemName.setText("")
+            itemQuant.setText("")
+            itemprice.setText("")
+            alertDialog.show()
+            true
+        }
 
         val dataList = readJson()
         if (dataList != null) {
@@ -185,7 +186,7 @@ class InventoryList : AppBar() {
         var draw: Drawable? = ContextCompat.getDrawable(this, R.drawable.view_container)
         if (draw != null) {
             draw = DrawableCompat.wrap(draw)
-            DrawableCompat.setTint(draw, Color.parseColor("#FDFFB6"))
+            DrawableCompat.setTint(draw, Color.parseColor("#FFADAD"))
         }
         container.background = draw
 
@@ -364,9 +365,8 @@ class InventoryList : AppBar() {
                         quantity: Int = 10000,
                         owner: String = "BobDiddleBob",
                         price: Int = 10000,
-                        fav: Boolean = true,
                         list: View = grocArray[0]){
-        val string = "[{\"name\":  \"$name\", \"quantity\": $quantity, \"owner\": $owner, \"price\": $price,\"favorite\": $fav}]"
+        val string = "[{\"name\":  \"$name\", \"quantity\": $quantity, \"owner\": $owner, \"price\": $price}]"
         val json = JSONArray(string)
         populateList(json, list as TableLayout)
         var sumID = tableTotalID[list] ?: 0
