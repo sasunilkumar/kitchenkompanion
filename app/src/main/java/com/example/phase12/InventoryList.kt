@@ -60,7 +60,7 @@ class InventoryList : AppBar() {
         //ALEX ADD BUTTON VARs
         val builder = AlertDialog.Builder(this)
         val inflater = LayoutInflater.from(this)
-        val view = inflater.inflate(R.layout.add_item, null)
+        val view = inflater.inflate(R.layout.add_inventory, null)
         builder.setView(view)
         builder.setMessage("What would you like to add?")
         builder.setTitle("Add Item")
