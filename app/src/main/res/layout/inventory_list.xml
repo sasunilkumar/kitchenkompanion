@@ -57,6 +57,8 @@
         app:layout_anchorGravity="center">
 
 <!--toolbar-->
+
+
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
             style="@style/Widget.Material3.BottomAppBar"
@@ -65,6 +67,13 @@
             android:layout_gravity="bottom"
             android:backgroundTint="@color/medium_cream"
             app:menu="@menu/bot_app_bar" />
+
+        <View
+            android:id="@+id/list_spacer2"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/bottomAppBar"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_button"

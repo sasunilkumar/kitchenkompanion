@@ -1,57 +1,1045 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:theme="@style/Theme.MaterialComponents.DayNight"
+    android:fontFamily="@font/hammersmith_one"
     android:background="@color/light_cream"
-    tools:context=".MealPrep">
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Meal Prep"
-        android:textSize="50sp" />
+    tools:context=".InventoryList">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_margin="8dp"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="Current Date" />
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="700px"
-        android:layout_height = "wrap_content"
-        android:background="@drawable/view_container"
-        android:backgroundTint="@color/pastel_green"
-        android:orientation="vertical"
-        android:layout_gravity="center_horizontal"
-        android:padding="30dp">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:text=" Overnight Oats \n
-        1/2 cup rolled oats (old-fashioned oats) \n
-        1/2 cup milk (dairy or plant-based) \n
-        1/4 cup yogurt (Greek yogurt works well) \n
-        Sweetener of choice (such as honey, maple syrup, or agave syrup), to taste \n
-        Optional add-ins: fruits, nuts, seeds, spices (e.g., chia seeds, sliced bananas, berries, almonds, cinnamon)"/>
-    </LinearLayout>
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/mealPrep_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="40dp"
+                android:text="Meal Prep"
+                android:textColor= "@color/black"
+                android:fontFamily="@font/hammersmith_one"
+                android:paddingTop="30dp"
+                android:textSize="50sp" />
+
+            <View
+                android:id="@+id/list_spacer"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:visibility="invisible"
+                app:layout_constraintTop_toBottomOf="@id/textView2"/>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:visibility="invisible" />
+
+            <!-- MONDAY SECTION -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/monday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:orientation="vertical"
+                app:cardBackgroundColor="@color/pastel_purple"
+                app:cardCornerRadius="30dp"
+                app:contentPadding="20dp"
+                app:contentPaddingLeft="40dp"
+                app:contentPaddingRight="40dp">
+
+                <LinearLayout
+                    android:id="@+id/layouts_m"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/monday_title_m"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/hammersmith_one"
+                            android:text="Monday"
+                            android:textColor="@color/black"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/arrow_down_m"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/arrow_up_m"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_up_24"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/monday_layouts_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical"
+                        android:visibility="gone"/>
+
+                        <LinearLayout
+                            android:id="@+id/monday_layouts_horo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:animateLayoutChanges="true"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            android:paddingTop="20dp">
+
+
+                            <!--BREAKFAST MONDAY SECTION -->
+                            <LinearLayout
+                                android:id = "@+id/mon_break_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical|start">
+                                <TextView
+                                    android:id="@+id/breakfast_m"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Breakfast"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp"
+                                    android:gravity="center_vertical"/>
+                            </LinearLayout>
+
+                            <!--LUNCH MONDAY SECTION -->
+                            <LinearLayout
+                                android:id = "@+id/mon_lunch_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="center">
+                                <TextView
+                                    android:id="@+id/lunch_m"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Lunch"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp"
+                                    android:gravity="center"/>
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:visibility="invisible" />
+
+                            <!--DINNER MONDAY SECTION -->
+                            <LinearLayout
+                                android:id = "@+id/mon_dinner_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center_vertical|end">
+                                <TextView
+                                    android:id="@+id/dinner_m"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Dinner"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/black"
+                                    android:textSize="24sp"
+                                    android:gravity="end" />
+                            </LinearLayout>
+                        </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- TUESDAY SECTION -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/tuesday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:orientation="vertical"
+                app:cardBackgroundColor="@color/pastel_purple"
+                app:cardCornerRadius="30dp"
+                app:contentPadding="20dp"
+                app:contentPaddingLeft="40dp"
+                app:contentPaddingRight="40dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tuesday_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/hammersmith_one"
+                            android:text="Tuesday"
+                            android:textColor="@color/black"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/arrow_down_t"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/arrow_up_t"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_up_24"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/tuesday_layouts_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical"
+                        android:visibility="gone"/>
+
+                    <LinearLayout
+                        android:id="@+id/tuesday_layouts_horo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:paddingTop="20dp">
+
+
+                        <!--BREAKFAST TUESDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/tues_break_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical|start">
+                            <TextView
+                                android:id="@+id/breakfast_t"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Breakfast"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="center_vertical"/>
+                        </LinearLayout>
+
+                        <!--LUNCH TUESDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/tues_lunch_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
+                            <TextView
+                                android:id="@+id/lunch_t"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lunch"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="center"/>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:visibility="invisible" />
+
+                        <!--DINNER TUESDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/tues_dinner_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical|end">
+                            <TextView
+                                android:id="@+id/dinner_t"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dinner"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="end" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- WEDNESDAY SECTION -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/wednesday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:orientation="vertical"
+                app:cardBackgroundColor="@color/pastel_purple"
+                app:cardCornerRadius="30dp"
+                app:contentPadding="20dp"
+                app:contentPaddingLeft="40dp"
+                app:contentPaddingRight="40dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/wednesday_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/hammersmith_one"
+                            android:text="Wednesday"
+                            android:textColor="@color/black"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/arrow_down_w"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/arrow_up_w"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_up_24"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/wednesday_layouts_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical"
+                        android:visibility="gone"/>
+
+                    <LinearLayout
+                        android:id="@+id/wednesday_layouts_horo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:paddingTop="20dp">
+
+
+                        <!--BREAKFAST WEDNESDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/wed_break_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical|start">
+                            <TextView
+                                android:id="@+id/breakfast_w"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Breakfast"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="center_vertical"/>
+                        </LinearLayout>
+
+                        <!--LUNCH WEDNESDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/wed_lunch_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
+                            <TextView
+                                android:id="@+id/lunch_w"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lunch"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="center"/>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:visibility="invisible" />
+
+                        <!--DINNER WEDNESDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/wed_dinner_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical|end">
+                            <TextView
+                                android:id="@+id/dinner_w"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dinner"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="end" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- THURSDAY SECTION -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/thursday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:orientation="vertical"
+                app:cardBackgroundColor="@color/pastel_purple"
+                app:cardCornerRadius="30dp"
+                app:contentPadding="20dp"
+                app:contentPaddingLeft="40dp"
+                app:contentPaddingRight="40dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/thursday_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/hammersmith_one"
+                            android:text="Thursday"
+                            android:textColor="@color/black"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/arrow_down_th"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/arrow_up_th"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_up_24"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/thursday_layouts_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical"
+                        android:visibility="gone"/>
+
+                    <LinearLayout
+                        android:id="@+id/thursday_layouts_horo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:paddingTop="20dp">
+
+
+                        <!--BREAKFAST THURSDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/thurs_break_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical|start">
+                            <TextView
+                                android:id="@+id/breakfast_th"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Breakfast"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="center_vertical"/>
+                        </LinearLayout>
+
+                            <!--LUNCH THURSDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/thurs_lunch_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
+                            <TextView
+                                android:id="@+id/lunch_th"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lunch"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="center"/>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:visibility="invisible" />
+
+                            <!--DINNER THURSDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/thursday_dinner_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical|end">
+                            <TextView
+                                android:id="@+id/dinner_th"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dinner"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="end" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- FRIDAY SECTION -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/friday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:orientation="vertical"
+                app:cardBackgroundColor="@color/pastel_purple"
+                app:cardCornerRadius="30dp"
+                app:contentPadding="20dp"
+                app:contentPaddingLeft="40dp"
+                app:contentPaddingRight="40dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/friday_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/hammersmith_one"
+                            android:text="Friday"
+                            android:textColor="@color/black"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/arrow_down_f"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/arrow_up_f"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_up_24"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/friday_layouts_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical"
+                        android:visibility="gone"/>
+
+                    <LinearLayout
+                        android:id="@+id/friday_layouts_horo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:paddingTop="20dp">
+
+
+                        <!--BREAKFAST FRIDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/fri_break_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical|start">
+                            <TextView
+                                android:id="@+id/breakfast_f"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Breakfast"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="center_vertical"/>
+                        </LinearLayout>
+
+                        <!--LUNCH FRIDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/fri_lunch_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
+                            <TextView
+                                android:id="@+id/lunch_f"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lunch"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="center"/>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:visibility="invisible" />
+
+                        <!--DINNER FRIDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/friday_dinner_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical|end">
+                            <TextView
+                                android:id="@+id/dinner_f"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dinner"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="end" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+            <!-- SATURDAY SECTION -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/saturday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:orientation="vertical"
+                app:cardBackgroundColor="@color/pastel_purple"
+                app:cardCornerRadius="30dp"
+                app:contentPadding="20dp"
+                app:contentPaddingLeft="40dp"
+                app:contentPaddingRight="40dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/saturday_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/hammersmith_one"
+                            android:text="Saturday"
+                            android:textColor="@color/black"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/arrow_down_sat"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/arrow_up_sat"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_up_24"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/saturday_layouts_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical"
+                        android:visibility="gone"/>
+
+                    <LinearLayout
+                        android:id="@+id/saturday_layouts_horo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:paddingTop="20dp">
+
+
+                        <!--BREAKFAST SATURDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/sat_break_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical|start">
+                            <TextView
+                                android:id="@+id/breakfast_sat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Breakfast"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="center_vertical"/>
+                        </LinearLayout>
+
+                        <!--LUNCH SATURDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/sat_lunch_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
+                            <TextView
+                                android:id="@+id/lunch_sat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lunch"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="center"/>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:visibility="invisible" />
+
+                        <!--DINNER SATURDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/saturday_dinner_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical|end">
+                            <TextView
+                                android:id="@+id/dinner_sat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dinner"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="end" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- SUNDAY SECTION -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/sunday_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="40dp"
+                android:orientation="vertical"
+                app:cardBackgroundColor="@color/pastel_purple"
+                app:cardCornerRadius="30dp"
+                app:contentPadding="20dp"
+                app:contentPaddingLeft="40dp"
+                app:contentPaddingRight="40dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/sunday_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:fontFamily="@font/hammersmith_one"
+                            android:text="Sunday"
+                            android:textColor="@color/black"
+                            android:textSize="30sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/arrow_down_sun"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_down_24"
+                            android:visibility="visible" />
+
+                        <ImageView
+                            android:id="@+id/arrow_up_sun"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/baseline_keyboard_arrow_up_24"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:id="@+id/sunday_layouts_vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="vertical"
+                        android:visibility="gone"/>
+
+                    <LinearLayout
+                        android:id="@+id/sunday_layouts_horo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:paddingTop="20dp">
+
+
+                        <!--BREAKFAST SUNDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/sun_break_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical|start">
+                            <TextView
+                                android:id="@+id/breakfast_sun"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Breakfast"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="center_vertical"/>
+                        </LinearLayout>
+
+                        <!--LUNCH SUNDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/sun_lunch_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center">
+                            <TextView
+                                android:id="@+id/lunch_sun"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lunch"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="center"/>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:visibility="invisible" />
+
+                        <!--DINNER SUNDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/sunday_dinner_layout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center_vertical|end">
+                            <TextView
+                                android:id="@+id/dinner_sun"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dinner"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:gravity="end" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_anchor="@+id/scrollView2"
+        app:layout_anchorGravity="center">
+
+        <!--toolbar-->
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
             style="@style/Widget.Material3.BottomAppBar"
@@ -60,16 +1048,15 @@
             android:layout_gravity="bottom"
             android:backgroundTint="@color/medium_cream"
             app:menu="@menu/bot_app_bar" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_meal_prep_list"
+            android:id="@+id/add_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|right"
-            android:backgroundTint="@color/light_cream"
             android:layout_margin="16dp"
+            android:backgroundTint="@color/light_cream"
             android:contentDescription="@string/Grocery_fab"
-            app:srcCompat="@drawable/ic_plus_24"/>
-
+            app:srcCompat="@drawable/ic_plus_24" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
