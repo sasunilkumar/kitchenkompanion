@@ -1,3 +1,6 @@
 <resources>
       <dimen name="fab_margin">16dp</dimen>
+      <dimen name="cardPadding">40dp</dimen>
+      <dimen name="cardMargin">20dp</dimen>
+      <dimen name="cardRadius">30dp</dimen>
    </resources>

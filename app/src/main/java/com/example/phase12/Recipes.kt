@@ -2,7 +2,9 @@ package com.example.phase12
 
 import android.animation.LayoutTransition
 import android.app.PendingIntent.getActivity
+import android.content.Context
 import android.content.DialogInterface
+import android.content.res.Resources
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
@@ -20,6 +22,9 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.view.ViewGroup.MarginLayoutParams
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.CheckBox
@@ -38,11 +43,6 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.FileNotFoundException
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 
@@ -79,9 +79,6 @@ class Recipes : AppBar() {
             favBuilder.setCancelable(true)
             favBuilder.create().show()
         }
-//
-//        viewPager = binding.recipeViewPager
-//        tabLayout = binding.tabLayout
 
         detailsText = findViewById(R.id.recipe_1_layout)
         detailsText2 = findViewById(R.id.recipe_2_layout)
@@ -122,6 +119,10 @@ class Recipes : AppBar() {
                 arrowDown.visibility = View.VISIBLE
             }
         }
+
+        val parentLayout = findViewById<LinearLayout>(R.id.recipes)
+        val newCard = createRecipeCard(this)
+        parentLayout.addView(newCard)
         //call createRecipeCard()
         //onclickListener for plus button
 
@@ -133,6 +134,7 @@ class Recipes : AppBar() {
 //        tabLayout.setupWithViewPager(viewPager)
 
     }
+
     private fun addNewRecipe() {
 
     }
@@ -141,18 +143,21 @@ class Recipes : AppBar() {
 
     }
 }
-//    private fun createRecipeCard() {
-//        //Ingredient list
-//        val ingredient_list = mutableListOf<String>()
-//        for (ingredient in ingredients.json)
-//            i = createIngredient()
-//            ingredient_list.append(i)
-//            recipe_1.addView(i)
-//
-//    }
+    private fun createRecipeCard(context: Context) : CardView {
+        val cardView = CardView(context, null, R.style.CardViewStyle)
+        cardView.id = View.generateViewId()
 
-    private fun createInstruction() {
+        val layoutParams = MarginLayoutParams(MATCH_PARENT, WRAP_CONTENT)
+        cardView.layoutParams = layoutParams
 
+        cardView.setBackgroundResource(R.drawable.cardview_container)
+
+        val pad = context.resources.getDimensionPixelSize(R.dimen.cardPadding)
+        cardView.setContentPadding(pad, pad, pad, pad)
+
+        val margin = context.resources.getDimensionPixelSize(R.dimen.cardMargin)
+        layoutParams.setMargins(pad, margin, pad, margin)
+        return cardView
     }
     //change call to createList to do in for loop for multiple ingredients
 //    private fun createIngredient(title: String, items: JSONArray): LinearLayout {
