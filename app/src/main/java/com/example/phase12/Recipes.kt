@@ -19,6 +19,7 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.CheckBox
@@ -37,16 +38,24 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.FileNotFoundException
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 
-class Recipes : AppBar()  {
-    private lateinit var binding: ViewBinding
+class Recipes : AppBar() {
+    private lateinit var binding: RecipesBinding
     private lateinit var detailsText: LinearLayout
     private lateinit var detailsText2: LinearLayout
     private lateinit var recipe1: CardView
     private lateinit var recipe2: CardView
     private lateinit var arrowDown: ImageView
     private lateinit var arrowUp: ImageView
-//    private lateinit var ratingSpinner: Spinner
+    private lateinit var viewPager: ViewPager
+    private lateinit var tabLayout: TabLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,18 +64,31 @@ class Recipes : AppBar()  {
         setContentView(binding.root)
         setupBar()
 
-//        ratingSpinner = findViewById(R.id.ratingSpinner)
-//        val ratingLevels = arrayOf("Easy", "Medium", "Hard")
-//        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, ratingLevels)
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        ratingSpinner.adapter = adapter
+        binding.fabRecipeList.setOnClickListener {
+            val options = arrayOf("Add New Recipe", "Change Recipe")
+            val favBuilder = AlertDialog.Builder(this)
+            val onClickListener = DialogInterface.OnClickListener { dialog, which ->
+                if (which == 0) {
+                    addNewRecipe()
+                } else if (which == 1) {
+                    changeRecipe()
+                }
+            }
+            favBuilder.setTitle("Add or Change Recipe?")
+            favBuilder.setItems(options, onClickListener)
+            favBuilder.setCancelable(true)
+            favBuilder.create().show()
+        }
+//
+//        viewPager = binding.recipeViewPager
+//        tabLayout = binding.tabLayout
 
         detailsText = findViewById(R.id.recipe_1_layout)
         detailsText2 = findViewById(R.id.recipe_2_layout)
 
         recipe1 = findViewById(R.id.recipe_1)
         recipe2 = findViewById(R.id.recipe_2)
-        
+
         arrowDown = findViewById(R.id.arrow_down)
         arrowUp = findViewById(R.id.arrow_up)
 
@@ -102,9 +124,23 @@ class Recipes : AppBar()  {
         }
         //call createRecipeCard()
         //onclickListener for plus button
+
+//        val adapter = ViewPagerAdapter(supportFragmentManager)
+//        adapter.addFragment(FragmentRecipeList(), "Recipe List")
+//        adapter.addFragment(FragmentAddRecipe(), "Add Recipe")
+//
+//        viewPager.adapter = adapter
+//        tabLayout.setupWithViewPager(viewPager)
+
+    }
+    private fun addNewRecipe() {
+
     }
 
+    private fun changeRecipe() {
 
+    }
+}
 //    private fun createRecipeCard() {
 //        //Ingredient list
 //        val ingredient_list = mutableListOf<String>()
@@ -119,63 +155,63 @@ class Recipes : AppBar()  {
 
     }
     //change call to createList to do in for loop for multiple ingredients
-    private fun createIngredient(title: String, items: JSONArray): LinearLayout {
-        //val linLay = findViewById<RelativeLayout>(R.id.recipe_1)
-        val ingredientId = View.generateViewId()
-        val spacerID = View.generateViewId()
-        val tableID = View.generateViewId()
-        val titleID = View.generateViewId()
-
-        val spacer = View(this).apply {
-            id = spacerID
-            layoutParams = LinearLayout.LayoutParams(
-                0, 35)
-        }
-
-        val container = RelativeLayout(this).apply {
-            id = ingredientId  // Set the ID number for this ingredient
-            layoutParams = RelativeLayout.LayoutParams(
-                // Build XML tag here
-                700,  // width in pixels
-                RelativeLayout.LayoutParams.WRAP_CONTENT   // height in pixels
-            )
-        }
-        container.setPadding(40)
-
-        val title = TextView(this).apply {
-            id = titleID
-            layoutParams = TableLayout.LayoutParams(
-                TableLayout.LayoutParams.MATCH_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT
-            )
-            text = title
-            textSize = 24f
-            gravity = TextView.TEXT_ALIGNMENT_VIEW_START
-            textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
-        }
-
-        val table = TableLayout(this).apply {
-            id = tableID
-            layoutParams = TableLayout.LayoutParams(
-                TableLayout.LayoutParams.MATCH_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT
-            )
-        }
-        val row = TableRow(this).apply {
-            layoutParams = TableLayout.LayoutParams(
-                TableLayout.LayoutParams.MATCH_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT,
-            )
-        }
-        val cols = arrayOf("Name", "Quantity", "Owner", "Price","Bought")
-        val weights = arrayOf(2, 1, 1, 1,1)
-
-        table.addView(row)
-        container.addView(title)
-        container.addView(table)
-        //linLay.addView(container)
-        //linLay.addView(spacer)
-
-        return table
-    }
-}
+//    private fun createIngredient(title: String, items: JSONArray): LinearLayout {
+//        //val linLay = findViewById<RelativeLayout>(R.id.recipe_1)
+//        val ingredientId = View.generateViewId()
+//        val spacerID = View.generateViewId()
+//        val tableID = View.generateViewId()
+//        val titleID = View.generateViewId()
+//
+//        val spacer = View(this).apply {
+//            id = spacerID
+//            layoutParams = LinearLayout.LayoutParams(
+//                0, 35)
+//        }
+//
+//        val container = RelativeLayout(this).apply {
+//            id = ingredientId  // Set the ID number for this ingredient
+//            layoutParams = RelativeLayout.LayoutParams(
+//                // Build XML tag here
+//                700,  // width in pixels
+//                RelativeLayout.LayoutParams.WRAP_CONTENT   // height in pixels
+//            )
+//        }
+//        container.setPadding(40)
+//
+//        val title = TextView(this).apply {
+//            id = titleID
+//            layoutParams = TableLayout.LayoutParams(
+//                TableLayout.LayoutParams.MATCH_PARENT,
+//                TableLayout.LayoutParams.WRAP_CONTENT
+//            )
+//            text = title
+//            textSize = 24f
+//            gravity = TextView.TEXT_ALIGNMENT_VIEW_START
+//            textAlignment = TextView.TEXT_ALIGNMENT_VIEW_START
+//        }
+//
+//        val table = TableLayout(this).apply {
+//            id = tableID
+//            layoutParams = TableLayout.LayoutParams(
+//                TableLayout.LayoutParams.MATCH_PARENT,
+//                TableLayout.LayoutParams.WRAP_CONTENT
+//            )
+//        }
+//        val row = TableRow(this).apply {
+//            layoutParams = TableLayout.LayoutParams(
+//                TableLayout.LayoutParams.MATCH_PARENT,
+//                TableLayout.LayoutParams.WRAP_CONTENT,
+//            )
+//        }
+//        val cols = arrayOf("Name", "Quantity", "Owner", "Price","Bought")
+//        val weights = arrayOf(2, 1, 1, 1,1)
+//
+//        table.addView(row)
+//        container.addView(title)
+//        container.addView(table)
+//        //linLay.addView(container)
+//        //linLay.addView(spacer)
+//
+//        return table
+//    }
+//}

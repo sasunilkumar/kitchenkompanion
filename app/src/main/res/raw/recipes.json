@@ -1,0 +1,79 @@
+[
+  {
+    "name": "Apple Pie",
+    "rating": 1.5,
+    "prepTime": 35,
+    "cookTime": 35,
+    "servings": 6,
+    "ingredients":
+    ["Apples",
+      "Cinnamon",
+      "Butter",
+      "Brown Sugar",
+      "Flour",
+      "Water",
+      "Salt"
+    ],
+    "instructions":
+    ["Preheat oven to 375 degrees",
+      "Grease pie pan",
+      "Dice apples and saute with butter and brown sugar on stove",
+      "Place pie crust in pie pan",
+      "Pour apple mixture into crust.",
+      "Bake for 30-40 minutes or until golden brown with apples tender."
+    ]
+  },
+  {
+    "name": "Brownies",
+    "rating": 1,
+    "prepTime": 25,
+    "cookTime": 30,
+    "servings": 16,
+    "ingredients":
+    ["Cocoa Powder",
+      "Vanilla Extract",
+      "Oil",
+      "Sugar",
+      "Chocolate Chips",
+      "Flour",
+      "Milk",
+      "Salt"
+    ],
+    "instructions":
+    ["Sift and whisk dry ingredients in large mixing bowl until combined",
+      "In medium bowl, incorporate egg and other liquid ingredients",
+      "Combine wet and dry ingredients in 2-3 additions, stirring between additions",
+      "Bake 20-25 minutes until toothpick inserted comes out with a few crumbs but no liquid batter"
+    ]
+  },
+  {
+    "name": "Pineapple Upside Down Cake",
+    "rating": 2,
+    "prepTime": 30,
+    "cookTime": 40,
+    "servings": 8,
+    "ingredients":
+      ["Pineapples",
+      "Cherries",
+      "Butter",
+      "Brown Sugar",
+      "Flour",
+      "Baking Powder",
+      "Baking Soda",
+      "Sugar",
+      "Egg Whites",
+      "Sour Cream",
+      "Vanilla Extract",
+      "Milk"
+     ],
+    "instructions":
+      ["Grease cake pan and lay pineapple rings/cherries in base of pan",
+      "In saucepan over stove top melt butter and brown sugar, pouring syrup over pineapples",
+      "In large bowl whisk together dry ingredients",
+      "Cream butter and sugar until butter lightens in color, then add remaining wet ingredients",
+      "Fold dry into wet ingredients along with milk until just combined",
+      "Bake 35-40 minutes",
+      "Cool at least 10 minutes in pan or on rack before serving"
+    ]
+  }
+]
