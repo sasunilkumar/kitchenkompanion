@@ -1,19 +1,72 @@
 [
   {
-    "Overnight Oats": ["1/2 cup rolled oats",
-      "1/2 cup milk (dairy or plant-based)",
-      "1/4 cup yogurt (Greek yogurt works well)",
-    "Sweetener of choice (such as honey, maple syrup, or agave syrup), to taste",
-    "Optional add-ins: fruits, nuts, seeds, spices (e.g., chia seeds, sliced bananas, berries, almonds, cinnamon)"],
-
-    "Quiche": ["1 pre-made pie crust (or homemade pie crust)", "4 large eggs",
-      "1 cup milk (whole milk or half-and-half for a richer texture)", "Salt and pepper, to taste",
-      "Pinch of nutmeg (optional)"],
-
-    "Garden Salad": ["4 cups mixed salad greens (such as lettuce, spinach, arugula)",
-      "1 cup cherry tomatoes, halved",
-      "1 cucumber, sliced", "1/2 red onion, thinly sliced",
-      "Optional: grated Parmesan cheese or crumbled feta cheese (for added flavor)"]
+    "weekDay": "Monday",
+    "items": [
+      {
+        "mealType": "breakfast",
+        "recipe": "eggs"
+      },
+      {
+        "name": "Eggs",
+        "quantity": 12,
+        "owner": "Jane"
+      },
+      {
+        "name": "Butter",
+        "quantity": 1,
+        "owner": "John & Jane"
+      },
+      {
+        "name": "Ham",
+        "quantity": 2,
+        "owner": "Alex"
+      },
+      {
+        "name": "Chedder Cheese",
+        "quantity": 2,
+        "owner": "Sneha Lee"
+      },
+      {
+        "name": "Lettuce",
+        "quantity": 1,
+        "owner": "John"
+      }
+    ]
+  },
+  {
+    "name": "Pantry",
+    "authors": ["Alex Doe"],
+    "items": [
+      {
+        "name": "Pasta",
+        "quantity": 2,
+        "owner": "Alex"
+      },
+      {
+        "name": "Rice",
+        "quantity": 1,
+        "owner": "Sneha Doe"
+      },
+      {
+        "name": "Canned beans",
+        "quantity": 4,
+        "owner": "Claire & Sneha"
+      },
+      {
+        "name": "Flour",
+        "quantity": 1,
+        "owner": "John Doe"
+      },
+      {
+        "name": "Sugar",
+        "quantity": 1,
+        "owner": "Alex & Sneha"
+      },
+      {
+        "name": "Coffee",
+        "quantity": 1,
+        "owner": "Alex Doe"
+      }
+    ]
   }
-
 ]
