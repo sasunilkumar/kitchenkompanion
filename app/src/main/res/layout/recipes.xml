@@ -12,10 +12,26 @@
     tools:context=".Recipes"
     tools:ignore="ExtraText">
 
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--        android:id="@+id/tabLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/medium_cream"-->
+<!--        app:tabGravity="fill"-->
+<!--        app:tabMode="fixed"-->
+<!--        app:tabTextColor="@color/black"-->
+<!--        android:paddingBottom="20dp"/>-->
+
+<!--    <androidx.viewpager.widget.ViewPager-->
+<!--        android:id="@+id/recipeViewPager"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_weight="1" />-->
+
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" >
 
         <LinearLayout
             android:layout_width="match_parent"
