@@ -3,13 +3,9 @@ package com.example.phase12
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.example.phase12.databinding.HomeBinding
 import androidx.viewbinding.ViewBinding
-import com.example.phase12.ui.theme.AppBar
 import com.google.android.material.bottomappbar.BottomAppBar
 
 class Home : AppBar() {

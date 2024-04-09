@@ -1,7 +1,6 @@
 package com.example.phase12
 
 import android.graphics.Color
-import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.DeadObjectException
@@ -10,7 +9,6 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageButton
@@ -21,7 +19,6 @@ import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -29,9 +26,8 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.setPadding
 import androidx.viewbinding.ViewBinding
 import com.example.phase12.databinding.GroceryListBinding
-import com.example.phase12.ui.theme.AppBar
-import com.google.android.material.bottomappbar.BottomAppBar
 import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.FileNotFoundException
@@ -51,7 +47,12 @@ class GroceryList : AppBar() {
     private lateinit var adapter: ArrayAdapter<String>
     private var tableTotal = HashMap<View, Int>()
     private var tableTotalID = HashMap<View, Int>()
-    private lateinit var appBar: BottomAppBar
+    private lateinit var operations: JSONArray
+
+
+    companion object {
+        const val OPERATION_LIST = "OPERATION_LIST"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -75,6 +76,8 @@ class GroceryList : AppBar() {
         var editItem2 = findViewById<ImageButton>(R.id.overflowButton2)
         var editItem3 = findViewById<ImageButton>(R.id.overflowButton3)
         var editItem4 = findViewById<ImageButton>(R.id.overflowButton4)
+
+        operations = JSONArray()
 
 
         val favBuilder = AlertDialog.Builder(this)
@@ -152,9 +155,25 @@ class GroceryList : AppBar() {
         //  see overflow if the digits exceed 7
         builder.setPositiveButton("Add") { dialog, _ ->
             if (itemVisibility.isChecked) {
+                Log.d("ADD LISTENER", "trying to add item")
+
                 try {
-                    addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), "me", itemprice.text.toString().toInt(), false, grocArray[spinner.selectedItemPosition]
+                    addItem(itemName.text.toString(), itemQuant.text.toString().toInt(), userName.text.toString(), itemprice.text.toString().toInt(), false, grocArray[spinner.selectedItemPosition]
                     )
+                    var name = itemName.text.toString()
+                    var quantity = itemQuant.text.toString().toInt()
+                    var owner = userName.getText().toString()
+                    Log.d("DATACHECK","$owner")
+                    var price = itemprice.text.toString().toInt()
+                    var fav = false
+                    var list = spinner.selectedItemPosition
+                    var operation = "addItem"
+                    val string = "[{\"name\":  \"$name\", \"quantity\": $quantity, \"owner\": \"$owner\", \"price\": $price,\"favorite\": $fav}]"
+
+                    val agg = "{\"operation\": $operation, \"fields\": {\"list\": $list , \"json\": $string}}"
+                    var json = JSONObject(agg)
+                    operations.put(json)
+
                 } catch (e: NumberFormatException) {
                     Log.d(
                         "READ DIALOG ERROR",
@@ -174,8 +193,12 @@ class GroceryList : AppBar() {
                 dialog.dismiss()
             }
             if (listVisibility.isChecked) {
+                Log.d("ADD LISTENER", "trying to add list")
                 try {
                     createList(tableName.text.toString(), JSONArray())
+                    var str = "{\"operation\": \"addList\",  \"fields\": \"${tableName.text.toString()}\"}"
+                    var json = JSONObject(str)
+                    operations.put(json)
                 } catch (e: NumberFormatException) {
                     Log.d(
                         "READ DIALOG ERROR",
@@ -207,6 +230,7 @@ class GroceryList : AppBar() {
 
             listBody.visibility = View.GONE
             itemBody.visibility = View.VISIBLE
+            itemVisibility.isChecked = true
             itemVisibility.visibility = View.GONE
             listVisibility.visibility = View.GONE
             itemName.setText(item1.text)
@@ -222,6 +246,7 @@ class GroceryList : AppBar() {
         fav2.setOnClickListener {
             listBody.visibility = View.GONE
             itemBody.visibility = View.VISIBLE
+            itemVisibility.isChecked = true
             itemVisibility.visibility = View.GONE
             listVisibility.visibility = View.GONE
             itemName.setText(item2.text)
@@ -236,6 +261,7 @@ class GroceryList : AppBar() {
         fav3.setOnClickListener {
             listBody.visibility = View.GONE
             itemBody.visibility = View.VISIBLE
+            itemVisibility.isChecked = true
             itemVisibility.visibility = View.GONE
             listVisibility.visibility = View.GONE
             itemName.setText(item3.text)
@@ -249,6 +275,7 @@ class GroceryList : AppBar() {
         fav4.setOnClickListener {
             listBody.visibility = View.GONE
             itemBody.visibility = View.VISIBLE
+            itemVisibility.isChecked = true
             itemVisibility.visibility = View.GONE
             listVisibility.visibility = View.GONE
             itemName.setText(item4.text)
@@ -281,7 +308,12 @@ class GroceryList : AppBar() {
             favDialog.show()
             favDialog.setOnDismissListener {
                 // Update item1 text once the dialog is dismissed
-                if (favView.text.toString().isNotEmpty()){item1.text = favView.text.toString()}
+                if (favView.text.toString().isNotEmpty()){
+                    item1.text = favView.text.toString()
+                    var str = "{\"operation\": \"updateFav\",  \"fields\":{\"name\":  \"${favView.text.toString()}\", \"button\": ${item1.id}}}"
+                    var json = JSONObject(str)
+                    operations.put(json)
+                }
             }
         }
         editItem2.setOnClickListener{
@@ -289,7 +321,11 @@ class GroceryList : AppBar() {
             favDialog.show()
             favDialog.setOnDismissListener {
                 // Update item1 text once the dialog is dismissed
-                if (favView.text.toString().isNotEmpty()){item2.text = favView.text.toString()}
+                if (favView.text.toString().isNotEmpty()){
+                    item2.text = favView.text.toString()
+                    var str = "{\"operation\": \"updateFav\",  \"fields\":{\"name\":  \"${favView.text.toString()}\", \"button\": ${item2.id}}}"
+                    var json = JSONObject(str)
+                    operations.put(json)}
             }
         }
         editItem3.setOnClickListener{
@@ -297,7 +333,12 @@ class GroceryList : AppBar() {
             favDialog.show()
             favDialog.setOnDismissListener {
                 // Update item1 text once the dialog is dismissed
-                if (favView.text.toString().isNotEmpty()){item3.text = favView.text.toString()}
+                if (favView.text.toString().isNotEmpty()){
+                    item3.text = favView.text.toString()
+                    var str = "{\"operation\": \"updateFav\",  \"fields\":{\"name\":  \"${favView.text.toString()}\", \"button\": ${item3.id}}}"
+                    var json = JSONObject(str)
+                    operations.put(json)}
+
             }
         }
         editItem4.setOnClickListener{
@@ -305,8 +346,14 @@ class GroceryList : AppBar() {
             favDialog.show()
             favDialog.setOnDismissListener {
                 // Update item1 text once the dialog is dismissed
-                if (favView.text.toString().isNotEmpty()){item4.text = favView.text.toString()}
+                if (favView.text.toString().isNotEmpty()){
+                    item4.text = favView.text.toString()
+                    var str = "{\"operation\": \"updateFav\",  \"fields\":{\"name\":  \"${favView.text.toString()}\", \"button\": ${item4.id}}}"
+                    var json = JSONObject(str)
+                    operations.put(json)
+                }
             }
+
         }
 
 
@@ -316,6 +363,12 @@ class GroceryList : AppBar() {
             parse(dataList)
         } else {
             Log.d("READ Failed", "Failed to read or parse data from JSON file.")
+        }
+        Log.i("StateLifecycle","trying to recover")
+        if (savedInstanceState != null){
+            Log.i("StateLifecycle","entered recovery block")
+        }else{
+            Log.i("StateLifecycle","failed to enter recovery block")
         }
 
     }
@@ -590,7 +643,7 @@ class GroceryList : AppBar() {
                         price: Int = 10000,
                         fav: Boolean = true,
                         list: View = grocArray[0]){
-        val string = "[{\"name\":  \"$name\", \"quantity\": $quantity, \"owner\": $owner, \"price\": $price,\"favorite\": $fav}]"
+        val string = "[{\"name\":  \"$name\", \"quantity\": $quantity, \"owner\": \"$owner\", \"price\": $price,\"favorite\": $fav}]"
         val json = JSONArray(string)
         populateList(json, list as TableLayout)
         var sumID = tableTotalID[list] ?: 0
@@ -598,4 +651,82 @@ class GroceryList : AppBar() {
         text.setText("List Total: $"+ tableTotal.getValue(list).toString())
 
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        outState.putString("OPERATION_LIST", operations.toString());
+        Log.i("StateLifecycle","${operations.toString()}")
+        super.onSaveInstanceState(outState)
+
+
+    }
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        Log.i("StateLifecycle", "onRestoreInstanceState")
+        try {
+            val recovery = savedInstanceState.getString("OPERATION_LIST")
+            val actions = JSONArray(recovery)
+            for (i in 0 until actions.length()) {
+                var action = actions.getJSONObject(i)
+                when (action.getString("operation")) {
+                    "updateFav" -> {
+                        Log.d("RECOVERY","ROLLBACK, Fav to ${action.toString()}")
+                        val fields = action.getJSONObject("fields")
+                        var id = fields.getInt("button")
+                        var name = fields.getString("name")
+
+                        val item = findViewById<TextView>(id)
+                        item.text = name
+                        operations.put(action)
+
+                    }
+                    "addList" ->  {
+                        Log.d("RECOVERY","ROLLBACK, NEW LIST to ${action.toString()}")
+                        val name = action.getString("fields")
+                        createList(name, JSONArray())
+                        operations.put(action)
+
+
+
+                    }
+                    "addItem" ->  {
+                        Log.d("RECOVERY","ROLLBACK, NEW ITEM to ${action.toString()}")
+                        val fields = action.getJSONObject("fields")
+                        var json = fields.getJSONArray("json").getJSONObject(0)
+                        val list = grocArray[fields.getInt("list")]
+                        val name = json.getString("name")
+                        val quantity = json.getInt("quantity")
+                        val owner = json.getString("owner")
+                        val price = json.getInt("price")
+                        val favorite = json.getBoolean("favorite")
+                        addItem(name, quantity, owner, price, favorite, list)
+                        operations.put(action)
+
+                    }
+                    else -> Log.d("RECOVERY", "Unknown operation")
+                }
+
+            }
+
+            } catch (e: JSONException) { }
+        super.onRestoreInstanceState(savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+    }
+
 }
+
+
+
+
+// I need to track names of favorites, items in each list, lists added.
+// If I track them they also need to be tracked as they are being added,
+// since I don't want to recover a data value in a list that does not exist yet
+
+// to achieve this I want to edit a JSON or text file that will append
+// the most recent action, this is somewhat similar to a transaction,
+// and a snapshot of the database. In which by iterating over it again
+// I can regain a stable state. So as the operations come in I need to
+// also add them to some file.
+

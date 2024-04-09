@@ -1,10 +1,8 @@
 package com.example.phase12
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.example.phase12.databinding.ProfileBinding
-import com.example.phase12.ui.theme.AppBar
 
 class Profile : AppBar() {
     private lateinit var binding: ViewBinding
