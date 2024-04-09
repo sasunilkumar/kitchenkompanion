@@ -182,14 +182,13 @@
                                     android:hint="min."
                                     android:paddingStart="15dp"
                                     style="@style/InputStyle">
-                                    <!--                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">-->
 
                                     <com.google.android.material.textfield.TextInputEditText
                                         android:id="@+id/prepTimeEditText"
                                         android:layout_width="70dp"
                                         android:layout_height="wrap_content"
                                         android:inputType="number"
-                                        android:imeOptions="actionDone" />
+                                        android:imeOptions="actionDone"/>
                             </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>
 
@@ -197,7 +196,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_gravity="center">
+                                android:layout_gravity="center|center_horizontal">
 
                                 <TextView
                                     android:id="@+id/cookTime1"
@@ -222,7 +221,7 @@
                                         android:layout_width="70dp"
                                         android:layout_height="wrap_content"
                                         android:inputType="number"
-                                        android:imeOptions="actionDone" />
+                                        android:imeOptions="actionDone"/>
                                 </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>
 
@@ -260,7 +259,7 @@
                                         android:layout_width="70dp"
                                         android:layout_height="wrap_content"
                                         android:inputType="number"
-                                        android:imeOptions="actionDone" />
+                                        android:imeOptions="actionDone"/>
                                 </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>
                         </LinearLayout>
@@ -361,6 +360,11 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:visibility="invisible" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/recipe_2"
