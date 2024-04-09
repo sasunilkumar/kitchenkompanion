@@ -52,36 +52,31 @@
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
-                        android:background="@drawable/user_icon"
-                        android:backgroundTint="@color/white" />
+                        android:background="@mipmap/charlie_brown_round" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/user2"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
-                        android:background="@drawable/user_icon"
-                        android:backgroundTint="@color/white" />
+                        android:background="@mipmap/snoopy_round" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/user3"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
-                        android:background="@drawable/user_icon"
-                        android:backgroundTint="@color/white" />
+                        android:background="@mipmap/lucy_round"/>
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/user4"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
-                        android:background="@drawable/user_icon"
-                        android:backgroundTint="@color/white" />
+                        android:background="@mipmap/marcie_round" />
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/user5"
                         android:layout_width="125dp"
                         android:layout_height="125dp"
-                        android:background="@drawable/user_icon"
-                        android:backgroundTint="@color/white" />
+                        android:background="@mipmap/linus_round" />
 
                 </LinearLayout>
             </HorizontalScrollView>
