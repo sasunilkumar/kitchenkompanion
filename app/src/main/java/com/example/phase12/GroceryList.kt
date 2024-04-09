@@ -26,6 +26,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.setPadding
 import androidx.viewbinding.ViewBinding
 import com.example.phase12.databinding.GroceryListBinding
+import com.example.phase12.ui.theme.AppBar
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject

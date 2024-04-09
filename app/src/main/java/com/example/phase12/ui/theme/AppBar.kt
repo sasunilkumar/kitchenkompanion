@@ -1,9 +1,15 @@
-package com.example.phase12
+package com.example.phase12.ui.theme
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.example.phase12.GroceryList
+import com.example.phase12.Home
+import com.example.phase12.InventoryList
+import com.example.phase12.MealPrep
+import com.example.phase12.R
+import com.example.phase12.Recipes
 import com.google.android.material.bottomappbar.BottomAppBar
 
 open class AppBar: AppCompatActivity() {

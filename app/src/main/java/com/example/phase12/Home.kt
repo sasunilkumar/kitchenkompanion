@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.phase12.databinding.HomeBinding
 import androidx.viewbinding.ViewBinding
+import com.example.phase12.ui.theme.AppBar
 import com.google.android.material.bottomappbar.BottomAppBar
 
 class Home : AppBar() {

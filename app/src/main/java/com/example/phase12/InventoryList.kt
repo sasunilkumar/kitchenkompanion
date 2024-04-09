@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.setPadding
 import com.example.phase12.databinding.InventoryListBinding
+import com.example.phase12.ui.theme.AppBar
 import org.json.JSONArray
 import java.io.BufferedReader
 import java.io.FileNotFoundException
