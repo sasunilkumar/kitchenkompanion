@@ -37,8 +37,21 @@ class MealPrep : AppBar() {
     private lateinit var friday: CardView
     private lateinit var saturday: CardView
     private lateinit var sunday: CardView
-    private lateinit var arrowDown: ImageView
-    private lateinit var arrowUp: ImageView
+    private lateinit var arrowDownM: ImageView
+    private lateinit var arrowUpM: ImageView
+    private lateinit var arrowDownT: ImageView
+    private lateinit var arrowUpT: ImageView
+    private lateinit var arrowDownW: ImageView
+    private lateinit var arrowUpW: ImageView
+    private lateinit var arrowDownTh: ImageView
+    private lateinit var arrowUpTh: ImageView
+    private lateinit var arrowDownF: ImageView
+    private lateinit var arrowUpF: ImageView
+    private lateinit var arrowDownSa: ImageView
+    private lateinit var arrowUpSa: ImageView
+    private lateinit var arrowDownSu: ImageView
+    private lateinit var arrowUpSu: ImageView
+
     private var recipeArray: MutableList<View> = mutableListOf();
     lateinit var addButton: FloatingActionButton;
 
@@ -48,13 +61,13 @@ class MealPrep : AppBar() {
         setContentView(binding.root)
         setupBar()
 
-        monday_meals = findViewById(R.id.monday_layouts_vertical)
-        tuesday_meals = findViewById(R.id.tuesday_layouts_vertical)
-        wednesday_meals = findViewById(R.id.wednesday_layouts_vertical)
-        thursday_meals = findViewById(R.id.thursday_layouts_vertical)
-        friday_meals = findViewById(R.id.friday_layouts_vertical)
-        saturday_meals = findViewById(R.id.saturday_layouts_vertical)
-        sunday_meals = findViewById(R.id.sunday_layouts_vertical)
+        monday_meals = findViewById(R.id.monday_layouts_horo)
+        tuesday_meals = findViewById(R.id.tuesday_layouts_horo)
+        wednesday_meals = findViewById(R.id.wednesday_layouts_horo)
+        thursday_meals = findViewById(R.id.thursday_layouts_horo)
+        friday_meals = findViewById(R.id.friday_layouts_horo)
+        saturday_meals = findViewById(R.id.saturday_layouts_horo)
+        sunday_meals = findViewById(R.id.sunday_layouts_horo)
 
         monday = findViewById(R.id.monday_card)
         tuesday = findViewById(R.id.tuesday_card)
@@ -63,6 +76,37 @@ class MealPrep : AppBar() {
         friday = findViewById(R.id.friday_card)
         saturday = findViewById(R.id.saturday_card)
         sunday = findViewById(R.id.sunday_card)
+
+        arrowDownM = findViewById(R.id.arrow_down_m)
+        arrowUpM = findViewById(R.id.arrow_up_m)
+        arrowDownT = findViewById(R.id.arrow_down_t)
+        arrowUpT = findViewById(R.id.arrow_up_t)
+        arrowDownW = findViewById(R.id.arrow_down_w)
+        arrowUpW = findViewById(R.id.arrow_up_w)
+        arrowDownTh = findViewById(R.id.arrow_down_th)
+        arrowUpTh = findViewById(R.id.arrow_up_th)
+        arrowDownF = findViewById(R.id.arrow_down_f)
+        arrowUpF = findViewById(R.id.arrow_up_f)
+        arrowDownSa = findViewById(R.id.arrow_down_sat)
+        arrowUpSa = findViewById(R.id.arrow_up_sat)
+        arrowDownSu = findViewById(R.id.arrow_down_sun)
+        arrowUpSu = findViewById(R.id.arrow_up_sun)
+
+
+        monday.setOnClickListener {
+            if (monday_meals.visibility == View.GONE) {
+                monday_meals.visibility = View.VISIBLE
+            } else {
+                monday_meals.visibility = View.GONE
+            }
+            if (arrowDownM.visibility == View.VISIBLE) {
+                arrowDownM.visibility = View.GONE
+                arrowUpM.visibility = View.VISIBLE
+            } else {
+                arrowUpM.visibility = View.GONE
+                arrowDownM.visibility = View.VISIBLE
+            }
+        }
 
 
 
