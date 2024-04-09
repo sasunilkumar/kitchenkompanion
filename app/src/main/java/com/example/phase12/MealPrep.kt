@@ -4,8 +4,6 @@ import android.os.Bundle;
 import android.util.Log
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CalendarView;
-import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Button;
@@ -105,6 +103,96 @@ class MealPrep : AppBar() {
             } else {
                 arrowUpM.visibility = View.GONE
                 arrowDownM.visibility = View.VISIBLE
+            }
+        }
+
+        tuesday.setOnClickListener {
+            if (tuesday_meals.visibility == View.GONE) {
+                tuesday_meals.visibility = View.VISIBLE
+            } else {
+                tuesday_meals.visibility = View.GONE
+            }
+            if (arrowDownT.visibility == View.VISIBLE) {
+                arrowDownT.visibility = View.GONE
+                arrowUpT.visibility = View.VISIBLE
+            } else {
+                arrowUpT.visibility = View.GONE
+                arrowDownT.visibility = View.VISIBLE
+            }
+        }
+
+        wednesday.setOnClickListener {
+            if (wednesday_meals.visibility == View.GONE) {
+                wednesday_meals.visibility = View.VISIBLE
+            } else {
+                wednesday_meals.visibility = View.GONE
+            }
+            if (arrowDownW.visibility == View.VISIBLE) {
+                arrowDownW.visibility = View.GONE
+                arrowUpW.visibility = View.VISIBLE
+            } else {
+                arrowUpW.visibility = View.GONE
+                arrowDownW.visibility = View.VISIBLE
+            }
+        }
+
+        thursday.setOnClickListener {
+            if (thursday_meals.visibility == View.GONE) {
+                thursday_meals.visibility = View.VISIBLE
+            } else {
+                thursday_meals.visibility = View.GONE
+            }
+            if (arrowDownTh.visibility == View.VISIBLE) {
+                arrowDownTh.visibility = View.GONE
+                arrowUpTh.visibility = View.VISIBLE
+            } else {
+                arrowUpTh.visibility = View.GONE
+                arrowDownTh.visibility = View.VISIBLE
+            }
+        }
+
+        friday.setOnClickListener {
+            if (friday_meals.visibility == View.GONE) {
+                friday_meals.visibility = View.VISIBLE
+            } else {
+                friday_meals.visibility = View.GONE
+            }
+            if (arrowDownF.visibility == View.VISIBLE) {
+                arrowDownF.visibility = View.GONE
+                arrowUpF.visibility = View.VISIBLE
+            } else {
+                arrowUpF.visibility = View.GONE
+                arrowDownF.visibility = View.VISIBLE
+            }
+        }
+
+        saturday.setOnClickListener {
+            if (saturday_meals.visibility == View.GONE) {
+                saturday_meals.visibility = View.VISIBLE
+            } else {
+                saturday_meals.visibility = View.GONE
+            }
+            if (arrowDownSa.visibility == View.VISIBLE) {
+                arrowDownSa.visibility = View.GONE
+                arrowUpSa.visibility = View.VISIBLE
+            } else {
+                arrowUpSa.visibility = View.GONE
+                arrowDownSa.visibility = View.VISIBLE
+            }
+        }
+
+        sunday.setOnClickListener {
+            if (sunday_meals.visibility == View.GONE) {
+                sunday_meals.visibility = View.VISIBLE
+            } else {
+                sunday_meals.visibility = View.GONE
+            }
+            if (arrowDownSu.visibility == View.VISIBLE) {
+                arrowDownSu.visibility = View.GONE
+                arrowUpSu.visibility = View.VISIBLE
+            } else {
+                arrowUpSu.visibility = View.GONE
+                arrowDownSu.visibility = View.VISIBLE
             }
         }
 
