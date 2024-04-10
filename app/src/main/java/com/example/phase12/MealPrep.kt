@@ -1,6 +1,7 @@
 package com.example.phase12;
 
 import android.os.Bundle;
+import android.os.DeadObjectException
 import android.util.Log
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,10 +10,12 @@ import android.widget.EditText;
 import android.widget.Spinner
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TableLayout
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView
 import com.example.phase12.databinding.MealPrepBinding;
 import com.example.phase12.ui.theme.AppBar;
+import org.json.JSONArray
 
 
 class MealPrep : AppBar() {
@@ -57,24 +60,24 @@ class MealPrep : AppBar() {
 
     private lateinit var addB: View
 
-    private var recipeArray: MutableList<View> = mutableListOf();
+    private var weekArray: MutableList<View> = mutableListOf();
+    private var typeArray: MutableList<View> = mutableListOf();
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = MealPrepBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupBar()
 
-
-
-        val builder = AlertDialog.Builder(this)
         val inflater = LayoutInflater.from(this)
         val view = inflater.inflate(R.layout.add_meal, null)
-        builder.setView(view)
-        builder.setMessage("Plan your weekly meals.")
-        builder.setTitle("Add Meal")
-        builder.setCancelable(true)
-        addB= findViewById<View>(R.id.add_button)
+
+        var recipeName = view.findViewById<EditText>(R.id.recipe)
+
+        //ddB= binding.add_button
+
 
         // Week Spinner
         week_spinner = view.findViewById(R.id.week_spinner)
@@ -230,31 +233,58 @@ class MealPrep : AppBar() {
         }
 
 
-
-
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
         addB.setOnClickListener {
-            showAddMealDialog()
+            val builder = AlertDialog.Builder(this)
+            builder.setView(view)
+            builder.setMessage("Plan your weekly meals.")
+            builder.setTitle("Add Meal")
+
+            builder.setPositiveButton("Add") { dialog, _ ->
+                try {
+                    add_Item()
+//                        recipeName.text.toString(),
+//                        weekArray[week_spinner.selectedItemPosition],
+//                        typeArray[meal_spinner.selectedItemPosition]
+
+                } catch (e: NumberFormatException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: NumberFormatException"
+                    )
+                } catch (e: DeadObjectException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: DeadObjectException"
+                    )
+                } catch (e: NullPointerException) {
+                    Log.d(
+                        "READ DIALOG ERROR",
+                        "error when trying to read AlertDialog: NullPointerException"
+                    )
+                }
+//                dialog.dismiss()
+            }
+            builder.setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            builder.setCancelable(true)
+            builder.create().show()
 
         }
     }
 
-    private fun showAddMealDialog() {
-        val addMealLayout = LayoutInflater.from(this).inflate(R.layout.add_meal, null)
-        val mealNameEditText = addMealLayout.findViewById<EditText>(R.id.meal_name_edittext)
+   private fun add_Item(){//recipe: String = "test",
+//                        week_view: View = weekArray[0],
+//                        type_view: View = typeArray[0]) {
+//        val string = "[{\"recipe\":  \"$recipe\"}]"
+//        val json = JSONArray(string)
+//        populateList(json, week_view as TableLayout)
 
-        AlertDialog.Builder(this)
-            .setView(addMealLayout)
-            .setPositiveButton("Add") { dialog, id ->
-                val mealName = mealNameEditText.text.toString()
-
-                Log.d("MealPrep", "Meal added: $mealName")
-            }
-            .setNegativeButton("Cancel", null)
-            .create()
-            .show()
     }
+
 
 }
 
