@@ -60,11 +60,7 @@ class Recipes : AppBar() {
             val options = arrayOf("Add New Recipe", "Change Recipe")
             val favBuilder = AlertDialog.Builder(this)
             val onClickListener = DialogInterface.OnClickListener { dialog, which ->
-                if (which == 0) {
                     addNewRecipe()
-                } else if (which == 1) {
-                    changeRecipe()
-                }
             }
             favBuilder.setTitle("Add or Change Recipe?")
             favBuilder.setItems(options, onClickListener)
@@ -142,10 +138,6 @@ class Recipes : AppBar() {
     }
 
     private fun addNewRecipe() {
-
-    }
-
-    private fun changeRecipe() {
 
     }
 
@@ -257,7 +249,7 @@ class Recipes : AppBar() {
         dummy1.setImageDrawable(dummySrc)
 
         dummy1.setOnClickListener(){
-            
+            dietaryRestrictions(dummy1)
         }
 
         // Dummy Icon 2
@@ -275,6 +267,9 @@ class Recipes : AppBar() {
         dummy2.layoutParams = dummy2LayoutParams
 
         dummy2.setImageDrawable(dummySrc)
+        dummy2.setOnClickListener(){
+            dietaryRestrictions(dummy2)
+        }
 
         // Creating Rating Bar
         val ratingBarView = AppCompatRatingBar(context)
@@ -646,6 +641,27 @@ class Recipes : AppBar() {
         return cardView
     }
 
+    private fun dietaryRestrictions(currentIcon: ImageView) {
+        val diets = arrayOf("Dairy Free", "Gluten Free", "Halal", "Kosher",
+            "Low Sodium", "Nut Free", "Sugar Free", "Vegan")
+
+        val icons = mapOf("Dairy Free" to R.mipmap.dairy_free_round, "Gluten Free" to R.mipmap.gluten_free_round,
+            "Halal" to R.mipmap.halal_round, "Kosher" to R.mipmap.kosher_round,
+            "Low Sodium" to R.mipmap.low_sodium_round, "Nut Free" to R.mipmap.nut_free_round,
+            "Sugar Free" to R.mipmap.sugar_free_round, "Vegan" to R.mipmap.vegan_round)
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Add Diet Label")
+        builder.setItems(diets) { _, diet ->
+            val newDiet = diets[diet]
+            var drawableId = R.mipmap.dietary_plus_round
+            if (icons.containsKey(newDiet)) {
+                drawableId = icons[newDiet]!!
+            }
+            currentIcon.setImageDrawable(ContextCompat.getDrawable(this, drawableId))
+        }
+        builder.show()
+    }
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
     }
