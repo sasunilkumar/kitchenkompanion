@@ -80,7 +80,6 @@ class GroceryList : AppBar() {
 
         operations = JSONArray()
 
-
         val favBuilder = AlertDialog.Builder(this)
         val favView = EditText(this).apply {
             layoutParams = TableLayout.LayoutParams(
@@ -103,8 +102,6 @@ class GroceryList : AppBar() {
                 dialog, _ -> dialog.dismiss()
         }
         val favDialog = favBuilder.create()
-
-
 
         // add item pop-up
         val builder = AlertDialog.Builder(this)

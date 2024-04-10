@@ -1,68 +1,211 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!--This whole section is adapted from Alex and Claire-->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:theme="@style/Theme.MaterialComponents.DayNight"
-    android:background="@color/light_cream"
-    tools:context=".Recipes"
-    tools:ignore="ExtraText">
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RadioGroup
+        android:id="@+id/radioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/medium_cream"
-        app:tabGravity="fill"
-        app:tabMode="fixed"
-        app:tabTextColor="@color/black" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/addViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <ScrollView
-        android:id="@+id/scrollView3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-        </LinearLayout>
-
-    </ScrollView>
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_anchor="@+id/scrollView3"
-        app:layout_anchorGravity="center">
-
-        <com.google.android.material.bottomappbar.BottomAppBar
-            android:id="@+id/bottomAppBar"
-            style="@style/Widget.Material3.BottomAppBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:backgroundTint="@color/medium_cream"
-            app:menu="@menu/bot_app_bar" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_recipe_list"
+        android:gravity="start"
+        android:layout_marginLeft="16dp"
+        android:orientation="vertical">
+        <RadioButton android:id="@+id/radio_item_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
-            android:backgroundTint="@color/light_cream"
-            android:contentDescription="@string/Recipe_fab"
-            app:srcCompat="@drawable/ic_plus_24" />
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            android:text="Add Ingredient"/>
+        <RadioButton android:id="@+id/radio_item_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Instruction"/>
+        <RadioButton android:id="@+id/radio_list_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Recipe"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/add_ingredient"
+        android:visibility="gone">
+        <TextView
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Ingredient"
+            android:layout_marginLeft="16dp"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="What ingredient would you like to add?"
+            android:textSize="16dp"></TextView>
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:paddingBottom="10dp">
+            <EditText
+                android:id="@+id/ingredient"
+                android:inputType="text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:hint="Ingredient" />
+            <Spinner
+                android:id="@+id/ingredient_recipe"
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/add_instruction"
+        android:visibility="gone">
+        <TextView
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="Add Instruction"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="What instruction would you like to add?"
+            android:textSize="16dp"></TextView>
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="16dp">
+            <EditText
+                android:id="@+id/instruction"
+                android:inputType="text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:hint="Instruction" />
+            <Spinner
+                android:id="@+id/instruction_recipe"
+                android:layout_width="0dp"
+                android:layout_gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/add_recipe"
+        android:visibility="gone">
+        <TextView
+            android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Recipe"
+            android:layout_marginLeft="16dp"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="What is your new recipe?"
+            android:layout_marginLeft="16dp"
+            android:textSize="16dp"></TextView>
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
+            <EditText
+                android:id="@+id/recipeTitle"
+                android:inputType="text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:hint="Title" />
+            <EditText
+                android:id="@+id/skillLevel"
+                android:inputType="number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="16dp"
+                android:hint="Rating" />
+            <EditText
+                android:id="@+id/prepTime"
+                android:inputType="number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="sans-serif"
+                android:layout_marginLeft="16dp"
+                android:hint="Prep Time (min.)"/>
+            <EditText
+                android:id="@+id/cookTime"
+                android:inputType="number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="sans-serif"
+                android:layout_marginLeft="16dp"
+                android:hint="Cook Time (min.)"/>
+            <EditText
+                android:id="@+id/serves"
+                android:inputType="number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="sans-serif"
+                android:layout_marginLeft="16dp"
+                android:hint="Serves (ppl.)"/>
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/ingredients"-->
+<!--                android:inputType="number"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:fontFamily="sans-serif"-->
+<!--                android:layout_weight=".5"-->
+<!--                android:hint="Serves (ppl.)"/>-->
+<!--            <EditText-->
+<!--                android:id="@+id/instructions"-->
+<!--                android:inputType="number"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:fontFamily="sans-serif"-->
+<!--                android:layout_weight=".5"-->
+<!--                android:hint="Serves (ppl.)"/>-->
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.text.InputType
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.example.phase12.databinding.RecipesBinding
 import androidx.cardview.widget.CardView
@@ -21,7 +22,9 @@ import android.view.ViewGroup.MarginLayoutParams
 import android.view.inputmethod.EditorInfo
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.RadioGroup
 import android.widget.RelativeLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatRatingBar
@@ -32,6 +35,7 @@ import androidx.core.view.marginTop
 import androidx.core.view.setPadding
 import com.example.phase12.ui.theme.AppBar
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -46,8 +50,7 @@ class Recipes : AppBar() {
     private lateinit var arrowUp1: ImageView
     private lateinit var arrowDown2: ImageView
     private lateinit var arrowUp2: ImageView
-    private lateinit var viewPager: ViewPager
-    private lateinit var tabLayout: TabLayout
+    private lateinit var navBar: BottomAppBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,16 +59,48 @@ class Recipes : AppBar() {
         setContentView(binding.root)
         setupBar()
 
+        navBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
+
         binding.fabRecipeList.setOnClickListener {
-            val options = arrayOf("Add New Recipe", "Change Recipe")
-            val favBuilder = AlertDialog.Builder(this)
-            val onClickListener = DialogInterface.OnClickListener { dialog, which ->
-                    addNewRecipe()
+            val builder = AlertDialog.Builder(this)
+            val inflater = LayoutInflater.from(this)
+            val view = inflater.inflate(R.layout.add_recipe, null)
+
+            val radioGroup = view.findViewById<RadioGroup>(R.id.radioGroup)
+            val addIngredientLayout = view.findViewById<LinearLayout>(R.id.add_ingredient)
+            val addInstructionLayout = view.findViewById<LinearLayout>(R.id.add_instruction)
+            val addRecipeLayout = view.findViewById<LinearLayout>(R.id.add_recipe)
+
+            radioGroup.setOnCheckedChangeListener { group, checkedId ->
+                when (checkedId) {
+                    R.id.radio_item_1 -> {
+                        addIngredientLayout.visibility = View.VISIBLE
+                        addInstructionLayout.visibility = View.GONE
+                        addRecipeLayout.visibility = View.GONE
+                    }
+                    R.id.radio_item_2 -> {
+                        addIngredientLayout.visibility = View.GONE
+                        addInstructionLayout.visibility = View.VISIBLE
+                        addRecipeLayout.visibility = View.GONE
+                    }
+                    R.id.radio_list_3 -> {
+                        addIngredientLayout.visibility = View.GONE
+                        addInstructionLayout.visibility = View.GONE
+                        addRecipeLayout.visibility = View.VISIBLE
+                    }
+                }
             }
-            favBuilder.setTitle("Add or Change Recipe?")
-            favBuilder.setItems(options, onClickListener)
-            favBuilder.setCancelable(true)
-            favBuilder.create().show()
+            builder.setView(view)
+            builder.setTitle("What would you like to add?")
+            builder.setPositiveButton("Add") { dialog, which ->
+                addNewRecipe()
+            }
+            builder.setNegativeButton("Cancel") { dialog, which ->
+                dialog.dismiss()
+            }
+
+            builder.setCancelable(true)
+            builder.create().show()
         }
 
         detailsText = findViewById(R.id.recipe_1_layout)
@@ -463,6 +498,16 @@ class Recipes : AppBar() {
         servesEditText.inputType = InputType.TYPE_CLASS_NUMBER
         servesEditText.imeOptions = EditorInfo.IME_ACTION_DONE
         servesEditText.setText(serves.toString())
+
+        // Ingredients Sub Card Relative Layout
+        val ingredientsCardRelLayout = RelativeLayout(context)
+        ingredientsCardRelLayout.id = View.generateViewId()
+
+        ingredientsCardRelLayout.layoutParams = RelativeLayout.LayoutParams(
+            RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT
+        )
+
+
 
         // Ingredients Header
         val ingredientsHeader = TextView(context)

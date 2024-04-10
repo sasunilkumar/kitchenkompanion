@@ -4,17 +4,18 @@
     android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp">
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
     <RadioGroup
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="left"
-        android:orientation="horizontal">
+        android:gravity="start"
+        android:orientation="vertical">
         <RadioButton android:id="@+id/radio_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Add Item"/>
+
         <RadioButton android:id="@+id/radio_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
