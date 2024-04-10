@@ -1,6 +1,7 @@
 <resources>
       <dimen name="fab_margin">16dp</dimen>
-      <dimen name="plusSize">32dp</dimen>
+      <dimen name="plusSize">30dp</dimen>
+      <dimen name="itemPad">5dp</dimen>
       <dimen name="inputBoxStroke">10dp</dimen>
       <dimen name="imagePadding">15dp</dimen>
       <dimen name="imageMargin">45dp</dimen>

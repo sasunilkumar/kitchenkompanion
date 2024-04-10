@@ -1,6 +1,7 @@
 package com.example.phase12
 
 import android.animation.LayoutTransition
+import android.widget.CheckBox
 import android.content.Context
 import android.content.DialogInterface
 import android.content.res.ColorStateList
@@ -18,6 +19,7 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.ViewGroup.MarginLayoutParams
 import android.view.inputmethod.EditorInfo
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -26,6 +28,7 @@ import androidx.appcompat.widget.AppCompatRatingBar
 import androidx.compose.foundation.layout.Box
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.marginTop
 import androidx.core.view.setPadding
 import com.example.phase12.ui.theme.AppBar
 import androidx.viewpager.widget.ViewPager
@@ -113,7 +116,27 @@ class Recipes : AppBar() {
         }
 
         val parentLayout = findViewById<LinearLayout>(R.id.recipes)
-        val newCard = createRecipeCard(this, "Pineapple Cake", 2, 30, 40, 8)
+        val newIngredients = arrayOf("Pineapples",
+            "Cherries",
+            "Butter",
+            "Brown Sugar",
+            "Flour",
+            "Baking Powder",
+            "Baking Soda",
+            "Sugar",
+            "Egg Whites",
+            "Sour Cream",
+            "Vanilla Extract",
+            "Milk")
+        val newInstructions = arrayOf("Grease cake pan and lay pineapple rings/cherries in base of pan",
+            "In saucepan over stove top melt butter and brown sugar, pouring syrup over pineapples",
+            "In large bowl whisk together dry ingredients",
+            "Cream butter and sugar until butter lightens in color, then add remaining wet ingredients",
+            "Fold dry into wet ingredients along with milk until just combined",
+            "Bake 35-40 minutes",
+            "Cool at least 10 minutes in pan or on rack before serving")
+        val newCard = createRecipeCard(this, "Pineapple Cake", 2, 30,
+            40, 8, newIngredients, newInstructions)
         parentLayout.addView(newCard)
         //onclickListener for plus button
     }
@@ -127,7 +150,8 @@ class Recipes : AppBar() {
     }
 
     private fun createRecipeCard(context: Context, title: String, ratingStars: Int, prepTime : Int,
-                                 cookTime: Int, serves: Int): CardView {
+                                 cookTime: Int, serves: Int, ingredients : Array<String>,
+                                 instructions : Array<String>): CardView {
         //Setting parameters
         val cardView = CardView(context, null, R.style.CardViewStyle)
         cardView.id = View.generateViewId()
@@ -231,6 +255,10 @@ class Recipes : AppBar() {
 
         val dummySrc = ContextCompat.getDrawable(context, R.mipmap.dietary_plus_round)
         dummy1.setImageDrawable(dummySrc)
+
+        dummy1.setOnClickListener(){
+            
+        }
 
         // Dummy Icon 2
         val dummy2 = ImageView(context)
@@ -461,7 +489,46 @@ class Recipes : AppBar() {
         val ingredientsRelParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
         ingredientsRelLayout.layoutParams = ingredientsRelParams
 
+        var prevId = -Int.MAX_VALUE
+        for (ingredient in ingredients) {
+            val newItem = RelativeLayout(context)
+            newItem.id = View.generateViewId()
 
+            val newItemParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+            newItemParams.topMargin = context.resources.getDimensionPixelSize(R.dimen.itemPad)
+            if (prevId > 0) {
+                newItemParams.addRule(RelativeLayout.BELOW, prevId)
+            }
+            newItem.layoutParams = newItemParams
+
+            val checkItem = CheckBox(context)
+            checkItem.id = View.generateViewId()
+
+            val checkParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT)
+
+            checkParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE)
+            checkItem.layoutParams = checkParams
+
+            checkItem.text = ingredient
+            checkItem.setTextColor(textColor)
+            checkItem.textSize = 20F
+
+            val newButton = Button(context)
+            newButton.id = View.generateViewId()
+
+            val buttonParams = RelativeLayout.LayoutParams(plusSize, plusSize)
+            buttonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE)
+            newButton.layoutParams = buttonParams
+
+            val plusImage = R.drawable.ic_plus_24
+            newButton.setBackgroundResource(plusImage)
+
+            newItem.addView(checkItem)
+            newItem.addView(newButton)
+            ingredientsRelLayout.addView(newItem)
+            prevId = newItem.id
+        }
 
         // Instructions Header
         val instructionsHeader = TextView(context)
@@ -475,6 +542,54 @@ class Recipes : AppBar() {
         instructionsHeader.setTypeface(font, Typeface.BOLD)
         instructionsHeader.setTextColor(textColor)
         instructionsHeader.textSize = 24F
+
+        // Instructions Relative Layout for all Instructions
+        val instructionsRelLayout = RelativeLayout(context)
+        instructionsRelLayout.id = View.generateViewId()
+
+        val instructionsRelParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        instructionsRelLayout.layoutParams = instructionsRelParams
+
+        var prevInstructionId = -Int.MAX_VALUE
+        for (instruction in instructions) {
+            val newItem = RelativeLayout(context)
+            newItem.id = View.generateViewId()
+
+            val newItemParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+            newItemParams.topMargin = context.resources.getDimensionPixelSize(R.dimen.itemPad)
+            if (prevInstructionId > 0) {
+                newItemParams.addRule(RelativeLayout.BELOW, prevInstructionId)
+            }
+            newItem.layoutParams = newItemParams
+
+            val checkItem = CheckBox(context)
+            checkItem.id = View.generateViewId()
+
+            val checkParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT)
+
+            checkParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE)
+            checkItem.layoutParams = checkParams
+
+            checkItem.text = instruction
+            checkItem.setTextColor(textColor)
+            checkItem.textSize = 20F
+
+            val newButton = Button(context)
+            newButton.id = View.generateViewId()
+
+            val buttonParams = RelativeLayout.LayoutParams(plusSize, plusSize)
+            buttonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE)
+            newButton.layoutParams = buttonParams
+
+            val plusImage = R.drawable.ic_plus_24
+            newButton.setBackgroundResource(plusImage)
+
+            newItem.addView(checkItem)
+            newItem.addView(newButton)
+            instructionsRelLayout.addView(newItem)
+            prevInstructionId = newItem.id
+        }
 
         // Adding elements into top of cardview
         relativeTopCardView.addView(titleTextView)
@@ -508,7 +623,9 @@ class Recipes : AppBar() {
 
         innerLayout.addView(timeLayout)
         innerLayout.addView(ingredientsHeader)
+        innerLayout.addView(ingredientsRelLayout)
         innerLayout.addView(instructionsHeader)
+        innerLayout.addView(instructionsRelLayout)
 
         // Expansion onClickListener
         cardView.setOnClickListener(){
