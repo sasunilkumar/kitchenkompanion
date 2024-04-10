@@ -6,6 +6,7 @@ import android.content.DialogInterface
 import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.view.Gravity
 import android.widget.LinearLayout
 import com.example.phase12.databinding.RecipesBinding
@@ -212,12 +213,14 @@ class Recipes : AppBar() {
             RelativeLayout.LayoutParams.WRAP_CONTENT,
             RelativeLayout.LayoutParams.WRAP_CONTENT
         )
-        dummy1LayoutParams.addRule(RelativeLayout.LEFT_OF, downArrowImageView.id)
+        dummy1LayoutParams.addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE)
         dummy1LayoutParams.addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE)
 
         val imagePad = context.resources.getDimensionPixelSize(R.dimen.imagePadding)
-        //dummy1LayoutParams.setMargins(0, 0, rightPad + leftPad, 0)
-        dummy1.setPadding(imagePad, 0, imagePad, 0)
+        val imageMargin = context.resources.getDimensionPixelSize(R.dimen.imageMargin)
+
+        dummy1LayoutParams.setMargins(0, 0, imageMargin, 0)
+        dummy1.setPadding(imagePad, 0, 0, 0)
         dummy1.layoutParams = dummy1LayoutParams
 
         val dummySrc = ContextCompat.getDrawable(context, R.mipmap.dietary_plus_round)
@@ -252,8 +255,19 @@ class Recipes : AppBar() {
         ratingBarParams.addRule(RelativeLayout.LEFT_OF, dummy2.id)
         ratingBarView.layoutParams = ratingBarParams
 
+        ratingBarView.stepSize = 0.5F
+
         val ratingColor = ContextCompat.getColor(context, R.color.white)
         ratingBarView.progressTintList = ColorStateList.valueOf(ratingColor)
+
+        /***********************************************/
+        /* Section with interior (expandable) elements */
+        /***********************************************/
+        // Linear Layout for internal contents
+        val innerLayout = LinearLayout(context)
+
+
+        innerLayout.visibility = View.GONE
 
         // Adding elements into cardview
         relativeTopCardView.addView(titleTextView)
@@ -266,6 +280,21 @@ class Recipes : AppBar() {
         cardLinearLayout.addView(relativeTopCardView)
         cardView.addView(cardLinearLayout)
 
+        cardView.setOnClickListener(){
+            if (downArrowImageView.visibility == View.VISIBLE) {
+                downArrowImageView.visibility = View.GONE
+                upArrowImageView.visibility = View.VISIBLE
+            } else {
+                downArrowImageView.visibility = View.VISIBLE
+                upArrowImageView.visibility = View.GONE
+            }
+        }
+
+        //cardView.addView(innerLayout)
         return cardView
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
     }
 }
