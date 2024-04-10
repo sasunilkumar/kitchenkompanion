@@ -1,9 +1,12 @@
 <resources>
       <dimen name="fab_margin">16dp</dimen>
       <dimen name="plusSize">32dp</dimen>
+      <dimen name="inputBoxStroke">10dp</dimen>
       <dimen name="imagePadding">15dp</dimen>
       <dimen name="imageMargin">45dp</dimen>
       <dimen name="cardPadding">20dp</dimen>
+      <dimen name="timePadding">25dp</dimen>
       <dimen name="cardMargin">40dp</dimen>
+      <dimen name="editBoxWidth">70dp</dimen>
       <dimen name="cardRadius">30dp</dimen>
    </resources>

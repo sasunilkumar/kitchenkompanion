@@ -7,6 +7,7 @@ import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.text.InputType
 import android.view.Gravity
 import android.widget.LinearLayout
 import com.example.phase12.databinding.RecipesBinding
@@ -16,17 +17,21 @@ import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.ViewGroup.MarginLayoutParams
+import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatRatingBar
+import androidx.compose.foundation.layout.Box
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.setPadding
 import com.example.phase12.ui.theme.AppBar
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class Recipes : AppBar() {
     private lateinit var binding: RecipesBinding
@@ -108,7 +113,7 @@ class Recipes : AppBar() {
         }
 
         val parentLayout = findViewById<LinearLayout>(R.id.recipes)
-        val newCard = createRecipeCard(this, "Pineapple Cake", 2)
+        val newCard = createRecipeCard(this, "Pineapple Cake", 2, 30, 40, 8)
         parentLayout.addView(newCard)
         //onclickListener for plus button
     }
@@ -121,7 +126,8 @@ class Recipes : AppBar() {
 
     }
 
-    private fun createRecipeCard(context: Context, title: String, ratingStars: Int): CardView {
+    private fun createRecipeCard(context: Context, title: String, ratingStars: Int, prepTime : Int,
+                                 cookTime: Int, serves: Int): CardView {
         //Setting parameters
         val cardView = CardView(context, null, R.style.CardViewStyle)
         cardView.id = View.generateViewId()
@@ -263,13 +269,214 @@ class Recipes : AppBar() {
         /***********************************************/
         /* Section with interior (expandable) elements */
         /***********************************************/
-        // Linear Layout for internal contents
+        // Linear Layout for all internal contents
         val innerLayout = LinearLayout(context)
+        innerLayout.id = View.generateViewId()
 
+        val innerLayoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+        innerLayout.layoutParams = innerLayoutParams
+        innerLayout.layoutTransition = LayoutTransition()
+        innerLayout.orientation = LinearLayout.VERTICAL
 
         innerLayout.visibility = View.GONE
 
-        // Adding elements into cardview
+        // Linear Layout for time/serving row of internal elements
+        val timeLayout = LinearLayout(context)
+        timeLayout.id = View.generateViewId()
+
+        val timeLayoutParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+        timeLayout.layoutParams = timeLayoutParams
+        timeLayout.layoutTransition = LayoutTransition()
+        timeLayout.orientation = LinearLayout.HORIZONTAL
+
+        val timeLayoutPad = context.resources.getDimensionPixelSize(R.dimen.timePadding)
+        timeLayout.setPadding(0, timeLayoutPad, 0, 0)
+
+        // Linear Layout for Prep Time
+        val prepLayout = LinearLayout(context)
+        prepLayout.id = View.generateViewId()
+
+        val prepLayoutParams = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+        prepLayoutParams.weight = 1F
+        prepLayout.layoutParams = prepLayoutParams
+        prepLayout.orientation=LinearLayout.VERTICAL
+        prepLayout.gravity = Gravity.CENTER_VERTICAL or Gravity.START
+
+        // Text View for Prep Time
+        val prepText = TextView(context)
+        prepText.id = View.generateViewId()
+
+        val prepTextLayoutParams = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+        prepText.layoutParams = prepTextLayoutParams
+        prepText.text = "Prep Time"
+        prepText.setTypeface(font, Typeface.BOLD)
+        prepText.setTextColor(textColor)
+        prepText.textSize = 24F
+
+        prepText.gravity = Gravity.CENTER_VERTICAL
+
+        // InputText for Prep Time
+        val prepInputText = TextInputLayout(context)
+        prepInputText.id = View.generateViewId()
+
+        val prepInputParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+        prepInputText.layoutParams = prepInputParams
+
+        val hintColor = ContextCompat.getColorStateList(context, R.color.black)
+        prepInputText.setHintTextColor(hintColor)
+        prepInputText.hint = "min."
+
+        prepInputText.setPaddingRelative(imagePad, 0, 0, 0)
+        prepInputText.boxStrokeColor = ContextCompat.getColor(context, R.color.white)
+        prepInputText.boxStrokeWidth = context.resources.getDimensionPixelSize(R.dimen.inputBoxStroke)
+        prepInputText.boxBackgroundMode = TextInputLayout.BOX_BACKGROUND_OUTLINE
+
+        // EditText for Prep Time
+        val prepEditText = TextInputEditText(context)
+        prepEditText.id = View.generateViewId()
+
+        val editWidth = context.resources.getDimensionPixelSize(R.dimen.editBoxWidth)
+        val prepEditParams = LinearLayout.LayoutParams(editWidth, WRAP_CONTENT)
+        prepEditText.setTextColor(textColor)
+        prepEditText.layoutParams = prepEditParams
+        prepEditText.inputType = InputType.TYPE_CLASS_NUMBER
+        prepEditText.imeOptions = EditorInfo.IME_ACTION_DONE
+        prepEditText.setText(prepTime.toString())
+
+        // Linear Layout for Cook Time
+        val cookLayout = LinearLayout(context)
+        cookLayout.id = View.generateViewId()
+
+        val cookLayoutParams = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+        cookLayoutParams.weight = 1F
+        cookLayout.layoutParams = cookLayoutParams
+        cookLayout.orientation=LinearLayout.VERTICAL
+        cookLayout.gravity = Gravity.CENTER_VERTICAL or Gravity.START
+
+        // Text View for cook Time
+        val cookText = TextView(context)
+        cookText.id = View.generateViewId()
+
+        val cookTextLayoutParams = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+        cookText.layoutParams = cookTextLayoutParams
+        cookText.text = "Cook Time"
+        cookText.setTypeface(font, Typeface.BOLD)
+        cookText.setTextColor(textColor)
+        cookText.textSize = 24F
+
+        cookText.gravity = Gravity.CENTER_VERTICAL
+
+        // InputText for cook Time
+        val cookInputText = TextInputLayout(context)
+        cookInputText.id = View.generateViewId()
+
+        val cookInputParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+        cookInputText.layoutParams = cookInputParams
+
+        cookInputText.setHintTextColor(hintColor)
+        cookInputText.hint = "min."
+
+        cookInputText.setPaddingRelative(imagePad, 0, 0, 0)
+        cookInputText.boxBackgroundMode = TextInputLayout.BOX_BACKGROUND_OUTLINE
+        //cookInputText.boxStrokeColor = ContextCompat.getColor(context, R.color.white)
+        //cookInputText.boxStrokeWidth = context.resources.getDimensionPixelSize(R.dimen.inputBoxStroke)
+
+        // EditText for cook Time
+        val cookEditText = TextInputEditText(context)
+        cookEditText.id = View.generateViewId()
+
+        val cookEditParams = LinearLayout.LayoutParams(editWidth, WRAP_CONTENT)
+        cookEditText.setTextColor(textColor)
+        cookEditText.layoutParams = cookEditParams
+        cookEditText.inputType = InputType.TYPE_CLASS_NUMBER
+        cookEditText.imeOptions = EditorInfo.IME_ACTION_DONE
+        cookEditText.setText(cookTime.toString())
+
+        // Linear Layout for Servings
+        val servesLayout = LinearLayout(context)
+        servesLayout.id = View.generateViewId()
+
+        val servesLayoutParams = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+        servesLayoutParams.weight = 1F
+        servesLayout.layoutParams = servesLayoutParams
+        servesLayout.orientation=LinearLayout.VERTICAL
+        servesLayout.gravity = Gravity.CENTER_VERTICAL or Gravity.START
+
+        // Text View for serves Time
+        val servesText = TextView(context)
+        servesText.id = View.generateViewId()
+
+        val servesTextLayoutParams = LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT)
+        servesText.layoutParams = servesTextLayoutParams
+        servesText.text = "Serves"
+        servesText.setTypeface(font, Typeface.BOLD)
+        servesText.setTextColor(textColor)
+        servesText.textSize = 24F
+
+        servesText.gravity = Gravity.CENTER_VERTICAL
+
+        // InputText for serves Time
+        val servesInputText = TextInputLayout(context)
+        servesInputText.id = View.generateViewId()
+
+        val servesInputParams = LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT)
+        servesInputText.layoutParams = servesInputParams
+
+        servesInputText.setHintTextColor(hintColor)
+        servesInputText.hint = "ppl."
+
+        servesInputText.setPaddingRelative(imagePad, 0, 0, 0)
+        servesInputText.boxBackgroundMode = TextInputLayout.BOX_BACKGROUND_OUTLINE
+        //servesInputText.boxStrokeColor = ContextCompat.getColor(context, R.color.white)
+        //servesInputText.boxStrokeWidth = context.resources.getDimensionPixelSize(R.dimen.inputBoxStroke)
+
+        // EditText for serves Time
+        val servesEditText = TextInputEditText(context)
+        servesEditText.id = View.generateViewId()
+
+        val servesEditParams = LinearLayout.LayoutParams(editWidth, WRAP_CONTENT)
+        servesEditText.setTextColor(textColor)
+        servesEditText.layoutParams = servesEditParams
+        servesEditText.inputType = InputType.TYPE_CLASS_NUMBER
+        servesEditText.imeOptions = EditorInfo.IME_ACTION_DONE
+        servesEditText.setText(serves.toString())
+
+        // Ingredients Header
+        val ingredientsHeader = TextView(context)
+        ingredientsHeader.id = View.generateViewId()
+
+        val ingredientsHeaderParams = LinearLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
+        ingredientsHeader.layoutParams = ingredientsHeaderParams
+        ingredientsHeader.setPadding(0, timeLayoutPad, 0, 0)
+
+        ingredientsHeader.text = "Ingredients"
+        ingredientsHeader.setTypeface(font, Typeface.BOLD)
+        ingredientsHeader.setTextColor(textColor)
+        ingredientsHeader.textSize = 24F
+
+        // Ingredients Relative Layout for all Ingredients
+        val ingredientsRelLayout = RelativeLayout(context)
+        ingredientsRelLayout.id = View.generateViewId()
+
+        val ingredientsRelParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        ingredientsRelLayout.layoutParams = ingredientsRelParams
+
+
+
+        // Instructions Header
+        val instructionsHeader = TextView(context)
+        instructionsHeader.id = View.generateViewId()
+
+        val instructionsHeaderParams = LinearLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
+        instructionsHeader.layoutParams = instructionsHeaderParams
+        instructionsHeader.setPadding(0, timeLayoutPad, 0, 0)
+
+        instructionsHeader.text = "Instructions"
+        instructionsHeader.setTypeface(font, Typeface.BOLD)
+        instructionsHeader.setTextColor(textColor)
+        instructionsHeader.textSize = 24F
+
+        // Adding elements into top of cardview
         relativeTopCardView.addView(titleTextView)
         relativeTopCardView.addView(downArrowImageView)
         relativeTopCardView.addView(upArrowImageView)
@@ -277,10 +484,39 @@ class Recipes : AppBar() {
         relativeTopCardView.addView(dummy2)
         relativeTopCardView.addView(ratingBarView)
 
+        // Adding layouts into cardview
         cardLinearLayout.addView(relativeTopCardView)
+        cardLinearLayout.addView(innerLayout)
         cardView.addView(cardLinearLayout)
 
+        // Adding Elements into internal card unfolded section
+        prepLayout.addView(prepText)
+        prepInputText.addView(prepEditText)
+        prepLayout.addView(prepInputText)
+
+        cookLayout.addView(cookText)
+        cookInputText.addView(cookEditText)
+        cookLayout.addView(cookInputText)
+
+        servesLayout.addView(servesText)
+        servesInputText.addView(servesEditText)
+        servesLayout.addView(servesInputText)
+
+        timeLayout.addView(prepLayout)
+        timeLayout.addView(cookLayout)
+        timeLayout.addView(servesLayout)
+
+        innerLayout.addView(timeLayout)
+        innerLayout.addView(ingredientsHeader)
+        innerLayout.addView(instructionsHeader)
+
+        // Expansion onClickListener
         cardView.setOnClickListener(){
+            if (innerLayout.visibility == View.GONE) {
+                innerLayout.visibility = View.VISIBLE
+            } else {
+                innerLayout.visibility = View.GONE
+            }
             if (downArrowImageView.visibility == View.VISIBLE) {
                 downArrowImageView.visibility = View.GONE
                 upArrowImageView.visibility = View.VISIBLE
@@ -290,7 +526,6 @@ class Recipes : AppBar() {
             }
         }
 
-        //cardView.addView(innerLayout)
         return cardView
     }
 

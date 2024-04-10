@@ -199,12 +199,12 @@
                                     android:paddingStart="15dp"
                                     style="@style/InputStyle">
 
-                                    <com.google.android.material.textfield.TextInputEditText
-                                        android:id="@+id/prepTimeEditText"
-                                        android:layout_width="70dp"
-                                        android:layout_height="wrap_content"
-                                        android:inputType="number"
-                                        android:imeOptions="actionDone"/>
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/prepTimeEditText"
+                                    android:layout_width="70dp"
+                                    android:layout_height="wrap_content"
+                                    android:inputType="number"
+                                    android:imeOptions="actionDone"/>
                             </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>
 
