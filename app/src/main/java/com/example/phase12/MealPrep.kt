@@ -142,7 +142,7 @@ class MealPrep : AppBar() {
         fri_meal_l = findViewById(R.id.fri_lunch_layout)
         fri_meal_d = findViewById(R.id.fri_dinner_layout)
 
-        weekMeals.add(mutableListOf(fri_meal_b,fri_meal_l,fri_meal_b))
+        weekMeals.add(mutableListOf(fri_meal_b,fri_meal_l,fri_meal_d))
 
         sat_meal_b = findViewById(R.id.sat_break_layout)
         sat_meal_l = findViewById(R.id.sat_lunch_layout)
@@ -397,18 +397,19 @@ class MealPrep : AppBar() {
         if (items != null) {
             var linearView = view
             for (i in 0 until items.length()){
+                val weights = arrayOf(3f, 1f, 1f)
                 var curr = items.getJSONObject(i)
-
                 var name = TextView(this).apply {
                     text = curr.getString("recipe")
                     layoutParams = TableRow.LayoutParams(
                         TableRow.LayoutParams.WRAP_CONTENT,
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        weights[i]
                     )
-                    textSize = 22f
+                    textSize = 23f
                     typeface = resources.getFont(R.font.hammersmith_one)
                     setTextColor(ContextCompat.getColor(context, R.color.black))
                 }
-
                 linearView.addView(name)
             }
         }
@@ -422,7 +423,6 @@ class MealPrep : AppBar() {
         val string = "[{\"recipe\":  \"$recipe\"}]"
         val json = JSONArray(string)
         populateList(json, view as LinearLayout)
-
     }
 
 
