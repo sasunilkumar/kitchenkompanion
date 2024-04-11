@@ -318,9 +318,11 @@ class MealPrep : AppBar() {
             var curItem = item.getJSONObject(i)
             var name = curItem.getString("name")
             var curList = curItem.getJSONArray("items")
-            var table = createList(name, curList)
+            //var table = createList(name, curList)
         }
     }
+
+
 
 
     private fun populateList(items: JSONArray?, view: TableLayout) {
@@ -337,45 +339,13 @@ class MealPrep : AppBar() {
 
 
                 var name = TextView(this).apply {
-                    text = curr.getString("name")
+                    text = curr.getString("recipe")
                     layoutParams = TableRow.LayoutParams(
                         0,
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        1.4f
+                        1f
                     )
                     gravity = Gravity.CENTER
-                    textSize = 24f
-                    typeface = resources.getFont(R.font.hammersmith_one)
-                    setTextColor(ContextCompat.getColor(context, R.color.black))
-                    setPadding(8, 8, 8, 8)
-                }
-                var quant = EditText(this).apply {
-                    hint = curr.getString("quantity")
-                    layoutParams = TableRow.LayoutParams(
-                        0,
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        1.4f
-                    )
-                    gravity = Gravity.CENTER
-                    textSize = 24f
-                    typeface = resources.getFont(R.font.hammersmith_one)
-                    setTextColor(ContextCompat.getColor(context, R.color.black))
-                    setPadding(8, 8, 8, 8)
-                }
-
-                //MAKING COUNT +/-
-                quant.setText(curr.getString("quantity"))
-                quant.inputType = InputType.TYPE_CLASS_NUMBER
-
-                var owner = TextView(this).apply {
-                    text = curr.getString("owner")
-                    layoutParams = TableRow.LayoutParams(
-                        0,
-                        TableRow.LayoutParams.WRAP_CONTENT,
-                        1.4f
-                    )
-                    gravity = Gravity.CENTER
-                    textAlignment = TextView.TEXT_ALIGNMENT_CENTER
                     textSize = 24f
                     typeface = resources.getFont(R.font.hammersmith_one)
                     setTextColor(ContextCompat.getColor(context, R.color.black))
@@ -383,8 +353,6 @@ class MealPrep : AppBar() {
                 }
 
                 row.addView(name)
-                row.addView(owner)
-                row.addView(quant)
                 tableView.addView(row)
             }
         }

@@ -139,6 +139,15 @@
                                     android:textColor="@color/black"
                                     android:textSize="24sp"
                                     android:gravity="center_vertical"/>
+                                <TextView
+                                    android:id="@+id/ex"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Eggs"
+                                    android:textColor= "@color/black"
+                                    android:fontFamily="@font/hammersmith_one"
+                                    android:paddingTop="15dp"
+                                    android:textSize="25sp" />
                             </LinearLayout>
 
                             <!--LUNCH MONDAY SECTION -->
@@ -157,6 +166,15 @@
                                     android:textColor="@color/black"
                                     android:textSize="24sp"
                                     android:gravity="center"/>
+                                <TextView
+                                    android:id="@+id/ex2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Fruit Jello"
+                                    android:textColor= "@color/black"
+                                    android:fontFamily="@font/hammersmith_one"
+                                    android:paddingTop="15dp"
+                                    android:textSize="23sp" />
                             </LinearLayout>
 
                             <View
@@ -179,8 +197,17 @@
                                     android:text="Dinner"
                                     android:textStyle="bold"
                                     android:textColor="@color/black"
-                                    android:textSize="24sp"
+                                    android:textSize="23sp"
                                     android:gravity="end" />
+                                <TextView
+                                    android:id="@+id/ex3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Oreo Cheesecake"
+                                    android:textColor= "@color/black"
+                                    android:fontFamily="@font/hammersmith_one"
+                                    android:paddingTop="5dp"
+                                    android:textSize="23sp" />
                             </LinearLayout>
                         </LinearLayout>
                 </LinearLayout>
