@@ -6,7 +6,7 @@
         {
           "name": "Milk",
           "quantity": 1,
-          "owner": "John"
+          "owner": "John & Jane"
         },
         {
           "name": "Eggs",
@@ -14,8 +14,8 @@
           "owner": "Jane"
         },
         {
-          "name": "Butter",
-          "quantity": 1,
+          "name": "Apple",
+          "quantity": 10,
           "owner": "John & Jane"
         },
         {
