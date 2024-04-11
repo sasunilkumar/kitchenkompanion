@@ -90,8 +90,6 @@ class MealPrep : AppBar() {
     private lateinit var sun_meal_d: ImageView
 
 
-
-
     private lateinit var week_spinner: Spinner
     private lateinit var week_Items: ArrayList<String>
     private lateinit var week_adapter: ArrayAdapter<String>
@@ -106,6 +104,7 @@ class MealPrep : AppBar() {
 
     private var weekArray: MutableList<View> = mutableListOf();
     private var typeArray: MutableList<View> = mutableListOf();
+    val weekMeals = mutableListOf<MutableList<View>>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -119,29 +118,43 @@ class MealPrep : AppBar() {
         mon_meal_l = findViewById(R.id.mon_lunch_layout)
         mon_meal_d = findViewById(R.id.mon_dinner_layout)
 
+        weekMeals.add(mutableListOf(mon_meal_b,mon_meal_l,mon_meal_d))
+
         tues_meal_b = findViewById(R.id.tues_break_layout)
         tues_meal_l = findViewById(R.id.tues_lunch_layout)
         tues_meal_d = findViewById(R.id.tues_dinner_layout)
+
+        weekMeals.add(mutableListOf(tues_meal_b,tues_meal_l,tues_meal_d))
 
         wed_meal_b = findViewById(R.id.wed_break_layout)
         wed_meal_l = findViewById(R.id.wed_lunch_layout)
         wed_meal_d = findViewById(R.id.wed_dinner_layout)
 
+        weekMeals.add(mutableListOf(wed_meal_b,wed_meal_l,wed_meal_d))
+
         thurs_meal_b = findViewById(R.id.thurs_break_layout)
         thurs_meal_l = findViewById(R.id.thurs_lunch_layout)
         thurs_meal_d = findViewById(R.id.thurs_dinner_layout)
+
+        weekMeals.add(mutableListOf(thurs_meal_b, thurs_meal_l, thurs_meal_d))
 
         fri_meal_b = findViewById(R.id.fri_break_layout)
         fri_meal_l = findViewById(R.id.fri_lunch_layout)
         fri_meal_d = findViewById(R.id.fri_dinner_layout)
 
+        weekMeals.add(mutableListOf(fri_meal_b,fri_meal_l,fri_meal_b))
+
         sat_meal_b = findViewById(R.id.sat_break_layout)
         sat_meal_l = findViewById(R.id.sat_lunch_layout)
         sat_meal_d = findViewById(R.id.sat_dinner_layout)
 
+        weekMeals.add(mutableListOf(sat_meal_b, sat_meal_l, sat_meal_d))
+
         sun_meal_b = findViewById(R.id.sun_break_layout)
         sun_meal_l = findViewById(R.id.sun_lunch_layout)
         sun_meal_d = findViewById(R.id.sun_dinner_layout)
+
+        weekMeals.add(mutableListOf(sun_meal_b, sun_meal_l, sun_meal_d))
 
         monday_meals = findViewById(R.id.monday_layouts_horo)
         tuesday_meals = findViewById(R.id.tuesday_layouts_horo)
