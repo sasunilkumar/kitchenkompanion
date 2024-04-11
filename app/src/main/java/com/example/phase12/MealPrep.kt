@@ -1,8 +1,13 @@
 package com.example.phase12;
 
+import android.graphics.Color
+import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.os.Bundle;
 import android.os.DeadObjectException
+import android.text.InputType
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ArrayAdapter
@@ -11,8 +16,13 @@ import android.widget.Spinner
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TableLayout
+import android.widget.TableRow
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.view.setPadding
 import com.example.phase12.databinding.MealPrepBinding;
 import com.example.phase12.ui.theme.AppBar;
 import org.json.JSONArray
@@ -308,19 +318,90 @@ class MealPrep : AppBar() {
             var curItem = item.getJSONObject(i)
             var name = curItem.getString("name")
             var curList = curItem.getJSONArray("items")
-                //var table = createList(name, curList)
+            var table = createList(name, curList)
         }
     }
 
 
+    private fun populateList(items: JSONArray?, view: TableLayout) {
+        if (items != null) {
+            var tableView = view
+            for (i in 0 until items.length()){
+                var row = TableRow(this).apply {
+                    layoutParams = TableLayout.LayoutParams(
+                        TableLayout.LayoutParams.MATCH_PARENT,
+                        TableLayout.LayoutParams.WRAP_CONTENT
+                    )
+                }
+                var curr = items.getJSONObject(i)
+
+
+                var name = TextView(this).apply {
+                    text = curr.getString("name")
+                    layoutParams = TableRow.LayoutParams(
+                        0,
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        1.4f
+                    )
+                    gravity = Gravity.CENTER
+                    textSize = 24f
+                    typeface = resources.getFont(R.font.hammersmith_one)
+                    setTextColor(ContextCompat.getColor(context, R.color.black))
+                    setPadding(8, 8, 8, 8)
+                }
+                var quant = EditText(this).apply {
+                    hint = curr.getString("quantity")
+                    layoutParams = TableRow.LayoutParams(
+                        0,
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        1.4f
+                    )
+                    gravity = Gravity.CENTER
+                    textSize = 24f
+                    typeface = resources.getFont(R.font.hammersmith_one)
+                    setTextColor(ContextCompat.getColor(context, R.color.black))
+                    setPadding(8, 8, 8, 8)
+                }
+
+                //MAKING COUNT +/-
+                quant.setText(curr.getString("quantity"))
+                quant.inputType = InputType.TYPE_CLASS_NUMBER
+
+                var owner = TextView(this).apply {
+                    text = curr.getString("owner")
+                    layoutParams = TableRow.LayoutParams(
+                        0,
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        1.4f
+                    )
+                    gravity = Gravity.CENTER
+                    textAlignment = TextView.TEXT_ALIGNMENT_CENTER
+                    textSize = 24f
+                    typeface = resources.getFont(R.font.hammersmith_one)
+                    setTextColor(ContextCompat.getColor(context, R.color.black))
+                    setPadding(8, 8, 8, 8)
+                }
+
+                row.addView(name)
+                row.addView(owner)
+                row.addView(quant)
+                tableView.addView(row)
+            }
+        }
+    }
+
+
+
+
     private fun add_Item(recipe: String = "test",
-                        week_view: View = weekArray[0],
-                        type_view: View = typeArray[0]) {
+                         week_view: View = weekArray[0],
+                         type_view: View = typeArray[0]) {
         val string = "[{\"recipe\":  \"$recipe\"}]"
         val json = JSONArray(string)
-       // populateList(json, week_view as TableLayout)
+        populateList(json, week_view as TableLayout)
 
     }
+
 
 
 }
