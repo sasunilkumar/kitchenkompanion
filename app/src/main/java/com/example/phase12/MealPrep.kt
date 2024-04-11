@@ -307,9 +307,7 @@ class MealPrep : AppBar() {
                 try {
                     add_Item(
                         recipeName.text.toString(),
-                        weekArray[week_spinner.selectedItemPosition],
-                        typeArray[meal_spinner.selectedItemPosition])
-
+                        weekMeals[week_spinner.selectedItemPosition][meal_spinner.selectedItemPosition])
                 } catch (e: NumberFormatException) {
                     Log.d(
                         "READ DIALOG ERROR",
@@ -395,18 +393,11 @@ class MealPrep : AppBar() {
 
 
 
-    private fun populateList(items: JSONArray?, view: TableLayout) {
+    private fun populateList(items: JSONArray?, view: LinearLayout) {
         if (items != null) {
-            var tableView = view
+            var linearView = view
             for (i in 0 until items.length()){
-                var row = TableRow(this).apply {
-                    layoutParams = TableLayout.LayoutParams(
-                        TableLayout.LayoutParams.MATCH_PARENT,
-                        TableLayout.LayoutParams.WRAP_CONTENT
-                    )
-                }
                 var curr = items.getJSONObject(i)
-
 
                 var name = TextView(this).apply {
                     text = curr.getString("recipe")
@@ -416,14 +407,13 @@ class MealPrep : AppBar() {
                         1f
                     )
                     gravity = Gravity.CENTER
-                    textSize = 24f
+                    textSize = 23f
                     typeface = resources.getFont(R.font.hammersmith_one)
                     setTextColor(ContextCompat.getColor(context, R.color.black))
                     setPadding(8, 8, 8, 8)
                 }
 
-                row.addView(name)
-                tableView.addView(row)
+                linearView.addView(name)
             }
         }
     }
@@ -432,11 +422,10 @@ class MealPrep : AppBar() {
 
 
     private fun add_Item(recipe: String = "test",
-                         week_view: View = weekArray[0],
-                         type_view: View = typeArray[0]) {
+                         view: View = weekMeals[0][0]) {
         val string = "[{\"recipe\":  \"$recipe\"}]"
         val json = JSONArray(string)
-        populateList(json, week_view as TableLayout)
+        populateList(json, view as LinearLayout)
 
     }
 
