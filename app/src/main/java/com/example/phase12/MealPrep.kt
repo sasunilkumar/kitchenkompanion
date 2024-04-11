@@ -397,19 +397,19 @@ class MealPrep : AppBar() {
         if (items != null) {
             var linearView = view
             for (i in 0 until items.length()){
-                val weights = arrayOf(3f, 1f, 1f)
                 var curr = items.getJSONObject(i)
-                var name = TextView(this).apply {
-                    text = curr.getString("recipe")
+                var name = EditText(this).apply {
                     layoutParams = TableRow.LayoutParams(
                         TableRow.LayoutParams.WRAP_CONTENT,
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        weights[i]
                     )
                     textSize = 23f
+
                     typeface = resources.getFont(R.font.hammersmith_one)
                     setTextColor(ContextCompat.getColor(context, R.color.black))
                 }
+                name.gravity = Gravity.CENTER_HORIZONTAL
+                name.setText(curr.getString("recipe"))
                 linearView.addView(name)
             }
         }

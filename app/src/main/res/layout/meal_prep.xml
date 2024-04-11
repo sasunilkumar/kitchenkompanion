@@ -126,11 +126,11 @@
                             <!--BREAKFAST MONDAY SECTION -->
                             <LinearLayout
                                 android:id = "@+id/mon_break_layout"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="3"
+                                android:layout_weight="1"
                                 android:orientation="vertical"
-                                android:gravity="center_vertical|start">
+                                android:gravity="center_horizontal">
                                 <TextView
                                     android:id="@+id/breakfast_m"
                                     android:layout_width="wrap_content"
@@ -139,25 +139,26 @@
                                     android:textStyle="bold"
                                     android:textColor="@color/black"
                                     android:textSize="24sp"
-                                    android:layout_gravity="center_vertical"/>
-                                <TextView
+                                    android:layout_gravity="center_horizontal"/>
+                                <EditText
                                     android:id="@+id/ex"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Protien Shake"
                                     android:textColor= "@color/black"
                                     android:fontFamily="@font/hammersmith_one"
+                                    android:layout_gravity="center_horizontal"
                                     android:textSize="23sp" />
                             </LinearLayout>
 
                             <!--LUNCH MONDAY SECTION -->
                             <LinearLayout
                                 android:id = "@+id/mon_lunch_layout"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:orientation="vertical"
-                                android:gravity="center_vertical">
+                                android:gravity="center_horizontal">
                                 <TextView
                                     android:id="@+id/lunch_m"
                                     android:layout_width="wrap_content"
@@ -166,8 +167,8 @@
                                     android:textStyle="bold"
                                     android:textColor="@color/black"
                                     android:textSize="24sp"
-                                    android:layout_gravity="center"/>
-                                <TextView
+                                    android:layout_gravity="center_horizontal"/>
+                                <EditText
                                     android:id="@+id/ex2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -177,20 +178,20 @@
                                     android:textSize="23sp"/>
                             </LinearLayout>
 
-                            <View
-                                android:layout_width="0dp"
-                                android:layout_height="0dp"
-                                android:layout_weight="1"
-                                android:visibility="invisible" />
+<!--                            <View-->
+<!--                                android:layout_width="0dp"-->
+<!--                                android:layout_height="0dp"-->
+<!--                                android:layout_weight="1"-->
+<!--                                android:visibility="invisible" />-->
 
                             <!--DINNER MONDAY SECTION -->
                             <LinearLayout
                                 android:id = "@+id/mon_dinner_layout"
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:orientation="vertical"
-                                android:gravity="center_vertical|end">
+                                android:gravity="center_horizontal">
                                 <TextView
                                     android:id="@+id/dinner_m"
                                     android:layout_width="wrap_content"
@@ -199,14 +200,15 @@
                                     android:textStyle="bold"
                                     android:textColor="@color/black"
                                     android:textSize="24sp"
-                                    android:layout_gravity="end"/>
-                                <TextView
+                                    android:layout_gravity="center_horizontal"/>
+                                <EditText
                                     android:id="@+id/ex3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Grilled Chicken"
                                     android:textColor= "@color/black"
                                     android:fontFamily="@font/hammersmith_one"
+                                    android:layout_gravity="center_horizontal"
                                     android:textSize="23sp"/>
                             </LinearLayout>
                         </LinearLayout>
@@ -294,11 +296,11 @@
                         <!--BREAKFAST TUESDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/tues_break_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="3"
+                            android:layout_weight="1"
                             android:orientation="vertical"
-                            android:gravity="center_vertical|start">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/breakfast_t"
                                 android:layout_width="wrap_content"
@@ -307,17 +309,17 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="center_vertical"/>
+                                android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
 
                         <!--LUNCH TUESDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/tues_lunch_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical"
-                            android:gravity="center_vertical">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/lunch_t"
                                 android:layout_width="wrap_content"
@@ -326,23 +328,18 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="center_vertical"/>
+                                android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:visibility="invisible" />
 
                         <!--DINNER TUESDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/tues_dinner_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_weight="1"
-                            android:gravity="center_vertical|end">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/dinner_t"
                                 android:layout_width="wrap_content"
@@ -351,7 +348,7 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="end"/>
+                                android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -436,11 +433,11 @@
                         <!--BREAKFAST WEDNESDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/wed_break_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1.5"
+                            android:layout_weight="1"
                             android:orientation="vertical"
-                            android:gravity="center_vertical|start">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/breakfast_w"
                                 android:layout_width="wrap_content"
@@ -449,24 +446,25 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="center_vertical"/>
-                            <TextView
+                                android:layout_gravity="center_horizontal"/>
+                            <EditText
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Spinach Quiche"
+                                android:text="Omelette"
                                 android:textColor= "@color/black"
                                 android:fontFamily="@font/hammersmith_one"
+                                android:layout_gravity="center_horizontal"
                                 android:textSize="23sp" />
                         </LinearLayout>
 
                         <!--LUNCH WEDNESDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/wed_lunch_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_weight="1"
-                            android:gravity="center_vertical">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/lunch_w"
                                 android:layout_width="wrap_content"
@@ -475,30 +473,26 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="center"/>
-                            <TextView
+                                android:layout_gravity="center_horizontal"/>
+                            <EditText
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Grilled Chicken"
+                                android:text="Chicken Salad"
+                                android:layout_gravity="center"
                                 android:textColor= "@color/black"
                                 android:fontFamily="@font/hammersmith_one"
                                 android:textSize="23sp" />
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:visibility="invisible" />
 
                         <!--DINNER WEDNESDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/wed_dinner_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_weight="1"
-                            android:gravity="center_vertical|end">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/dinner_w"
                                 android:layout_width="wrap_content"
@@ -507,8 +501,8 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="end"/>
-                            <TextView
+                                android:layout_gravity="center_horizontal"/>
+                            <EditText
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Lasagna"
@@ -599,11 +593,11 @@
                         <!--BREAKFAST THURSDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/thurs_break_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
+                            android:layout_weight="1"
                             android:orientation="vertical"
-                            android:gravity="center_vertical|start">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/breakfast_th"
                                 android:layout_width="wrap_content"
@@ -612,17 +606,17 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="center_vertical"/>
+                                android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
 
                             <!--LUNCH THURSDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/thurs_lunch_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical"
-                            android:gravity="center">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/lunch_th"
                                 android:layout_width="wrap_content"
@@ -631,23 +625,18 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="center"/>
+                                android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:visibility="invisible" />
 
                             <!--DINNER THURSDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/thurs_dinner_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_weight="1"
-                            android:gravity="center_vertical|end">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/dinner_th"
                                 android:layout_width="wrap_content"
@@ -656,7 +645,7 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="end"/>
+                                android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -741,11 +730,11 @@
                         <!--BREAKFAST FRIDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/fri_break_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
+                            android:layout_weight="1"
                             android:orientation="vertical"
-                            android:gravity="center_vertical|start">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/breakfast_f"
                                 android:layout_width="wrap_content"
@@ -754,17 +743,17 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="center_vertical"/>
+                                android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
 
                         <!--LUNCH FRIDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/fri_lunch_layout"
                             android:layout_weight="1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:gravity="center_vertical">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/lunch_f"
                                 android:layout_width="wrap_content"
@@ -773,23 +762,18 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="center"/>
+                                android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:visibility="invisible" />
 
                         <!--DINNER FRIDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/fri_dinner_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_weight="1"
-                            android:gravity="center_vertical|end">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/dinner_f"
                                 android:layout_width="wrap_content"
@@ -798,7 +782,7 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="end" />
+                                android:layout_gravity="center_horizontal" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -883,11 +867,11 @@
                         <!--BREAKFAST SATURDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/sat_break_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="3"
+                            android:layout_weight="1"
                             android:orientation="vertical"
-                            android:gravity="center_vertical|start">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/breakfast_sat"
                                 android:layout_width="wrap_content"
@@ -896,17 +880,17 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="center_vertical"/>
+                                android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
 
                         <!--LUNCH SATURDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/sat_lunch_layout"
                             android:layout_weight="1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:gravity="center_vertical">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/lunch_sat"
                                 android:layout_width="wrap_content"
@@ -915,23 +899,18 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:gravity="center"/>
+                                android:gravity="center_horizontal"/>
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:visibility="invisible" />
 
                         <!--DINNER SATURDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/sat_dinner_layout"
                             android:layout_weight="1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:gravity="center_vertical|end">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/dinner_sat"
                                 android:layout_width="wrap_content"
@@ -940,7 +919,7 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="end" />
+                                android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
@@ -1024,11 +1003,11 @@
                         <!--BREAKFAST SUNDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/sun_break_layout"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="3"
+                            android:layout_weight="1"
                             android:orientation="vertical"
-                            android:gravity="center_vertical|start">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/breakfast_sun"
                                 android:layout_width="wrap_content"
@@ -1037,17 +1016,17 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="center_vertical"/>
+                                android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
 <!-- HELP-->
                         <!--LUNCH SUNDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/sun_lunch_layout"
                             android:layout_weight="1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:gravity="center_vertical">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/lunch_sun"
                                 android:layout_width="wrap_content"
@@ -1056,23 +1035,17 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:gravity="center"/>
+                                android:gravity="center_horizontal"/>
                         </LinearLayout>
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:visibility="invisible" />
 
                         <!--DINNER SUNDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/sun_dinner_layout"
                             android:layout_weight="1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:gravity="center_vertical|end">
+                            android:gravity="center_horizontal">
                             <TextView
                                 android:id="@+id/dinner_sun"
                                 android:layout_width="wrap_content"
@@ -1081,7 +1054,7 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:layout_gravity="end" />
+                                android:layout_gravity="center_horizontal" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
