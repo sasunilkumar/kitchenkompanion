@@ -250,6 +250,7 @@ class Recipes : AppBar() {
 
                         newIngredientLayout.addView(newCheckBox)
 
+                        //val layoutToAdd = findViewById<RelativeLayout>(ingredientViews[selectedRecipe])
                         ingredientsRelLayout.addView(newIngredientLayout)
                         ingredientsRelLayout.invalidate()
                         //(ingredientSpinner.adapter as? ArrayAdapter<String>)?.notifyDataSetChanged()
@@ -648,7 +649,6 @@ class Recipes : AppBar() {
             newItem.id = View.generateViewId()
 
             val newItemParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
-            newItemParams.topMargin = context.resources.getDimensionPixelSize(R.dimen.itemPad)
             if (prevId > 0) {
                 newItemParams.addRule(RelativeLayout.BELOW, prevId)
             }
@@ -662,12 +662,18 @@ class Recipes : AppBar() {
 
             checkParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE)
             checkItem.layoutParams = checkParams
+            checkItem.gravity = Gravity.CENTER_VERTICAL
 
-            checkItem.text = ingredient
-            checkItem.setTextColor(textColor)
-            checkItem.textSize = 20F
+            val checkEditText = EditText(context)
+
+            checkEditText.setText(ingredient)
+            checkEditText.setTextColor(textColor)
+            checkEditText.textSize = 20F
+            checkEditText.gravity = Gravity.CENTER_VERTICAL
 
             newItem.addView(checkItem)
+            newItem.addView(checkEditText)
+
             ingredientsRelLayout.addView(newItem)
             prevId = newItem.id
         }

@@ -6,6 +6,7 @@
       <dimen name="imagePadding">15dp</dimen>
       <dimen name="imageMargin">45dp</dimen>
       <dimen name="cardPadding">20dp</dimen>
+      <dimen name="checkEditPadding">35dp</dimen>
       <dimen name="timePadding">25dp</dimen>
       <dimen name="cardMargin">40dp</dimen>
       <dimen name="editBoxWidth">70dp</dimen>
