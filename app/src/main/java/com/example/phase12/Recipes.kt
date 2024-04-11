@@ -61,7 +61,10 @@ class Recipes : AppBar() {
     private lateinit var instructionViews : MutableMap<String, Int>
     private lateinit var ingredientsRelLayout : RelativeLayout
     private lateinit var instructionsRelLayout : RelativeLayout
-
+    private lateinit var detailsText : LinearLayout
+    private lateinit var recipe1 : CardView
+    private lateinit var arrowDown: ImageView
+    private lateinit var arrowUp: ImageView
     private lateinit var cardViews : MutableMap<String, Int>
 
     class Recipe (title : String = "RecipeTitle", skillLevel : Float = 1F, prepTime: Int = 30,
@@ -96,6 +99,27 @@ class Recipes : AppBar() {
         binding = RecipesBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupBar()
+
+        // Apple Pie from xml
+        detailsText = findViewById(R.id.recipe_1_layout)
+        recipe1 = findViewById(R.id.recipe_1)
+        arrowDown = findViewById(R.id.arrow_down_1)
+        arrowUp = findViewById(R.id.arrow_up_1)
+
+        recipe1.setOnClickListener {
+            if (detailsText.visibility == View.GONE) {
+                detailsText.visibility = View.VISIBLE
+            } else {
+                detailsText.visibility = View.GONE
+            }
+            if (arrowDown.visibility == View.VISIBLE) {
+                arrowDown.visibility = View.GONE
+                arrowUp.visibility = View.VISIBLE
+            } else {
+                arrowUp.visibility = View.GONE
+                arrowDown.visibility = View.VISIBLE
+            }
+        }
 
         navBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
 
