@@ -5,6 +5,7 @@ import android.widget.CheckBox
 import android.content.Context
 import android.content.DialogInterface
 import android.content.res.ColorStateList
+import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -24,6 +25,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.RelativeLayout
@@ -32,11 +34,15 @@ import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatRatingBar
+import androidx.appcompat.widget.SearchView
 import androidx.compose.foundation.layout.Box
+import androidx.compose.ui.node.getOrAddAdapter
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.view.marginTop
 import androidx.core.view.setPadding
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.phase12.ui.theme.AppBar
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomappbar.BottomAppBar
@@ -49,13 +55,13 @@ import java.io.FileNotFoundException
 
 class Recipes : AppBar() {
     private lateinit var binding: RecipesBinding
-    private lateinit var detailsText: LinearLayout
-    private lateinit var recipe1: CardView
-    private lateinit var arrowDown1: ImageView
-    private lateinit var arrowUp1: ImageView
+    private lateinit var parentLayout: LinearLayout
     private lateinit var navBar: BottomAppBar
     private lateinit var ingredientViews : MutableMap<String, Int>
     private lateinit var instructionViews : MutableMap<String, Int>
+    private lateinit var ingredientsRelLayout : RelativeLayout
+    private lateinit var instructionsRelLayout : RelativeLayout
+
     private lateinit var cardViews : MutableMap<String, Int>
 
     class Recipe (title : String = "RecipeTitle", skillLevel : Float = 1F, prepTime: Int = 30,
@@ -93,7 +99,8 @@ class Recipes : AppBar() {
 
         navBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
 
-        val parentLayout = findViewById<LinearLayout>(R.id.recipes)
+        parentLayout = findViewById<LinearLayout>(R.id.recipes)
+        val searchView = findViewById<SearchView>(R.id.searchView)
 
         val recipes = parse(readJson())
         val recipeTitles = mutableListOf<String>()
@@ -110,6 +117,41 @@ class Recipes : AppBar() {
             )
             parentLayout.addView(newCard)
         }
+
+        // Dietary Filter
+        val dairyFree = findViewById<ImageButton>(R.id.dairy_free)
+        val glutenFree = findViewById<ImageButton>(R.id.gluten_free)
+        val halal = findViewById<ImageButton>(R.id.halal)
+        val kosher = findViewById<ImageButton>(R.id.kosher)
+        val lowSodium = findViewById<ImageButton>(R.id.low_sodium)
+        val nutFree = findViewById<ImageButton>(R.id.nut_free)
+        val sugarFree = findViewById<ImageButton>(R.id.sugar_free)
+        val vegan = findViewById<ImageButton>(R.id.vegan_v)
+
+//        dairyFree.setOnClickListener() {
+//            filterRecipes("dairy_free", recipes)
+//        }
+//        glutenFree.setOnClickListener() {
+//            filterRecipes("gluten_free", recipes)
+//        }
+//        halal.setOnClickListener() {
+//            filterRecipes("halal", recipes)
+//        }
+//        kosher.setOnClickListener() {
+//            filterRecipes("kosher", recipes)
+//        }
+//        lowSodium.setOnClickListener() {
+//            filterRecipes("low_sodium", recipes)
+//        }
+//        nutFree.setOnClickListener() {
+//            filterRecipes("nut_free", recipes)
+//        }
+//        sugarFree.setOnClickListener() {
+//            filterRecipes("sugar_free", recipes)
+//        }
+//        vegan.setOnClickListener() {
+//            filterRecipes("vegan", recipes)
+//        }
 
         binding.fabRecipeList.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -160,8 +202,33 @@ class Recipes : AppBar() {
                         val selectedRecipe : Recipe = recipes[selectedIngredientRecipe]
                         val newIngredient = view.findViewById<EditText>(R.id.ingredient).text.toString()
                         selectedRecipe.ingredients.add(newIngredient)
-                        (ingredientSpinner.adapter as? ArrayAdapter<String>)?.notifyDataSetChanged()
-                        ingredientViews
+
+                        val newIngredientLayout = RelativeLayout(this@Recipes)
+                        newIngredientLayout.id = View.generateViewId()
+
+                        val newIngredientLayoutParams = RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.MATCH_PARENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT
+                        )
+                        newIngredientLayout.layoutParams = newIngredientLayoutParams
+
+                        val newCheckBox = CheckBox(this@Recipes)
+                        newCheckBox.id = View.generateViewId()
+                        val checkBoxLayoutParams = RelativeLayout.LayoutParams(
+                            RelativeLayout.LayoutParams.WRAP_CONTENT,
+                            RelativeLayout.LayoutParams.WRAP_CONTENT
+                        )
+                        checkBoxLayoutParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE)
+                        newCheckBox.layoutParams = checkBoxLayoutParams
+                        newCheckBox.text = newIngredient
+                        newCheckBox.setTextColor(Color.parseColor("#000000"))
+                        newCheckBox.textSize = 20F
+
+                        newIngredientLayout.addView(newCheckBox)
+
+                        ingredientsRelLayout.addView(newIngredientLayout)
+                        ingredientsRelLayout.invalidate()
+                        //(ingredientSpinner.adapter as? ArrayAdapter<String>)?.notifyDataSetChanged()
                     }
                     R.id.radio_item_2 -> {
                         val selectedInstructionRecipeItem = instructionSpinner.selectedItem
@@ -181,35 +248,23 @@ class Recipes : AppBar() {
             builder.setCancelable(true)
             builder.create().show()
         }
-
-        detailsText = findViewById(R.id.recipe_1_layout)
-        recipe1 = findViewById(R.id.recipe_1)
-
-        arrowDown1 = findViewById(R.id.arrow_down_1)
-        arrowUp1 = findViewById(R.id.arrow_up_1)
-
-        //layout.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
-        recipe1.setOnClickListener {
-            if (detailsText.visibility == View.GONE) {
-                detailsText.visibility = View.VISIBLE
-            } else {
-                detailsText.visibility = View.GONE
-            }
-            if (arrowDown1.visibility == View.VISIBLE) {
-                arrowDown1.visibility = View.GONE
-                arrowUp1.visibility = View.VISIBLE
-            } else {
-                arrowUp1.visibility = View.GONE
-                arrowDown1.visibility = View.VISIBLE
-            }
-        }
-        //onclickListener for plus button
     }
 
     private fun addNewRecipe() {
 
     }
-
+//    private fun filterRecipes(diet : String, recipes : MutableList<Recipe>) {
+//        for (i in 0 until parentLayout.childCount) {
+//            val cardView = parentLayout.getChildAt(i) as CardView
+//            val recipe = cardView.getTag(R.id.recipe) as Recipe
+//
+//            if (recipe.diet.contains(diet)) {
+//                cardView.visibility = View.VISIBLE
+//            } else {
+//                cardView.visibility = View.GONE
+//            }
+//        }
+//    }
     private fun createRecipeCard(context: Context, title: String, ratingStars: Float, prepTime : Int,
                                  cookTime: Int, serves: Int, diet: MutableList<String>, ingredients : MutableList<String>,
                                  instructions : MutableList<String>): CardView {
@@ -344,6 +399,7 @@ class Recipes : AppBar() {
         val ratingBarView = AppCompatRatingBar(context)
         ratingBarView.numStars = 3
         ratingBarView.id = View.generateViewId()
+        ratingBarView.rating = ratingStars
 
         val ratingBarParams = RelativeLayout.LayoutParams(
             RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -556,7 +612,7 @@ class Recipes : AppBar() {
         ingredientsHeader.textSize = 24F
 
         // Ingredients Relative Layout for all Ingredients
-        val ingredientsRelLayout = RelativeLayout(context)
+        ingredientsRelLayout = RelativeLayout(context)
         ingredientsRelLayout.id = View.generateViewId()
 
         val ingredientsRelParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
@@ -587,18 +643,7 @@ class Recipes : AppBar() {
             checkItem.setTextColor(textColor)
             checkItem.textSize = 20F
 
-            val newButton = Button(context)
-            newButton.id = View.generateViewId()
-
-            val buttonParams = RelativeLayout.LayoutParams(plusSize, plusSize)
-            buttonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE)
-            newButton.layoutParams = buttonParams
-
-            val plusImage = R.drawable.ic_plus_24
-            newButton.setBackgroundResource(plusImage)
-
             newItem.addView(checkItem)
-            newItem.addView(newButton)
             ingredientsRelLayout.addView(newItem)
             prevId = newItem.id
         }
@@ -617,7 +662,7 @@ class Recipes : AppBar() {
         instructionsHeader.textSize = 24F
 
         // Instructions Relative Layout for all Instructions
-        val instructionsRelLayout = RelativeLayout(context)
+        instructionsRelLayout = RelativeLayout(context)
         instructionsRelLayout.id = View.generateViewId()
         instructionViews[title] = instructionsRelLayout.id
 
@@ -649,18 +694,7 @@ class Recipes : AppBar() {
             checkItem.setTextColor(textColor)
             checkItem.textSize = 20F
 
-            val newButton = Button(context)
-            newButton.id = View.generateViewId()
-
-            val buttonParams = RelativeLayout.LayoutParams(plusSize, plusSize)
-            buttonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE)
-            newButton.layoutParams = buttonParams
-
-            val plusImage = R.drawable.ic_plus_24
-            newButton.setBackgroundResource(plusImage)
-
             newItem.addView(checkItem)
-            newItem.addView(newButton)
             instructionsRelLayout.addView(newItem)
             prevInstructionId = newItem.id
         }
