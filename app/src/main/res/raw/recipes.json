@@ -1,43 +1,19 @@
 [
   {
-    "name": "Apple Pie",
-    "rating": 1.5,
-    "prepTime": 35,
-    "cookTime": 35,
-    "servings": 6,
-    "ingredients":
-    ["Apples",
-      "Cinnamon",
-      "Butter",
-      "Brown Sugar",
-      "Flour",
-      "Water",
-      "Salt"
-    ],
-    "instructions":
-    ["Preheat oven to 375 degrees",
-      "Grease pie pan",
-      "Dice apples and saute with butter and brown sugar on stove",
-      "Place pie crust in pie pan",
-      "Pour apple mixture into crust.",
-      "Bake for 30-40 minutes or until golden brown with apples tender."
-    ]
-  },
-  {
     "name": "Brownies",
     "rating": 1,
     "prepTime": 25,
     "cookTime": 30,
     "servings": 16,
+    "diet": ["low_sodium", "kosher"],
     "ingredients":
-    ["Cocoa Powder",
-      "Vanilla Extract",
-      "Oil",
-      "Sugar",
-      "Chocolate Chips",
-      "Flour",
-      "Milk",
-      "Salt"
+    ["Cocoa Powder- 1 cup",
+      "Vanilla Extract- 1 tsp",
+      "Oil- 1/3 cup",
+      "Sugar- 1/2 cup",
+      "Chocolate Chips- 1/2 cup",
+      "Flour- 1 cup",
+      "Milk- 1/4 cup"
     ],
     "instructions":
     ["Sift and whisk dry ingredients in large mixing bowl until combined",
@@ -52,19 +28,20 @@
     "prepTime": 30,
     "cookTime": 40,
     "servings": 8,
+    "diet": ["nut_free"],
     "ingredients":
-      ["Pineapples",
-      "Cherries",
-      "Butter",
-      "Brown Sugar",
-      "Flour",
-      "Baking Powder",
-      "Baking Soda",
-      "Sugar",
-      "Egg Whites",
-      "Sour Cream",
-      "Vanilla Extract",
-      "Milk"
+      ["Pineapples- 8 rings",
+      "Cherries- 8",
+      "Butter- 8 tbsp",
+      "Brown Sugar- 1 cup",
+      "Flour- 1 3/4 cup",
+      "Baking Powder- 1 tsp",
+      "Baking Soda- 2 tsp",
+      "Sugar- 3/4 cup",
+      "Egg Whites- 4",
+      "Sour Cream- 1/2 cup",
+      "Vanilla Extract- 1/2 tbsp",
+      "Milk- 1 cup"
      ],
     "instructions":
       ["Grease cake pan and lay pineapple rings/cherries in base of pan",
@@ -76,15 +53,102 @@
       "Cool at least 10 minutes in pan or on rack before serving"
     ]
   },{
-    "name": ""
+    "name": "Gingersnaps",
+    "rating": 1,
+    "prepTime": 15,
+    "cookTime": 15,
+    "servings": 28,
+    "diet": ["halal", "dairy_free"],
+    "ingredients":
+    ["Butter- 6 tbsp",
+      "Sugar- 2/3 cup",
+      "Brown Sugar- 2/3 cup",
+      "Molasses- 1/3 cup",
+      "Eggs- 3",
+      "Salt- 2 tsp",
+      "Baking Soda- 1 tsp",
+      "Ginger- 1 clove",
+      "Cloves- 4",
+      "Almond Flour- 1 1/2 cup"
+    ],
+    "instructions":
+    ["Preheat oven to 350F",
+      "Cream together butter and sugar in medium bowl. Beat in egg and molasses",
+      "Whisk dry ingredients in large bowl, integrate wet and dry",
+      "Shape into 1/2 inch balls and flatten with thumb",
+      "Bake 8-12 minutes, cool 5 minutes on wire rack"
+    ]
   },
-  {
-
+  {"name": "Chocolate Mousse",
+    "rating": 1,
+    "prepTime": 15,
+    "cookTime": 0,
+    "servings": 4,
+    "diet": ["vegan"],
+    "ingredients":
+    ["Avocados- 3",
+      "Sugar Free Chocolate- 1 bar",
+      "Cocoa Powder- 1/3 cup",
+      "Soy Milk- 1 cup",
+      "Agave- 3 tbsp",
+      "Vanilla Bean- 2",
+      "Low Fat Whipping Cream- 1/2 cup"
+    ],
+    "instructions":
+    ["Scoop out avocado flesh and de-pit; blend on medium intensity",
+      "Stir in cocoa powder, salt and agave",
+      "On stove, melt chocolate in saucepan and pour over mixture with soy milk",
+      "Add vanilla bean scraped in and blend one more time"
+    ]
   },
-  {
-
+  {"name": "Oreo Cheesecake",
+    "rating": 1.5,
+    "prepTime": 25,
+    "cookTime": 55,
+    "servings": 12,
+    "diet": ["nut_free", "gluten_free"],
+    "ingredients":
+    ["Gluten Free Oreos- 36 (1 box)",
+      "Unsalted Butter (Melted)- 4 tbsp",
+      "Cream Cheese (softened)- 2 cups",
+      "Sugar- 1/2 cup",
+      "Sour Cream- 1/2 cup",
+      "Vanilla Extract- 2 tsp",
+      "Eggs- 2",
+      "Heavy Cream- 1/4 cup"
+    ],
+    "instructions":
+    ["Preheat oven to 325 F",
+      "Separate Oreo cream from cookies and pour cookies into blender",
+      "Pulse cookies in blender until crumb consistency achieved",
+      "In large bowl knead butter and crumbs into crust, press into pie pan",
+      "In Ziploc bag, mash up remaining oreos into chunks",
+      "In stand mixer, incorporate oreo chunks with cream cheese and vanilla extract",
+      "Crack and add one egg at a time with mixer on low",
+      "Pour filling into pie pan and bake 50-60 minutes til set but jiggly",
+      "Refrigerate after cooling for 6 hours"
+    ]
   },
-  {
-
+  {"name": "Fruit Jello",
+    "rating": 0.5,
+    "prepTime": 5,
+    "cookTime": 120,
+    "servings": 2,
+    "diet": ["kosher", "Sugar Free"],
+    "ingredients":
+    ["Boiling water- 1 cup",
+      "Cold water- 1 cup",
+      "Peaches- 3",
+      "Apples- 3",
+      "Sugar Free Jello- 1 package"
+    ],
+    "instructions":
+    ["Boil one cup of water over stove or in microwave",
+      "Stir in gelatin packet and mix with spoon until all granules dissolved",
+      "Mix in cold water and stir until thick",
+      "Chop fruit into pieces and place in large bowl",
+      "Pour jello liquid over fruit pieces",
+      "Refrigerate 120 minutes until set"
+    ]
   }
 ]
