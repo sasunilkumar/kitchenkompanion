@@ -320,7 +320,7 @@
                                 android:textStyle="bold"
                                 android:textColor="@color/black"
                                 android:textSize="24sp"
-                                android:gravity="center"/>
+                                android:layout_gravity="center"/>
                         </LinearLayout>
 
                         <View
