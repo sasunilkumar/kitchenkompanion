@@ -9,6 +9,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.text.InputType
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.LinearLayout
@@ -20,11 +21,14 @@ import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import android.view.ViewGroup.MarginLayoutParams
 import android.view.inputmethod.EditorInfo
+import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.RelativeLayout
 import android.widget.ScrollView
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatRatingBar
@@ -39,18 +43,46 @@ import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import org.json.JSONArray
+import java.io.BufferedReader
+import java.io.FileNotFoundException
 
 class Recipes : AppBar() {
     private lateinit var binding: RecipesBinding
     private lateinit var detailsText: LinearLayout
-    private lateinit var detailsText2: LinearLayout
     private lateinit var recipe1: CardView
-    private lateinit var recipe2: CardView
     private lateinit var arrowDown1: ImageView
     private lateinit var arrowUp1: ImageView
-    private lateinit var arrowDown2: ImageView
-    private lateinit var arrowUp2: ImageView
     private lateinit var navBar: BottomAppBar
+    private lateinit var ingredientViews : MutableMap<String, Int>
+    private lateinit var instructionViews : MutableMap<String, Int>
+    private lateinit var cardViews : MutableMap<String, Int>
+
+    class Recipe (title : String = "RecipeTitle", skillLevel : Float = 1F, prepTime: Int = 30,
+                  cookTime : Int = 30, serves : Int = 4, diet : MutableList<String> = mutableListOf("vegan"),
+                  ingredients: MutableList<String> = mutableListOf("exampleIngredient"),
+                  instructions : MutableList<String> = mutableListOf("exampleInstruction")
+    ) {
+        val title : String
+        val skillLevel : Float
+        val prepTime : Int
+        val cookTime : Int
+        val serves : Int
+        val diet : MutableList<String>
+        var ingredients : MutableList<String>
+        var instructions : MutableList<String>
+
+        init {
+            this.title = title
+            this.skillLevel = skillLevel
+            this.prepTime = prepTime
+            this.cookTime = cookTime
+            this.serves = serves
+            this.diet = diet
+            this.ingredients = ingredients
+            this.instructions = instructions
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,15 +93,42 @@ class Recipes : AppBar() {
 
         navBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
 
+        val parentLayout = findViewById<LinearLayout>(R.id.recipes)
+
+        val recipes = parse(readJson())
+        val recipeTitles = mutableListOf<String>()
+
+        ingredientViews = HashMap<String, Int>()
+        instructionViews = HashMap<String, Int>()
+
+        for (recipe in recipes) {
+            recipeTitles.add(recipe.title)
+            val newCard = createRecipeCard(
+                this, recipe.title, recipe.skillLevel,
+                recipe.prepTime, recipe.cookTime, recipe.serves, recipe.diet,
+                recipe.ingredients, recipe.instructions
+            )
+            parentLayout.addView(newCard)
+        }
+
         binding.fabRecipeList.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val inflater = LayoutInflater.from(this)
             val view = inflater.inflate(R.layout.add_recipe, null)
 
+            val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, recipeTitles)
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
             val radioGroup = view.findViewById<RadioGroup>(R.id.radioGroup)
             val addIngredientLayout = view.findViewById<LinearLayout>(R.id.add_ingredient)
             val addInstructionLayout = view.findViewById<LinearLayout>(R.id.add_instruction)
             val addRecipeLayout = view.findViewById<LinearLayout>(R.id.add_recipe)
+
+            val ingredientSpinner = view.findViewById<Spinner>(R.id.ingredient_recipe)
+            ingredientSpinner.adapter = adapter
+
+            val instructionSpinner = view.findViewById<Spinner>(R.id.instruction_recipe)
+            instructionSpinner.adapter = adapter
 
             radioGroup.setOnCheckedChangeListener { group, checkedId ->
                 when (checkedId) {
@@ -87,13 +146,33 @@ class Recipes : AppBar() {
                         addIngredientLayout.visibility = View.GONE
                         addInstructionLayout.visibility = View.GONE
                         addRecipeLayout.visibility = View.VISIBLE
+                        addNewRecipe()
                     }
                 }
             }
             builder.setView(view)
             builder.setTitle("What would you like to add?")
+
             builder.setPositiveButton("Add") { dialog, which ->
-                addNewRecipe()
+                when (radioGroup.checkedRadioButtonId) {
+                    R.id.radio_item_1 -> {
+                        val selectedIngredientRecipe = ingredientSpinner.selectedItemPosition
+                        val selectedRecipe : Recipe = recipes[selectedIngredientRecipe]
+                        val newIngredient = view.findViewById<EditText>(R.id.ingredient).text.toString()
+                        selectedRecipe.ingredients.add(newIngredient)
+                        (ingredientSpinner.adapter as? ArrayAdapter<String>)?.notifyDataSetChanged()
+                        ingredientViews
+                    }
+                    R.id.radio_item_2 -> {
+                        val selectedInstructionRecipeItem = instructionSpinner.selectedItem
+                        val selectedInstructionRecipeIndex = recipes.indexOf(selectedInstructionRecipeItem)
+                        val selectedInstructionRecipe : Recipe = recipes[selectedInstructionRecipeIndex]
+                        val newInstruction = view.findViewById<EditText>(R.id.instruction).text.toString()
+                        selectedInstructionRecipe.instructions.add(newInstruction)
+                        (instructionSpinner.adapter as ArrayAdapter<String>).notifyDataSetChanged()
+                    }
+                    else -> { }
+                }
             }
             builder.setNegativeButton("Cancel") { dialog, which ->
                 dialog.dismiss()
@@ -104,16 +183,10 @@ class Recipes : AppBar() {
         }
 
         detailsText = findViewById(R.id.recipe_1_layout)
-        detailsText2 = findViewById(R.id.recipe_2_layout)
-
         recipe1 = findViewById(R.id.recipe_1)
-        recipe2 = findViewById(R.id.recipe_2)
 
         arrowDown1 = findViewById(R.id.arrow_down_1)
         arrowUp1 = findViewById(R.id.arrow_up_1)
-
-        arrowDown2 = findViewById(R.id.arrow_down_2)
-        arrowUp2 = findViewById(R.id.arrow_up_2)
 
         //layout.layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
         recipe1.setOnClickListener {
@@ -130,45 +203,6 @@ class Recipes : AppBar() {
                 arrowDown1.visibility = View.VISIBLE
             }
         }
-
-        recipe2.setOnClickListener {
-            if (detailsText2.visibility == View.GONE) {
-                detailsText2.visibility = View.VISIBLE
-            } else {
-                detailsText2.visibility = View.GONE
-            }
-            if (arrowDown2.visibility == View.VISIBLE) {
-                arrowDown2.visibility = View.GONE
-                arrowUp2.visibility = View.VISIBLE
-            } else {
-                arrowUp2.visibility = View.GONE
-                arrowDown2.visibility = View.VISIBLE
-            }
-        }
-
-        val parentLayout = findViewById<LinearLayout>(R.id.recipes)
-        val newIngredients = arrayOf("Pineapples",
-            "Cherries",
-            "Butter",
-            "Brown Sugar",
-            "Flour",
-            "Baking Powder",
-            "Baking Soda",
-            "Sugar",
-            "Egg Whites",
-            "Sour Cream",
-            "Vanilla Extract",
-            "Milk")
-        val newInstructions = arrayOf("Grease cake pan and lay pineapple rings/cherries in base of pan",
-            "In saucepan over stove top melt butter and brown sugar, pouring syrup over pineapples",
-            "In large bowl whisk together dry ingredients",
-            "Cream butter and sugar until butter lightens in color, then add remaining wet ingredients",
-            "Fold dry into wet ingredients along with milk until just combined",
-            "Bake 35-40 minutes",
-            "Cool at least 10 minutes in pan or on rack before serving")
-        val newCard = createRecipeCard(this, "Pineapple Cake", 2, 30,
-            40, 8, newIngredients, newInstructions)
-        parentLayout.addView(newCard)
         //onclickListener for plus button
     }
 
@@ -176,9 +210,9 @@ class Recipes : AppBar() {
 
     }
 
-    private fun createRecipeCard(context: Context, title: String, ratingStars: Int, prepTime : Int,
-                                 cookTime: Int, serves: Int, ingredients : Array<String>,
-                                 instructions : Array<String>): CardView {
+    private fun createRecipeCard(context: Context, title: String, ratingStars: Float, prepTime : Int,
+                                 cookTime: Int, serves: Int, diet: MutableList<String>, ingredients : MutableList<String>,
+                                 instructions : MutableList<String>): CardView {
         //Setting parameters
         val cardView = CardView(context, null, R.style.CardViewStyle)
         cardView.id = View.generateViewId()
@@ -502,12 +536,11 @@ class Recipes : AppBar() {
         // Ingredients Sub Card Relative Layout
         val ingredientsCardRelLayout = RelativeLayout(context)
         ingredientsCardRelLayout.id = View.generateViewId()
+        ingredientViews[title] = ingredientsCardRelLayout.id
 
         ingredientsCardRelLayout.layoutParams = RelativeLayout.LayoutParams(
             RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT
         )
-
-
 
         // Ingredients Header
         val ingredientsHeader = TextView(context)
@@ -586,6 +619,7 @@ class Recipes : AppBar() {
         // Instructions Relative Layout for all Instructions
         val instructionsRelLayout = RelativeLayout(context)
         instructionsRelLayout.id = View.generateViewId()
+        instructionViews[title] = instructionsRelLayout.id
 
         val instructionsRelParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
         instructionsRelLayout.layoutParams = instructionsRelParams
@@ -684,6 +718,48 @@ class Recipes : AppBar() {
         }
 
         return cardView
+    }
+
+    // From Alex's Grocery List
+    private fun readJson(): JSONArray {
+        return JSONArray(
+                // JSON reading stolen from this https://www.youtube.com/watch?v=B9jrhLyRwBs
+                applicationContext.resources.openRawResource(R.raw.recipes).bufferedReader()
+                    .use<BufferedReader, String> { it.readText() })
+    }
+
+    // From Alex's Grocery List
+    private fun parse(jsonArray: JSONArray) : MutableList<Recipes.Recipe>  {
+        val recipes = mutableListOf<Recipes.Recipe>()
+
+        for (i in 0 until jsonArray.length()) {
+            val curr = jsonArray.getJSONObject(i)
+            val title = curr.getString("name")
+            val skillLevel = curr.getDouble("rating").toFloat()
+            val prepTime = curr.getInt("prepTime")
+            val cookTime = curr.getInt("cookTime")
+            val serves = curr.getInt("servings")
+
+            val dietJSON = curr.getJSONArray("diet")
+            val diet = MutableList(dietJSON.length()) {
+                dietJSON.getString(it)
+            }
+
+            val ingredientsJSON = curr.getJSONArray("ingredients")
+            val ingredients = MutableList(ingredientsJSON.length()) {
+                ingredientsJSON.getString(it)
+            }
+
+            val instructionsJSON = curr.getJSONArray("instructions")
+            val instructions = MutableList(instructionsJSON.length()) {
+                instructionsJSON.getString(it)
+            }
+
+            val newRecipe = Recipe(title, skillLevel, prepTime, cookTime,
+                serves, diet, ingredients, instructions)
+            recipes.add(newRecipe)
+        }
+        return recipes
     }
 
     private fun dietaryRestrictions(currentIcon: ImageView) {
