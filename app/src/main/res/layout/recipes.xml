@@ -36,98 +36,6 @@
                 android:textColor="@color/black"
                 android:textSize="50sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Filter by Diet"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
-
-            <LinearLayout
-                android:id="@+id/filterLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="16dp"
-                android:gravity="center_horizontal">
-
-                <ImageButton
-                    android:id="@+id/dairy_free"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/dairy_free_round"
-                    android:backgroundTint="@color/light_cream"
-                    android:checked="false"/>
-
-                <ImageButton
-                    android:id="@+id/gluten_free"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@mipmap/gluten_free_round"
-                    android:backgroundTint="@color/light_cream"
-                    android:checked="false"/>
-                <ImageButton
-                    android:id="@+id/halal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Halal"
-                    android:src="@mipmap/halal_round"
-                    android:backgroundTint="@color/light_cream"
-                    android:checked="false"/>
-                <ImageButton
-                    android:id="@+id/kosher"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kosher"
-                    android:src="@mipmap/kosher_round"
-                    android:backgroundTint="@color/light_cream"
-                    android:checked="false"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="16dp"
-                android:gravity="center_horizontal">
-
-                <ImageButton
-                    android:id="@+id/low_sodium"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Low Sodium"
-                    android:src="@mipmap/low_sodium_round"
-                    android:backgroundTint="@color/light_cream"
-                    android:checked="false"/>
-                <ImageButton
-                    android:id="@+id/nut_free"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nut Free"
-                    android:src="@mipmap/nut_free_round"
-                    android:backgroundTint="@color/light_cream"
-                    android:checked="false"/>
-                <ImageButton
-                    android:id="@+id/sugar_free"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sugar Free"
-                    android:src="@mipmap/sugar_free_round"
-                    android:backgroundTint="@color/light_cream"
-                    android:checked="false"/>
-                <ImageButton
-                    android:id="@+id/vegan_v"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Vegan"
-                    android:src="@mipmap/vegan_round"
-                    android:backgroundTint="@color/light_cream"
-                    android:checked="false"
-                    />
-            </LinearLayout>
-
-
             <View
                 android:id="@+id/list_spacer"
                 android:layout_width="match_parent"
@@ -140,18 +48,126 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp">
+                android:layout_marginRight="50dp"
+                android:hint="Not Yet Implemented"
+                android:queryHint="Not Yet Implemented"
+                app:strokeColor="@color/black"
+                app:titleTextColor="@color/black">
 
                 <androidx.appcompat.widget.SearchView
                     android:id="@+id/searchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:queryHint="Search for a recipe"
                     />
             </com.google.android.material.search.SearchBar>
 
             <View
-                android:id="@id/list_spacer"
+                android:id="@+id/list_spacer_2"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:visibility="invisible" />
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="720px"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hammersmith_one"
+                android:backgroundTint="@color/pastel_purple"
+                android:orientation="vertical"
+                android:background="@drawable/view_container">
+                //android:divider="@drawable/divider"
+                //android:showDividers="middle">
+
+                <LinearLayout
+                    android:id="@+id/filterLayoutAbove"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:paddingTop="16dp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal">
+                    <ImageButton
+                        android:id="@+id/dairy_free"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/dairy_free_round"
+                        android:background="@color/pastel_purple"
+                        android:checked="false"
+                        android:adjustViewBounds="true"/>
+                    <ImageButton
+                        android:id="@+id/gluten_free"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/gluten_free_round"
+                        android:background="@color/pastel_purple"
+                        android:checked="false"
+                        android:adjustViewBounds="true"/>
+                    <ImageButton
+                        android:id="@+id/halal"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/halal_round"
+                        android:background="@color/pastel_purple"
+                        android:checked="false"
+                        android:adjustViewBounds="true"/>
+                    <ImageButton
+                        android:id="@+id/kosher"
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/kosher_round"
+                        android:background="@color/pastel_purple"
+                        android:checked="false"
+                        android:adjustViewBounds="true"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/filterLayoutBelow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_weight="1"
+                    android:paddingBottom="48dp"
+                    android:gravity="center_horizontal">
+                    <ImageButton
+                        android:id="@+id/low_sodium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/low_sodium_round"
+                        android:background="@color/pastel_purple"
+                        android:checked="false"
+                        android:adjustViewBounds="true"/>
+                    <ImageButton
+                        android:id="@+id/nut_free"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/nut_free_round"
+                        android:background="@color/pastel_purple"
+                        android:checked="false"
+                        android:adjustViewBounds="true"/>
+                    <ImageButton
+                        android:id="@+id/sugar_free"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/sugar_free_round"
+                        android:background="@color/pastel_purple"
+                        android:checked="false"
+                        android:adjustViewBounds="true"/>
+                    <ImageButton
+                        android:id="@+id/vegan_v"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/vegan_round"
+                        android:background="@color/pastel_purple"
+                        android:checked="false"
+                        android:adjustViewBounds="true"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/list_spacer_3"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:visibility="invisible" />
@@ -235,6 +251,7 @@
                             android:layout_centerVertical="true"
                             android:layout_toLeftOf="@id/recipe_1_iconImageView_2"
                             android:numStars="3"
+                            android:rating="1.5"
                             android:progressTint="@color/white"
                             style="@style/RatingTheme"
                             />
