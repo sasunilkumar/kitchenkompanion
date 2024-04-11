@@ -61,6 +61,37 @@ class MealPrep : AppBar() {
     private lateinit var arrowDownSu: ImageView
     private lateinit var arrowUpSu: ImageView
 
+    private lateinit var mon_meal_b: ImageView
+    private lateinit var mon_meal_l: ImageView
+    private lateinit var mon_meal_d: ImageView
+
+    private lateinit var tues_meal_b: ImageView
+    private lateinit var tues_meal_l: ImageView
+    private lateinit var tues_meal_d: ImageView
+
+    private lateinit var wed_meal_b: ImageView
+    private lateinit var wed_meal_l: ImageView
+    private lateinit var wed_meal_d: ImageView
+
+    private lateinit var thurs_meal_b: ImageView
+    private lateinit var thurs_meal_l: ImageView
+    private lateinit var thurs_meal_d: ImageView
+
+    private lateinit var fri_meal_b: ImageView
+    private lateinit var fri_meal_l: ImageView
+    private lateinit var fri_meal_d: ImageView
+
+    private lateinit var sat_meal_b: ImageView
+    private lateinit var sat_meal_l: ImageView
+    private lateinit var sat_meal_d: ImageView
+
+    private lateinit var sun_meal_b: ImageView
+    private lateinit var sun_meal_l: ImageView
+    private lateinit var sun_meal_d: ImageView
+
+
+
+
     private lateinit var week_spinner: Spinner
     private lateinit var week_Items: ArrayList<String>
     private lateinit var week_adapter: ArrayAdapter<String>
@@ -84,7 +115,33 @@ class MealPrep : AppBar() {
         setContentView(binding.root)
         setupBar()
 
+        mon_meal_b = findViewById(R.id.mon_break_layout)
+        mon_meal_l = findViewById(R.id.mon_lunch_layout)
+        mon_meal_d = findViewById(R.id.mon_dinner_layout)
 
+        tues_meal_b = findViewById(R.id.tues_break_layout)
+        tues_meal_l = findViewById(R.id.tues_lunch_layout)
+        tues_meal_d = findViewById(R.id.tues_dinner_layout)
+
+        wed_meal_b = findViewById(R.id.wed_break_layout)
+        wed_meal_l = findViewById(R.id.wed_lunch_layout)
+        wed_meal_d = findViewById(R.id.wed_dinner_layout)
+
+        thurs_meal_b = findViewById(R.id.thurs_break_layout)
+        thurs_meal_l = findViewById(R.id.thurs_lunch_layout)
+        thurs_meal_d = findViewById(R.id.thurs_dinner_layout)
+
+        fri_meal_b = findViewById(R.id.fri_break_layout)
+        fri_meal_l = findViewById(R.id.fri_lunch_layout)
+        fri_meal_d = findViewById(R.id.fri_dinner_layout)
+
+        sat_meal_b = findViewById(R.id.sat_break_layout)
+        sat_meal_l = findViewById(R.id.sat_lunch_layout)
+        sat_meal_d = findViewById(R.id.sat_dinner_layout)
+
+        sun_meal_b = findViewById(R.id.sun_break_layout)
+        sun_meal_l = findViewById(R.id.sun_lunch_layout)
+        sun_meal_d = findViewById(R.id.sun_dinner_layout)
 
         monday_meals = findViewById(R.id.monday_layouts_horo)
         tuesday_meals = findViewById(R.id.tuesday_layouts_horo)
