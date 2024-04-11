@@ -12,22 +12,6 @@
     tools:context=".Recipes"
     tools:ignore="ExtraText">
 
-<!--    <com.google.android.material.tabs.TabLayout-->
-<!--        android:id="@+id/tabLayout"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/medium_cream"-->
-<!--        app:tabGravity="fill"-->
-<!--        app:tabMode="fixed"-->
-<!--        app:tabTextColor="@color/black"-->
-<!--        android:paddingBottom="20dp"/>-->
-
-<!--    <androidx.viewpager.widget.ViewPager-->
-<!--        android:id="@+id/recipeViewPager"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_weight="1" />-->
-
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
@@ -51,6 +35,98 @@
                 android:textColor="@color/black"
                 android:textSize="50sp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filter by Diet"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:id="@+id/filterLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/dairy_free"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/dairy_free_round"
+                    android:backgroundTint="@color/light_cream"
+                    android:checked="false"/>
+
+                <ImageButton
+                    android:id="@+id/gluten_free"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/gluten_free_round"
+                    android:backgroundTint="@color/light_cream"
+                    android:checked="false"/>
+                <ImageButton
+                    android:id="@+id/halal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Halal"
+                    android:src="@mipmap/halal_round"
+                    android:backgroundTint="@color/light_cream"
+                    android:checked="false"/>
+                <ImageButton
+                    android:id="@+id/kosher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kosher"
+                    android:src="@mipmap/kosher_round"
+                    android:backgroundTint="@color/light_cream"
+                    android:checked="false"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal">
+
+                <ImageButton
+                    android:id="@+id/low_sodium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Low Sodium"
+                    android:src="@mipmap/low_sodium_round"
+                    android:backgroundTint="@color/light_cream"
+                    android:checked="false"/>
+                <ImageButton
+                    android:id="@+id/nut_free"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nut Free"
+                    android:src="@mipmap/nut_free_round"
+                    android:backgroundTint="@color/light_cream"
+                    android:checked="false"/>
+                <ImageButton
+                    android:id="@+id/sugar_free"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sugar Free"
+                    android:src="@mipmap/sugar_free_round"
+                    android:backgroundTint="@color/light_cream"
+                    android:checked="false"/>
+                <ImageButton
+                    android:id="@+id/vegan_v"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vegan"
+                    android:src="@mipmap/vegan_round"
+                    android:backgroundTint="@color/light_cream"
+                    android:checked="false"
+                    />
+            </LinearLayout>
+
+
             <View
                 android:id="@+id/list_spacer"
                 android:layout_width="match_parent"
@@ -61,10 +137,16 @@
             <com.google.android.material.search.SearchBar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
                 android:backgroundTint="@color/white"
-                app:queryHint="Search for a recipe">
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp">
+
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:queryHint="Search for a recipe"
+                    />
             </com.google.android.material.search.SearchBar>
 
             <View
