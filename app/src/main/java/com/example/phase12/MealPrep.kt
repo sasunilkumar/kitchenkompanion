@@ -61,33 +61,33 @@ class MealPrep : AppBar() {
     private lateinit var arrowDownSu: ImageView
     private lateinit var arrowUpSu: ImageView
 
-    private lateinit var mon_meal_b: ImageView
-    private lateinit var mon_meal_l: ImageView
-    private lateinit var mon_meal_d: ImageView
+    private lateinit var mon_meal_b: LinearLayout
+    private lateinit var mon_meal_l: LinearLayout
+    private lateinit var mon_meal_d: LinearLayout
 
-    private lateinit var tues_meal_b: ImageView
-    private lateinit var tues_meal_l: ImageView
-    private lateinit var tues_meal_d: ImageView
+    private lateinit var tues_meal_b: LinearLayout
+    private lateinit var tues_meal_l: LinearLayout
+    private lateinit var tues_meal_d: LinearLayout
 
-    private lateinit var wed_meal_b: ImageView
-    private lateinit var wed_meal_l: ImageView
-    private lateinit var wed_meal_d: ImageView
+    private lateinit var wed_meal_b: LinearLayout
+    private lateinit var wed_meal_l: LinearLayout
+    private lateinit var wed_meal_d: LinearLayout
 
-    private lateinit var thurs_meal_b: ImageView
-    private lateinit var thurs_meal_l: ImageView
-    private lateinit var thurs_meal_d: ImageView
+    private lateinit var thurs_meal_b: LinearLayout
+    private lateinit var thurs_meal_l: LinearLayout
+    private lateinit var thurs_meal_d: LinearLayout
 
-    private lateinit var fri_meal_b: ImageView
-    private lateinit var fri_meal_l: ImageView
-    private lateinit var fri_meal_d: ImageView
+    private lateinit var fri_meal_b: LinearLayout
+    private lateinit var fri_meal_l: LinearLayout
+    private lateinit var fri_meal_d: LinearLayout
 
-    private lateinit var sat_meal_b: ImageView
-    private lateinit var sat_meal_l: ImageView
-    private lateinit var sat_meal_d: ImageView
+    private lateinit var sat_meal_b: LinearLayout
+    private lateinit var sat_meal_l: LinearLayout
+    private lateinit var sat_meal_d: LinearLayout
 
-    private lateinit var sun_meal_b: ImageView
-    private lateinit var sun_meal_l: ImageView
-    private lateinit var sun_meal_d: ImageView
+    private lateinit var sun_meal_b: LinearLayout
+    private lateinit var sun_meal_l: LinearLayout
+    private lateinit var sun_meal_d: LinearLayout
 
 
     private lateinit var week_spinner: Spinner
@@ -402,15 +402,11 @@ class MealPrep : AppBar() {
                 var name = TextView(this).apply {
                     text = curr.getString("recipe")
                     layoutParams = TableRow.LayoutParams(
-                        0,
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        1f
                     )
-                    gravity = Gravity.CENTER
-                    textSize = 23f
+                    textSize = 22f
                     typeface = resources.getFont(R.font.hammersmith_one)
                     setTextColor(ContextCompat.getColor(context, R.color.black))
-                    setPadding(8, 8, 8, 8)
                 }
 
                 linearView.addView(name)

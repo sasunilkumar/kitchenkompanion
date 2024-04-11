@@ -167,9 +167,9 @@
                                     android:gravity="center"/>
                                 <TextView
                                     android:id="@+id/ex2"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Eggs"
+                                    android:text="Grilled Chicken"
                                     android:textColor= "@color/black"
                                     android:fontFamily="@font/hammersmith_one"
                                     android:textSize="23sp" />
@@ -199,12 +199,11 @@
                                     android:gravity="end" />
                                 <TextView
                                     android:id="@+id/ex3"
-                                    android:layout_width="match_parent"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Eggs"
+                                    android:text="Chickpea Salad"
                                     android:textColor= "@color/black"
                                     android:fontFamily="@font/hammersmith_one"
-                                    android:paddingTop="15dp"
                                     android:textSize="23sp" />
                             </LinearLayout>
                         </LinearLayout>
