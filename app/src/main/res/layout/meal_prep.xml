@@ -1004,7 +1004,7 @@
                                 android:textSize="24sp"
                                 android:gravity="center_vertical"/>
                         </LinearLayout>
-
+<!-- HELP-->
                         <!--LUNCH SUNDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/sun_lunch_layout"
