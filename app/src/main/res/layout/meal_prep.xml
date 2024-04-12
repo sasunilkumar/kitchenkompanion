@@ -103,6 +103,21 @@
                             android:layout_centerVertical="true"
                             android:src="@drawable/baseline_keyboard_arrow_up_24"
                             android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/clear_mon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clear Monday"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:padding="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="40dp"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone"
+                            android:background="@drawable/border"/>
+
                     </RelativeLayout>
 
                     <LinearLayout
@@ -271,6 +286,20 @@
                             android:layout_centerVertical="true"
                             android:src="@drawable/baseline_keyboard_arrow_up_24"
                             android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/clear_tues"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clear Tuesday"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:padding="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="40dp"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone"
+                            android:background="@drawable/border"/>
                     </RelativeLayout>
 
                     <LinearLayout
@@ -410,6 +439,20 @@
                             android:layout_centerVertical="true"
                             android:src="@drawable/baseline_keyboard_arrow_up_24"
                             android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/clear_wed"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clear Wednesday"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:padding="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="40dp"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone"
+                            android:background="@drawable/border"/>
                     </RelativeLayout>
 
                     <LinearLayout
@@ -570,6 +613,20 @@
                             android:layout_centerVertical="true"
                             android:src="@drawable/baseline_keyboard_arrow_up_24"
                             android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/clear_thurs"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clear Thursday"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:padding="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="40dp"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone"
+                            android:background="@drawable/border"/>
                     </RelativeLayout>
 
                     <LinearLayout
@@ -707,6 +764,20 @@
                             android:layout_centerVertical="true"
                             android:src="@drawable/baseline_keyboard_arrow_up_24"
                             android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/clear_fri"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clear Friday"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:padding="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="40dp"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone"
+                            android:background="@drawable/border"/>
                     </RelativeLayout>
 
                     <LinearLayout
@@ -844,6 +915,20 @@
                             android:layout_centerVertical="true"
                             android:src="@drawable/baseline_keyboard_arrow_up_24"
                             android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/clear_sat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clear Saturday"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:padding="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="40dp"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone"
+                            android:background="@drawable/border"/>
                     </RelativeLayout>
 
                     <LinearLayout
@@ -980,6 +1065,20 @@
                             android:layout_centerVertical="true"
                             android:src="@drawable/baseline_keyboard_arrow_up_24"
                             android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/clear_sun"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clear Sunday"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:padding="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginRight="40dp"
+                            android:layout_centerVertical="true"
+                            android:visibility="gone"
+                            android:background="@drawable/border"/>
                     </RelativeLayout>
 
                     <LinearLayout
@@ -1018,7 +1117,7 @@
                                 android:textSize="24sp"
                                 android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
-<!-- HELP-->
+
                         <!--LUNCH SUNDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/sun_lunch_layout"
@@ -1072,6 +1171,7 @@
         android:layout_height="match_parent"
         app:layout_anchor="@+id/scrollView2"
         app:layout_anchorGravity="center">
+
 
         <!--toolbar-->
         <com.google.android.material.bottomappbar.BottomAppBar
