@@ -206,9 +206,13 @@ class MealPrep : AppBar() {
 
         clear_m.setOnClickListener {
             for (i in 0 until monday_meals.childCount) {
-                val view = monday_meals.getChildAt(i)
-                if (view is EditText) {
-                    view.text.clear()
+                val view = monday_meals.getChildAt(i) as LinearLayout
+                for (i in 0 until view.childCount) {
+                    val view2 = view.getChildAt(i)
+                    if (view2 is EditText) {
+                        Log.d("clear button", "ruff")
+                        view2.text.clear()
+                    }
                 }
         }}
 
