@@ -98,6 +98,15 @@ class MealPrep : AppBar() {
     private lateinit var meal_Items: ArrayList<String>
     private lateinit var meal_adapter: ArrayAdapter<String>
 
+    private lateinit var clear_m: TextView
+    private lateinit var clear_t: TextView
+    private lateinit var clear_w: TextView
+    private lateinit var clear_th: TextView
+    private lateinit var clear_f: TextView
+    private lateinit var clear_sa: TextView
+    private lateinit var clear_su: TextView
+
+
 
     private lateinit var addB: View
 
@@ -164,6 +173,14 @@ class MealPrep : AppBar() {
         saturday_meals = findViewById(R.id.saturday_layouts_horo)
         sunday_meals = findViewById(R.id.sunday_layouts_horo)
 
+        clear_m = findViewById(R.id.clear_mon)
+        clear_t = findViewById(R.id.clear_tues)
+        clear_w = findViewById(R.id.clear_wed)
+        clear_th = findViewById(R.id.clear_thurs)
+        clear_f = findViewById(R.id.clear_fri)
+        clear_sa = findViewById(R.id.clear_sat)
+        clear_su = findViewById(R.id.clear_sun)
+
         monday = findViewById(R.id.monday_card)
         tuesday = findViewById(R.id.tuesday_card)
         wednesday = findViewById(R.id.wednesday_card)
@@ -187,18 +204,31 @@ class MealPrep : AppBar() {
         arrowDownSu = findViewById(R.id.arrow_down_sun)
         arrowUpSu = findViewById(R.id.arrow_up_sun)
 
+        clear_m.setOnClickListener {
+            for (i in 0 until monday_meals.childCount) {
+                val view = monday_meals.getChildAt(i)
+                if (view is EditText) {
+                    view.text.clear()
+                }
+        }}
+
 
         monday.setOnClickListener {
             if (monday_meals.visibility == View.GONE) {
                 monday_meals.visibility = View.VISIBLE
+                clear_m.visibility = View.VISIBLE
+
             } else {
                 monday_meals.visibility = View.GONE
+                clear_m.visibility = View.GONE
             }
             if (arrowDownM.visibility == View.VISIBLE) {
                 arrowDownM.visibility = View.GONE
                 arrowUpM.visibility = View.VISIBLE
+                clear_m.visibility = View.VISIBLE
             } else {
                 arrowUpM.visibility = View.GONE
+                clear_m.visibility = View.GONE
                 arrowDownM.visibility = View.VISIBLE
             }
         }
@@ -206,14 +236,18 @@ class MealPrep : AppBar() {
         tuesday.setOnClickListener {
             if (tuesday_meals.visibility == View.GONE) {
                 tuesday_meals.visibility = View.VISIBLE
+                clear_t.visibility = View.VISIBLE
             } else {
                 tuesday_meals.visibility = View.GONE
+                clear_t.visibility = View.GONE
             }
             if (arrowDownT.visibility == View.VISIBLE) {
                 arrowDownT.visibility = View.GONE
+                clear_t.visibility = View.VISIBLE
                 arrowUpT.visibility = View.VISIBLE
             } else {
                 arrowUpT.visibility = View.GONE
+                clear_t.visibility = View.GONE
                 arrowDownT.visibility = View.VISIBLE
             }
         }
@@ -221,14 +255,19 @@ class MealPrep : AppBar() {
         wednesday.setOnClickListener {
             if (wednesday_meals.visibility == View.GONE) {
                 wednesday_meals.visibility = View.VISIBLE
+                clear_w.visibility = View.VISIBLE
+
             } else {
                 wednesday_meals.visibility = View.GONE
+                clear_w.visibility = View.GONE
             }
             if (arrowDownW.visibility == View.VISIBLE) {
                 arrowDownW.visibility = View.GONE
+                clear_w.visibility = View.VISIBLE
                 arrowUpW.visibility = View.VISIBLE
             } else {
                 arrowUpW.visibility = View.GONE
+                clear_w.visibility = View.GONE
                 arrowDownW.visibility = View.VISIBLE
             }
         }
@@ -236,59 +275,77 @@ class MealPrep : AppBar() {
         thursday.setOnClickListener {
             if (thursday_meals.visibility == View.GONE) {
                 thursday_meals.visibility = View.VISIBLE
+                clear_th.visibility = View.VISIBLE
+
             } else {
                 thursday_meals.visibility = View.GONE
+                clear_th.visibility = View.GONE
+
             }
             if (arrowDownTh.visibility == View.VISIBLE) {
                 arrowDownTh.visibility = View.GONE
+                clear_th.visibility = View.VISIBLE
                 arrowUpTh.visibility = View.VISIBLE
             } else {
                 arrowUpTh.visibility = View.GONE
+                clear_th.visibility = View.GONE
                 arrowDownTh.visibility = View.VISIBLE
             }
         }
 
         friday.setOnClickListener {
             if (friday_meals.visibility == View.GONE) {
+                clear_f.visibility = View.VISIBLE
                 friday_meals.visibility = View.VISIBLE
             } else {
+                clear_f.visibility = View.GONE
                 friday_meals.visibility = View.GONE
             }
             if (arrowDownF.visibility == View.VISIBLE) {
                 arrowDownF.visibility = View.GONE
+                clear_f.visibility = View.VISIBLE
                 arrowUpF.visibility = View.VISIBLE
             } else {
                 arrowUpF.visibility = View.GONE
+                clear_f.visibility = View.GONE
                 arrowDownF.visibility = View.VISIBLE
             }
         }
 
         saturday.setOnClickListener {
             if (saturday_meals.visibility == View.GONE) {
+                clear_sa.visibility = View.VISIBLE
                 saturday_meals.visibility = View.VISIBLE
             } else {
                 saturday_meals.visibility = View.GONE
+                clear_sa.visibility = View.GONE
             }
             if (arrowDownSa.visibility == View.VISIBLE) {
                 arrowDownSa.visibility = View.GONE
+                clear_sa.visibility = View.VISIBLE
                 arrowUpSa.visibility = View.VISIBLE
             } else {
                 arrowUpSa.visibility = View.GONE
+                clear_sa.visibility = View.GONE
                 arrowDownSa.visibility = View.VISIBLE
             }
         }
 
         sunday.setOnClickListener {
             if (sunday_meals.visibility == View.GONE) {
+                clear_su.visibility = View.VISIBLE
                 sunday_meals.visibility = View.VISIBLE
             } else {
+                clear_su.visibility = View.GONE
                 sunday_meals.visibility = View.GONE
             }
             if (arrowDownSu.visibility == View.VISIBLE) {
                 arrowDownSu.visibility = View.GONE
+                clear_su.visibility = View.VISIBLE
                 arrowUpSu.visibility = View.VISIBLE
             } else {
                 arrowUpSu.visibility = View.GONE
+                clear_su.visibility = View.GONE
                 arrowDownSu.visibility = View.VISIBLE
             }
         }
@@ -397,19 +454,19 @@ class MealPrep : AppBar() {
         if (items != null) {
             var linearView = view
             for (i in 0 until items.length()){
-                val weights = arrayOf(3f, 1f, 1f)
                 var curr = items.getJSONObject(i)
-                var name = TextView(this).apply {
-                    text = curr.getString("recipe")
+                var name = EditText(this).apply {
                     layoutParams = TableRow.LayoutParams(
                         TableRow.LayoutParams.WRAP_CONTENT,
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        weights[i]
                     )
                     textSize = 23f
+
                     typeface = resources.getFont(R.font.hammersmith_one)
                     setTextColor(ContextCompat.getColor(context, R.color.black))
                 }
+                name.gravity = Gravity.CENTER_HORIZONTAL
+                name.setText(curr.getString("recipe"))
                 linearView.addView(name)
             }
         }
