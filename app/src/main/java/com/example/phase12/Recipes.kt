@@ -683,6 +683,10 @@ class Recipes : AppBar() {
             newItem.addView(checkItem)
             newItem.addView(newButton)
 
+            newButton.setOnClickListener() {
+
+            }
+
 //            val checkEditText = EditText(context)
 //
 //            val checkEditParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
