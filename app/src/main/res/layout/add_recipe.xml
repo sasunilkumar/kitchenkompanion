@@ -14,14 +14,17 @@
         <RadioButton android:id="@+id/radio_item_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add Ingredient"/>
+            android:text="Add Ingredient"
+            android:textSize="24sp"/>
         <RadioButton android:id="@+id/radio_item_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="24sp"
             android:text="Add Instruction"/>
         <RadioButton android:id="@+id/radio_list_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="24sp"
             android:text="Add Recipe"/>
     </RadioGroup>
 

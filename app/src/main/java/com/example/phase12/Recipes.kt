@@ -39,6 +39,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.ui.node.getOrAddAdapter
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.marginLeft
 import androidx.core.view.marginTop
 import androidx.core.view.setPadding
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -250,6 +251,7 @@ class Recipes : AppBar() {
 
                         newIngredientLayout.addView(newCheckBox)
 
+                        //val layoutToAdd = findViewById<RelativeLayout>(ingredientViews[selectedRecipe])
                         ingredientsRelLayout.addView(newIngredientLayout)
                         ingredientsRelLayout.invalidate()
                         //(ingredientSpinner.adapter as? ArrayAdapter<String>)?.notifyDataSetChanged()
@@ -648,7 +650,6 @@ class Recipes : AppBar() {
             newItem.id = View.generateViewId()
 
             val newItemParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
-            newItemParams.topMargin = context.resources.getDimensionPixelSize(R.dimen.itemPad)
             if (prevId > 0) {
                 newItemParams.addRule(RelativeLayout.BELOW, prevId)
             }
@@ -662,12 +663,44 @@ class Recipes : AppBar() {
 
             checkParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE)
             checkItem.layoutParams = checkParams
-
+            checkItem.gravity = Gravity.CENTER_VERTICAL
+            checkItem.setPadding(0,context.resources.getDimensionPixelSize(R.dimen.checkEditPadding), 0, 0)
             checkItem.text = ingredient
             checkItem.setTextColor(textColor)
             checkItem.textSize = 20F
 
+            val plusImage = R.drawable.ic_plus_24
+            val newButton = Button(context)
+            newButton.id = View.generateViewId()
+
+            val buttonSize = context.resources.getDimensionPixelSize(R.dimen.plusSize)
+            val buttonParams = RelativeLayout.LayoutParams(buttonSize, buttonSize)
+            buttonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE)
+            newButton.layoutParams = buttonParams
+
+            newButton.setBackgroundResource(plusImage)
+
             newItem.addView(checkItem)
+            newItem.addView(newButton)
+
+//            val checkEditText = EditText(context)
+//
+//            val checkEditParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT)
+//
+//            checkEditParams.addRule(RelativeLayout.ALIGN_END, checkItem.id)
+//            checkEditParams.leftMargin = context.resources.getDimensionPixelSize(R.dimen.checkText)
+//            checkItem.layoutParams = checkParams
+//
+//            checkEditText.setText(ingredient)
+//            checkEditText.setTextColor(textColor)
+//            checkEditText.textSize = 20F
+//            checkEditText.gravity = Gravity.CENTER_VERTICAL
+            //checkEditText.setPadding(context.resources.getDimensionPixelSize(R.dimen.checkText),0,0, 0)
+//
+//            newItem.addView(checkItem)
+//            newItem.addView(checkEditText)
+
             ingredientsRelLayout.addView(newItem)
             prevId = newItem.id
         }
