@@ -177,6 +177,13 @@
                 android:layout_height="16dp"
                 android:visibility="invisible" />
 
+            <LinearLayout
+                android:id="@+id/cardListLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 

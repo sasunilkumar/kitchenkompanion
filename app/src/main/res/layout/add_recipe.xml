@@ -142,6 +142,7 @@
             android:layout_marginLeft="16dp"
             android:textSize="16dp"></TextView>
         <LinearLayout
+            android:id="@+id/recipeBuilder"
             xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:orientation="vertical"

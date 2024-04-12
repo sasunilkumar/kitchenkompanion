@@ -57,6 +57,7 @@ import java.io.FileNotFoundException
 class Recipes : AppBar() {
     private lateinit var binding: RecipesBinding
     private lateinit var parentLayout: LinearLayout
+    private lateinit var cardLayout : LinearLayout
     private lateinit var navBar: BottomAppBar
     private lateinit var ingredientViews : MutableMap<String, Int>
     private lateinit var instructionViews : MutableMap<String, Int>
@@ -100,7 +101,7 @@ class Recipes : AppBar() {
         navBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
 
         parentLayout = findViewById<LinearLayout>(R.id.recipes)
-        val searchView = findViewById<SearchView>(R.id.searchView)
+        cardLayout = findViewById<LinearLayout>(R.id.cardListLayout)
 
         val recipes = parse(readJson())
         val recipeTitles = mutableListOf<String>()
@@ -115,7 +116,7 @@ class Recipes : AppBar() {
                 recipe.prepTime, recipe.cookTime, recipe.serves, recipe.diet,
                 recipe.ingredients, recipe.instructions
             )
-            parentLayout.addView(newCard)
+            cardLayout.addView(newCard)
         }
 
         // Dietary Filter
@@ -128,30 +129,32 @@ class Recipes : AppBar() {
         val sugarFree = findViewById<ImageButton>(R.id.sugar_free)
         val vegan = findViewById<ImageButton>(R.id.vegan_v)
 
-//        dairyFree.setOnClickListener() {
-//            filterRecipes("dairy_free", recipes)
-//        }
-//        glutenFree.setOnClickListener() {
-//            filterRecipes("gluten_free", recipes)
-//        }
-//        halal.setOnClickListener() {
-//            filterRecipes("halal", recipes)
-//        }
-//        kosher.setOnClickListener() {
-//            filterRecipes("kosher", recipes)
-//        }
-//        lowSodium.setOnClickListener() {
-//            filterRecipes("low_sodium", recipes)
-//        }
-//        nutFree.setOnClickListener() {
-//            filterRecipes("nut_free", recipes)
-//        }
-//        sugarFree.setOnClickListener() {
-//            filterRecipes("sugar_free", recipes)
-//        }
-//        vegan.setOnClickListener() {
-//            filterRecipes("vegan", recipes)
-//        }
+        var filtered = recipes
+        dairyFree.setOnClickListener() {
+            filtered = filterRecipes("dairy_free", recipes)
+
+        }
+        glutenFree.setOnClickListener() {
+            filtered = filterRecipes("gluten_free", recipes)
+        }
+        halal.setOnClickListener() {
+            filtered = filterRecipes("halal", recipes)
+        }
+        kosher.setOnClickListener() {
+            filtered = filterRecipes("kosher", recipes)
+        }
+        lowSodium.setOnClickListener() {
+            filtered = filterRecipes("low_sodium", recipes)
+        }
+        nutFree.setOnClickListener() {
+            filtered = filterRecipes("nut_free", recipes)
+        }
+        sugarFree.setOnClickListener() {
+            filtered = filterRecipes("sugar_free", recipes)
+        }
+        vegan.setOnClickListener() {
+            filtered = filterRecipes("vegan", recipes)
+        }
 
         binding.fabRecipeList.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -188,7 +191,9 @@ class Recipes : AppBar() {
                         addIngredientLayout.visibility = View.GONE
                         addInstructionLayout.visibility = View.GONE
                         addRecipeLayout.visibility = View.VISIBLE
-                        addNewRecipe()
+//                        addNewRecipe()
+
+
                     }
                 }
             }
@@ -239,6 +244,44 @@ class Recipes : AppBar() {
                         selectedInstructionRecipe.instructions.add(newInstruction)
                         (instructionSpinner.adapter as ArrayAdapter<String>).notifyDataSetChanged()
                     }
+                    R.id.radio_list_3 -> {
+                        val recipeView = view.findViewById<LinearLayout>(R.id.recipeBuilder)
+
+                        if (recipeView != null) {
+                            val title =
+                                recipeView.findViewById<EditText>(R.id.recipeTitle).text.toString()
+                            val skillLevel =
+                                recipeView.findViewById<EditText>(R.id.skillLevel).text.toString()
+                                    .toFloat()
+                            val prepTime =
+                                recipeView.findViewById<EditText>(R.id.prepTime).text.toString()
+                                    .toInt()
+                            val cookTime =
+                                recipeView.findViewById<EditText>(R.id.cookTime).text.toString()
+                                    .toInt()
+                            val serves =
+                                recipeView.findViewById<EditText>(R.id.serves).text.toString()
+                                    .toInt()
+                            val diet = mutableListOf<String>()
+                            val ingredients = mutableListOf<String>()
+                            val instructions = mutableListOf<String>()
+
+                            val cardView = createRecipeCard(
+                                this@Recipes,
+                                title,
+                                skillLevel,
+                                prepTime,
+                                cookTime,
+                                serves,
+                                diet,
+                                ingredients,
+                                instructions
+                            )
+
+                            cardLayout.addView(cardView)
+                        }
+
+                    }
                     else -> { }
                 }
             }
@@ -254,18 +297,15 @@ class Recipes : AppBar() {
     private fun addNewRecipe() {
 
     }
-//    private fun filterRecipes(diet : String, recipes : MutableList<Recipe>) {
-//        for (i in 0 until parentLayout.childCount) {
-//            val cardView = parentLayout.getChildAt(i) as CardView
-//            val recipe = cardView.getTag(R.id.recipe) as Recipe
-//
-//            if (recipe.diet.contains(diet)) {
-//                cardView.visibility = View.VISIBLE
-//            } else {
-//                cardView.visibility = View.GONE
-//            }
-//        }
-//    }
+    private fun filterRecipes(diet : String, recipes : MutableList<Recipe>) : MutableList<Recipe> {
+        val filteredRecipes = mutableListOf<Recipe>()
+        for (recipe in recipes) {
+            if (recipe.diet.contains(diet)) {
+                filteredRecipes.add(recipe)
+            }
+        }
+        return filteredRecipes
+    }
     private fun createRecipeCard(context: Context, title: String, ratingStars: Float, prepTime : Int,
                                  cookTime: Int, serves: Int, diet: MutableList<String>, ingredients : MutableList<String>,
                                  instructions : MutableList<String>): CardView {
