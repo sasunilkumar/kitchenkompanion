@@ -1,6 +1,7 @@
 package com.example.phase12
 
 import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.DeadObjectException
@@ -10,13 +11,16 @@ import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RadioButton
+import android.widget.RelativeLayout
 import android.widget.Spinner
 import android.widget.TableLayout
 import android.widget.TableRow
@@ -435,19 +439,74 @@ class GroceryList : AppBar() {
 
         container.setPadding(40)
 
-        val titleText = TextView(this).apply {
-            id = titleID
-            layoutParams = TableLayout.LayoutParams(
-                TableLayout.LayoutParams.MATCH_PARENT,
-                TableLayout.LayoutParams.WRAP_CONTENT
+        // Relative Layout for top of card elements titleText
+        val titleText = RelativeLayout(this).apply {
+            layoutParams = RelativeLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
             )
-            text = title
-            textSize = 30f
-            gravity = TextView.TEXT_ALIGNMENT_VIEW_START
-            textAlignment = TextView.TEXT_ALIGNMENT_CENTER
-            typeface = ResourcesCompat.getFont(this.context, R.font.hammersmith_one)
-            setTextColor(ContextCompat.getColor(context, R.color.black))
         }
+        val relativeTopCardView = TextView(this).apply {
+            id = titleID
+            layoutParams = RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE)
+            }
+            typeface = ResourcesCompat.getFont(context, R.font.hammersmith_one)
+            setTypeface(typeface, Typeface.BOLD)
+            text = title
+            textSize = 30F
+            setTextColor(ContextCompat.getColor(context, R.color.black))
+            gravity = Gravity.CENTER_VERTICAL
+        }
+
+        // Creating Recipe Title
+//        val titleTextView = TextView(this).apply {
+//            id = View.generateViewId()
+//            layoutParams = RelativeLayout.LayoutParams(
+//                RelativeLayout.LayoutParams.WRAP_CONTENT,
+//                RelativeLayout.LayoutParams.WRAP_CONTENT
+//            ).apply {
+//                addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE)
+//            }
+//            typeface = ResourcesCompat.getFont(context, R.font.hammersmith_one)
+//            setTypeface(typeface, Typeface.BOLD)
+//            text = title
+//            textSize = 30F
+//            setTextColor(ContextCompat.getColor(context, R.color.black))
+//            gravity = Gravity.CENTER_VERTICAL
+//        }
+
+        // Creating down arrow
+        val downArrowImageView = ImageView(this).apply {
+            id = View.generateViewId()
+            layoutParams = RelativeLayout.LayoutParams(
+                resources.getDimensionPixelSize(R.dimen.plusSize),
+                resources.getDimensionPixelSize(R.dimen.plusSize)
+            ).apply {
+                addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE)
+                addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE)
+            }
+            setImageDrawable(ContextCompat.getDrawable(context, R.drawable.baseline_keyboard_arrow_down_24))
+            visibility = View.VISIBLE
+        }
+
+        // Creating up arrow
+        val upArrowImageView = ImageView(this).apply {
+            id = View.generateViewId()
+            layoutParams = RelativeLayout.LayoutParams(32, 32).apply {
+                addRule(RelativeLayout.ALIGN_PARENT_END, RelativeLayout.TRUE)
+                addRule(RelativeLayout.CENTER_VERTICAL, RelativeLayout.TRUE)
+            }
+            setImageDrawable(ContextCompat.getDrawable(context, R.drawable.baseline_keyboard_arrow_up_24))
+            visibility = View.GONE
+        }
+        titleText.addView(relativeTopCardView)
+        titleText.addView(downArrowImageView)
+        titleText.addView(upArrowImageView)
+
 
 
         val table = TableLayout(this).apply {
@@ -508,14 +567,18 @@ class GroceryList : AppBar() {
 
 
         Log.d("ADDED LIST", grocArray.toString())
-
         container.setOnClickListener{
             if (table.visibility == View.GONE){
                 table.visibility = View.VISIBLE
+                downArrowImageView.visibility = View.GONE
+                upArrowImageView.visibility = View.VISIBLE
 
                 Log.d("CARD", "Make table visible")
             }else {
                 table.visibility = View.GONE
+                upArrowImageView.visibility = View.GONE
+                downArrowImageView.visibility = View.VISIBLE
+
                 Log.d("CARD", "Make table invisible")
             }
         }
