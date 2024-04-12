@@ -4,6 +4,8 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.DeadObjectException
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -634,17 +636,29 @@ class GroceryList : AppBar() {
 
                 }
                 check.addView(checkItem)
-                checkItem.setOnCheckedChangeListener{ buttonView, isChecked ->
-                    if (isChecked) {tableView.removeView(row)}
-                }
                 row.addView(name)
                 row.addView(owner)
                 row.addView(quant)
                 row.addView(price)
                 row.addView(check)
                 tableView.addView(row)
+                checkItem.setOnCheckedChangeListener{ buttonView, isChecked ->
+                    if (isChecked) {
+                        // Waiting stolen from StackOverflow
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            tableView.removeView(row)
+                            var sumID = tableTotalID[view] ?: 0
+                            var text = findViewById<TextView>(sumID)
+                            var count = tableTotal.getValue(view).toInt() - curr.getString("price").toInt() * curr.getInt("quantity").toInt()
+                            tableTotal[view] = count
+                            Log.d("DELETE ITEM","${sumID}, ${tableTotal.getValue(view).toString()},")
+                            text.text = "List Total: $"+ count.toString()
+                        }, 350)
+                    }
+                }
 
             }
+
             tableTotal[view] = curTotal
         }
     }
