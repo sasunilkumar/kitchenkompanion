@@ -128,105 +128,105 @@
                         android:orientation="vertical"
                         android:visibility="gone"/>
 
+                    <LinearLayout
+                        android:id="@+id/monday_layouts_horo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:paddingTop="20dp">
+
+
+                        <!--BREAKFAST MONDAY SECTION -->
                         <LinearLayout
-                            android:id="@+id/monday_layouts_horo"
-                            android:layout_width="match_parent"
+                            android:id = "@+id/mon_break_layout"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:animateLayoutChanges="true"
-                            android:orientation="horizontal"
-                            android:visibility="gone"
-                            android:paddingTop="20dp">
-
-
-                            <!--BREAKFAST MONDAY SECTION -->
-                            <LinearLayout
-                                android:id = "@+id/mon_break_layout"
-                                android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:id="@+id/breakfast_m"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_horizontal">
-                                <TextView
-                                    android:id="@+id/breakfast_m"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Breakfast"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:textSize="24sp"
-                                    android:layout_gravity="center_horizontal"/>
-                                <EditText
-                                    android:id="@+id/ex"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Protien Shake"
-                                    android:textColor= "@color/black"
-                                    android:fontFamily="@font/hammersmith_one"
-                                    android:layout_gravity="center_horizontal"
-                                    android:textSize="23sp" />
-                            </LinearLayout>
-
-                            <!--LUNCH MONDAY SECTION -->
-                            <LinearLayout
-                                android:id = "@+id/mon_lunch_layout"
-                                android:layout_width="0dp"
+                                android:text="Breakfast"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:layout_gravity="center_horizontal"/>
+                            <EditText
+                                android:id="@+id/ex"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_horizontal">
-                                <TextView
-                                    android:id="@+id/lunch_m"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Lunch"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:textSize="24sp"
-                                    android:layout_gravity="center_horizontal"/>
-                                <EditText
-                                    android:id="@+id/ex2"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Chicken Salad"
-                                    android:textColor= "@color/black"
-                                    android:fontFamily="@font/hammersmith_one"
-                                    android:textSize="23sp"/>
-                            </LinearLayout>
-
-<!--                            <View-->
-<!--                                android:layout_width="0dp"-->
-<!--                                android:layout_height="0dp"-->
-<!--                                android:layout_weight="1"-->
-<!--                                android:visibility="invisible" />-->
-
-                            <!--DINNER MONDAY SECTION -->
-                            <LinearLayout
-                                android:id = "@+id/mon_dinner_layout"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:orientation="vertical"
-                                android:gravity="center_horizontal">
-                                <TextView
-                                    android:id="@+id/dinner_m"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Dinner"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/black"
-                                    android:textSize="24sp"
-                                    android:layout_gravity="center_horizontal"/>
-                                <EditText
-                                    android:id="@+id/ex3"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Grilled Chicken"
-                                    android:textColor= "@color/black"
-                                    android:fontFamily="@font/hammersmith_one"
-                                    android:layout_gravity="center_horizontal"
-                                    android:textSize="23sp"/>
-                            </LinearLayout>
+                                android:text="Protien Shake"
+                                android:textColor= "@color/black"
+                                android:fontFamily="@font/hammersmith_one"
+                                android:layout_gravity="center_horizontal"
+                                android:textSize="23sp" />
                         </LinearLayout>
+
+                        <!--LUNCH MONDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/mon_lunch_layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:id="@+id/lunch_m"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lunch"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:layout_gravity="center_horizontal"/>
+                            <EditText
+                                android:id="@+id/ex2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Chicken Salad"
+                                android:textColor= "@color/black"
+                                android:fontFamily="@font/hammersmith_one"
+                                android:textSize="23sp"/>
+                        </LinearLayout>
+
+                        <!--                            <View-->
+                        <!--                                android:layout_width="0dp"-->
+                        <!--                                android:layout_height="0dp"-->
+                        <!--                                android:layout_weight="1"-->
+                        <!--                                android:visibility="invisible" />-->
+
+                        <!--DINNER MONDAY SECTION -->
+                        <LinearLayout
+                            android:id = "@+id/mon_dinner_layout"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center_horizontal">
+                            <TextView
+                                android:id="@+id/dinner_m"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Dinner"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="24sp"
+                                android:layout_gravity="center_horizontal"/>
+                            <EditText
+                                android:id="@+id/ex3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Grilled Chicken"
+                                android:textColor= "@color/black"
+                                android:fontFamily="@font/hammersmith_one"
+                                android:layout_gravity="center_horizontal"
+                                android:textSize="23sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -666,7 +666,7 @@
                                 android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
 
-                            <!--LUNCH THURSDAY SECTION -->
+                        <!--LUNCH THURSDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/thurs_lunch_layout"
                             android:layout_width="0dp"
@@ -686,7 +686,7 @@
                         </LinearLayout>
 
 
-                            <!--DINNER THURSDAY SECTION -->
+                        <!--DINNER THURSDAY SECTION -->
                         <LinearLayout
                             android:id = "@+id/thurs_dinner_layout"
                             android:layout_width="0dp"

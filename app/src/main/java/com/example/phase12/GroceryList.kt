@@ -9,6 +9,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ImageButton
@@ -56,8 +57,11 @@ class GroceryList : AppBar() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.grocery_list)
+        Log.i("StateLifecycle", "onCreate")
+
 
         binding = GroceryListBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -170,6 +174,7 @@ class GroceryList : AppBar() {
 
                     val agg = "{\"operation\": $operation, \"fields\": {\"list\": $list , \"json\": $string}}"
                     var json = JSONObject(agg)
+                    Log.d("Adding Item","made it")
                     operations.put(json)
 
                 } catch (e: NumberFormatException) {
@@ -362,13 +367,6 @@ class GroceryList : AppBar() {
         } else {
             Log.d("READ Failed", "Failed to read or parse data from JSON file.")
         }
-        Log.i("StateLifecycle","trying to recover")
-        if (savedInstanceState != null){
-            Log.i("StateLifecycle","entered recovery block")
-        }else{
-            Log.i("StateLifecycle","failed to enter recovery block")
-        }
-
     }
 
 
@@ -600,18 +598,32 @@ class GroceryList : AppBar() {
                     setTextColor(ContextCompat.getColor(context, R.color.black))
                 }
                 if (curTotal != null) {
-                    curTotal += curr.getString("price").toInt()
+                    curTotal += (curr.getString("price").toInt() * curr.getInt("quantity")).toInt()
+                }
+
+                val buttonId = View.generateViewId()
+
+                var del = Button(this).apply{
+                    layoutParams = TableRow.LayoutParams(
+                        0,
+                        TableRow.LayoutParams.WRAP_CONTENT,
+                        1f)
+                    id = buttonId
+                    text = "remove"
                 }
                 var check = LinearLayout(this).apply {
                     layoutParams = TableRow.LayoutParams(
                         0,
                         TableRow.LayoutParams.WRAP_CONTENT,
-                        1.3f,
+                        1f,
 
                     )
 
+
                 }
                 check.gravity = Gravity.CENTER
+                del.gravity = Gravity.CENTER
+
                 var checkItem = CheckBox(this).apply {
                     layoutParams = TableRow.LayoutParams(
                         TableRow.LayoutParams.WRAP_CONTENT,
@@ -622,6 +634,9 @@ class GroceryList : AppBar() {
 
                 }
                 check.addView(checkItem)
+                checkItem.setOnCheckedChangeListener{ buttonView, isChecked ->
+                    if (isChecked) {tableView.removeView(row)}
+                }
                 row.addView(name)
                 row.addView(owner)
                 row.addView(quant)
@@ -652,7 +667,7 @@ class GroceryList : AppBar() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         outState.putString("OPERATION_LIST", operations.toString());
-        Log.i("StateLifecycle","${operations.toString()}")
+        Log.i("StateLifecycle","onSaveInstanceState")
         super.onSaveInstanceState(outState)
 
 
@@ -709,8 +724,37 @@ class GroceryList : AppBar() {
     }
 
     override fun onResume() {
+        Log.i("StateLifecycle", "onResume")
         super.onResume()
 
+    }
+
+    override fun onStart() {
+        Log.i("StateLifecycle", "onStart")
+        super.onStart()
+    }
+
+    override fun onPause() {
+        Log.i("StateLifecycle", "onPause")
+
+        super.onPause()
+    }
+
+    override fun onStop() {
+        Log.i("StateLifecycle", "onStop")
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        Log.i("StateLifecycle", "onDestroy")
+
+        super.onDestroy()
+    }
+
+    override fun onRestart() {
+        Log.i("StateLifecycle", "onRestart")
+
+        super.onRestart()
     }
 
 }
