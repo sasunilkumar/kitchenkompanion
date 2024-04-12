@@ -669,6 +669,20 @@ class Recipes : AppBar() {
             checkItem.setTextColor(textColor)
             checkItem.textSize = 20F
 
+            val plusImage = R.drawable.ic_plus_24
+            val newButton = Button(context)
+            newButton.id = View.generateViewId()
+
+            val buttonSize = context.resources.getDimensionPixelSize(R.dimen.plusSize)
+            val buttonParams = RelativeLayout.LayoutParams(buttonSize, buttonSize)
+            buttonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE)
+            newButton.layoutParams = buttonParams
+
+            newButton.setBackgroundResource(plusImage)
+
+            newItem.addView(checkItem)
+            newItem.addView(newButton)
+
 //            val checkEditText = EditText(context)
 //
 //            val checkEditParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -683,8 +697,8 @@ class Recipes : AppBar() {
 //            checkEditText.textSize = 20F
 //            checkEditText.gravity = Gravity.CENTER_VERTICAL
             //checkEditText.setPadding(context.resources.getDimensionPixelSize(R.dimen.checkText),0,0, 0)
-
-            newItem.addView(checkItem)
+//
+//            newItem.addView(checkItem)
 //            newItem.addView(checkEditText)
 
             ingredientsRelLayout.addView(newItem)
