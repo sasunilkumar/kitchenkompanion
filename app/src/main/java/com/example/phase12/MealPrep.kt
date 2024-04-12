@@ -211,11 +211,82 @@ class MealPrep : AppBar() {
                     val view2 = view.getChildAt(i)
                     if (view2 is EditText) {
                         Log.d("clear button", "ruff")
-                        view2.text.clear()
+                        view.removeView(view2)
                     }
                 }
         }}
 
+        clear_t.setOnClickListener {
+            for (i in 0 until tuesday_meals.childCount) {
+                val view = tuesday_meals.getChildAt(i) as LinearLayout
+                for (i in 0 until view.childCount) {
+                    val view2 = view.getChildAt(i)
+                    if (view2 is EditText) {
+                        Log.d("clear button", "ruff")
+                        view.removeView(view2)
+                    }
+                }
+            }}
+
+        clear_w.setOnClickListener {
+            for (i in 0 until wednesday_meals.childCount) {
+                val view = wednesday_meals.getChildAt(i) as LinearLayout
+                for (i in 0 until view.childCount) {
+                    val view2 = view.getChildAt(i)
+                    if (view2 is EditText) {
+                        Log.d("clear button", "ruff")
+                        view.removeView(view2)
+                    }
+                }
+            }}
+
+        clear_th.setOnClickListener {
+            for (i in 0 until thursday_meals.childCount) {
+                val view = thursday_meals.getChildAt(i) as LinearLayout
+                for (i in 0 until view.childCount) {
+                    val view2 = view.getChildAt(i)
+                    if (view2 is EditText) {
+                        Log.d("clear button", "ruff")
+                        view.removeView(view2)
+                    }
+                }
+            }}
+
+        clear_f.setOnClickListener {
+            for (i in 0 until friday_meals.childCount) {
+                val view = friday_meals.getChildAt(i) as LinearLayout
+                for (i in 0 until view.childCount) {
+                    val view2 = view.getChildAt(i)
+                    if (view2 is EditText) {
+                        Log.d("clear button", "ruff")
+                        view.removeView(view2)
+                    }
+                }
+            }}
+
+        clear_sa.setOnClickListener {
+            for (i in 0 until saturday_meals.childCount) {
+                val view = saturday_meals.getChildAt(i) as LinearLayout
+                for (i in 0 until view.childCount) {
+                    val view2 = view.getChildAt(i)
+                    if (view2 is EditText) {
+                        Log.d("clear button", "ruff")
+                        view.removeView(view2)
+                    }
+                }
+            }}
+
+        clear_su.setOnClickListener {
+            for (i in 0 until sunday_meals.childCount) {
+                val view = sunday_meals.getChildAt(i) as LinearLayout
+                for (i in 0 until view.childCount) {
+                    val view2 = view.getChildAt(i)
+                    if (view2 is EditText) {
+                        Log.d("clear button", "ruff")
+                        view.removeView(view2)
+                    }
+                }
+            }}
 
         monday.setOnClickListener {
             if (monday_meals.visibility == View.GONE) {
