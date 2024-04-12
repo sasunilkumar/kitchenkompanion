@@ -683,9 +683,9 @@ class Recipes : AppBar() {
             newItem.addView(checkItem)
             newItem.addView(newButton)
 
-            newButton.setOnClickListener() {
-
-            }
+//            newButton.setOnClickListener() {
+//
+//            }
 
 //            val checkEditText = EditText(context)
 //
