@@ -129,32 +129,32 @@ class Recipes : AppBar() {
         val sugarFree = findViewById<ImageButton>(R.id.sugar_free)
         val vegan = findViewById<ImageButton>(R.id.vegan_v)
 
-        var filtered = recipes
-        dairyFree.setOnClickListener() {
-            filtered = filterRecipes("dairy_free", recipes)
-
-        }
-        glutenFree.setOnClickListener() {
-            filtered = filterRecipes("gluten_free", recipes)
-        }
-        halal.setOnClickListener() {
-            filtered = filterRecipes("halal", recipes)
-        }
-        kosher.setOnClickListener() {
-            filtered = filterRecipes("kosher", recipes)
-        }
-        lowSodium.setOnClickListener() {
-            filtered = filterRecipes("low_sodium", recipes)
-        }
-        nutFree.setOnClickListener() {
-            filtered = filterRecipes("nut_free", recipes)
-        }
-        sugarFree.setOnClickListener() {
-            filtered = filterRecipes("sugar_free", recipes)
-        }
-        vegan.setOnClickListener() {
-            filtered = filterRecipes("vegan", recipes)
-        }
+//        var filtered = recipes
+//        dairyFree.setOnClickListener() {
+//            filtered = filterRecipes("dairy_free", recipes)
+//
+//        }
+//        glutenFree.setOnClickListener() {
+//            filtered = filterRecipes("gluten_free", recipes)
+//        }
+//        halal.setOnClickListener() {
+//            filtered = filterRecipes("halal", recipes)
+//        }
+//        kosher.setOnClickListener() {
+//            filtered = filterRecipes("kosher", recipes)
+//        }
+//        lowSodium.setOnClickListener() {
+//            filtered = filterRecipes("low_sodium", recipes)
+//        }
+//        nutFree.setOnClickListener() {
+//            filtered = filterRecipes("nut_free", recipes)
+//        }
+//        sugarFree.setOnClickListener() {
+//            filtered = filterRecipes("sugar_free", recipes)
+//        }
+//        vegan.setOnClickListener() {
+//            filtered = filterRecipes("vegan", recipes)
+//        }
 
         binding.fabRecipeList.setOnClickListener {
             val builder = AlertDialog.Builder(this)
@@ -231,7 +231,7 @@ class Recipes : AppBar() {
 
                         newIngredientLayout.addView(newCheckBox)
 
-                        //val layoutToAdd = findViewById<RelativeLayout>(ingredientViews[selectedRecipe])
+//                        val layoutToAdd = findViewById<RelativeLayout>(ingredientViews[selectedRecipe])
                         ingredientsRelLayout.addView(newIngredientLayout)
                         ingredientsRelLayout.invalidate()
                         //(ingredientSpinner.adapter as? ArrayAdapter<String>)?.notifyDataSetChanged()
