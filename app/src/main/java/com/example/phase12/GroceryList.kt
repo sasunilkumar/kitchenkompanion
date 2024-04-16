@@ -20,6 +20,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.RelativeLayout
 import android.widget.Spinner
 import android.widget.TableLayout
@@ -126,6 +127,8 @@ class GroceryList : AppBar() {
         var itemprice = view.findViewById<EditText>(R.id.price)
 
         var tableName = view.findViewById<EditText>(R.id.list_name)
+
+        var radio_group =  view.findViewById<RadioGroup>(R.id.radio_group)
 
         var itemVisibility =  view.findViewById<RadioButton>(R.id.radio_item)
         var itemBody = view.findViewById<LinearLayout>(R.id.add_item_group)
@@ -302,8 +305,7 @@ class GroceryList : AppBar() {
             itemBody.visibility = View.GONE
             itemVisibility.visibility = View.VISIBLE
             listVisibility.visibility = View.VISIBLE
-            itemVisibility.isChecked = false
-            listVisibility.isChecked = false
+            radio_group.clearCheck()
             itemName.setText("")
             itemQuant.setText("")
             itemprice.setText("")
@@ -716,7 +718,7 @@ class GroceryList : AppBar() {
                             tableTotal[view] = count
                             Log.d("DELETE ITEM","${sumID}, ${tableTotal.getValue(view).toString()},")
                             text.text = "List Total: $"+ count.toString()
-                        }, 350)
+                        }, 250)
                     }
                 }
 
@@ -746,8 +748,6 @@ class GroceryList : AppBar() {
         outState.putString("OPERATION_LIST", operations.toString());
         Log.i("StateLifecycle","onSaveInstanceState")
         super.onSaveInstanceState(outState)
-
-
     }
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         Log.i("StateLifecycle", "onRestoreInstanceState")
