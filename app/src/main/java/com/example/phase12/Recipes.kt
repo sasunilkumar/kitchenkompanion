@@ -161,8 +161,9 @@ class Recipes : AppBar() {
             val inflater = LayoutInflater.from(this)
             val view = inflater.inflate(R.layout.add_recipe, null)
 
-            val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, recipeTitles)
+            var adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, recipeTitles)
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            adapter.setNotifyOnChange(true)
 
             val radioGroup = view.findViewById<RadioGroup>(R.id.radioGroup)
             val addIngredientLayout = view.findViewById<LinearLayout>(R.id.add_ingredient)
@@ -190,11 +191,7 @@ class Recipes : AppBar() {
                     R.id.radio_list_3 -> {
                         addIngredientLayout.visibility = View.GONE
                         addInstructionLayout.visibility = View.GONE
-                        addRecipeLayout.visibility = View.VISIBLE
-//                        addNewRecipe()
-
-
-                    }
+                        addRecipeLayout.visibility = View.VISIBLE                    }
                 }
             }
             builder.setView(view)
@@ -279,6 +276,13 @@ class Recipes : AppBar() {
                             )
 
                             cardLayout.addView(cardView)
+                            val newRecipe = Recipe(title, skillLevel, prepTime, cookTime, serves, diet, ingredients, instructions)
+                            if (!recipeTitles.contains(title)) {
+                                recipes.add(newRecipe)
+                                recipeTitles.add(title)
+                                adapter.add(title)
+                                adapter.notifyDataSetChanged()
+                            }
                         }
 
                     }
@@ -392,6 +396,12 @@ class Recipes : AppBar() {
 
         upArrowImageView.visibility = View.GONE
 
+        // Diet Icons
+        val icons = mapOf("dairy_free" to R.mipmap.dairy_free_round, "gluten_free" to R.mipmap.gluten_free_round,
+            "halal" to R.mipmap.halal_round, "kosher" to R.mipmap.kosher_round,
+            "low_sodium" to R.mipmap.low_sodium_round, "nut_free" to R.mipmap.nut_free_round,
+            "sugar_free" to R.mipmap.sugar_free_round, "vegan" to R.mipmap.vegan_round)
+
         // Dummy Icon 1
         val dummy1 = ImageView(context)
         dummy1.id = View.generateViewId()
@@ -411,7 +421,12 @@ class Recipes : AppBar() {
         dummy1.layoutParams = dummy1LayoutParams
 
         val dummySrc = ContextCompat.getDrawable(context, R.mipmap.dietary_plus_round)
-        dummy1.setImageDrawable(dummySrc)
+        var dietSpecified = dummySrc
+//        val recipeDiet = diet[0]
+//        if (recipeDiet != null && icons.containsKey(recipeDiet)) {
+//            dietSpecified = ContextCompat.getDrawable(context, icons[recipeDiet]!!)
+//        }
+        dummy1.setImageDrawable(dietSpecified)
 
         dummy1.setOnClickListener(){
             dietaryRestrictions(dummy1)
@@ -431,7 +446,12 @@ class Recipes : AppBar() {
         dummy2.setPadding(imagePad, 0, 0, 0)
         dummy2.layoutParams = dummy2LayoutParams
 
-        dummy2.setImageDrawable(dummySrc)
+        var dietSpecified2 = dummySrc
+        val recipeDiet2 = diet[1]
+        if (recipeDiet2 != "" && icons.containsKey(recipeDiet2)) {
+            dietSpecified2 = ContextCompat.getDrawable(context, icons[recipeDiet2]!!)
+        }
+        dummy2.setImageDrawable(dietSpecified2)
         dummy2.setOnClickListener(){
             dietaryRestrictions(dummy2)
         }

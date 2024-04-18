@@ -28,7 +28,7 @@
     "prepTime": 30,
     "cookTime": 40,
     "servings": 8,
-    "diet": ["nut_free"],
+    "diet": ["nut_free", ""],
     "ingredients":
       ["Pineapples- 8 rings",
       "Cherries- 8",
@@ -84,7 +84,7 @@
     "prepTime": 15,
     "cookTime": 0,
     "servings": 4,
-    "diet": ["vegan"],
+    "diet": ["vegan", ""],
     "ingredients":
     ["Avocados- 3",
       "Sugar Free Chocolate- 1 bar",
